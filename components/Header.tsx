@@ -2,7 +2,7 @@
 
 import React, { useState, useEffect, useRef } from "react";
 import Link from "next/link";
-import { usePathname } from "next/navigation";
+import { usePathname, useRouter } from "next/navigation";
 import {
   Button,
   Drawer,
@@ -29,6 +29,7 @@ export default function Header() {
   const exportTimeoutRef = useRef<NodeJS.Timeout | null>(null);
 
   const pathname = usePathname();
+  const router = useRouter();
 
   useEffect(() => {
     const handleScroll = () => {
@@ -344,7 +345,7 @@ export default function Header() {
                   const el = document.getElementById("contact");
                   if (el) el.scrollIntoView({ behavior: "smooth" });
                 } else {
-                  window.location.href = "/#contact";
+                  router.push("/#contact");
                 }
               }}
               sx={{
@@ -561,7 +562,7 @@ export default function Header() {
                 const el = document.getElementById("contact");
                 if (el) el.scrollIntoView({ behavior: "smooth" });
               } else {
-                window.location.href = "/#contact";
+                router.push("/#contact");
               }
             }}
             sx={{

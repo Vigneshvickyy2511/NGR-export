@@ -2,9 +2,49 @@
 
 import React, { useState, useRef } from "react";
 import Image from "next/image";
+import { useRouter } from "next/navigation";
 import { Button, Snackbar, Alert } from "@mui/material";
+import { motion, type Variants } from "motion/react";
+
+const fadeInUp: Variants = {
+  hidden: { opacity: 0, y: 30 },
+  visible: (custom: number = 0) => ({
+    opacity: 1,
+    y: 0,
+    transition: {
+      duration: 0.7,
+      delay: custom * 0.1,
+      ease: [0.22, 1, 0.36, 1],
+    },
+  }),
+};
+
+const staggerContainer: Variants = {
+  hidden: { opacity: 0 },
+  visible: {
+    opacity: 1,
+    transition: {
+      staggerChildren: 0.12,
+      delayChildren: 0.1,
+    },
+  },
+};
+
+const scaleIn: Variants = {
+  hidden: { opacity: 0, scale: 0.94, y: 24 },
+  visible: {
+    opacity: 1,
+    scale: 1,
+    y: 0,
+    transition: {
+      duration: 0.6,
+      ease: [0.22, 1, 0.36, 1],
+    },
+  },
+};
 
 export default function AboutView() {
+  const router = useRouter();
   const heroRef = useRef<HTMLDivElement>(null);
   const [spotlight, setSpotlight] = useState({ x: 70, y: 40 });
   const [toastOpen, setToastOpen] = useState(false);
@@ -18,9 +58,7 @@ export default function AboutView() {
   };
 
   const handleContactClick = () => {
-    if (typeof window !== "undefined") {
-      window.location.href = "/#contact";
-    }
+    router.push("/#contact");
   };
 
   return (
@@ -48,30 +86,60 @@ export default function AboutView() {
           }}
         />
 
-        {/* Decorative Leaf Motifs */}
-        <span
-          className="absolute left-[-20px] top-8 text-8xl sm:text-9xl text-white opacity-[0.07] select-none pointer-events-none -rotate-[25deg] z-[1]"
+        {/* Floating Decorative Leaf Motifs */}
+        <motion.span
+          initial={{ opacity: 0, rotate: -35 }}
+          animate={{ opacity: 0.07, rotate: -25, y: [0, -10, 0] }}
+          transition={{
+            opacity: { duration: 1 },
+            y: { duration: 5, repeat: Infinity, ease: "easeInOut" },
+          }}
+          className="absolute left-[-20px] top-8 text-8xl sm:text-9xl text-white select-none pointer-events-none z-[1]"
           aria-hidden="true"
         >
           ❧
-        </span>
-        <span
-          className="absolute left-[35%] bottom-[-45px] text-8xl sm:text-9xl text-white opacity-[0.06] select-none pointer-events-none -rotate-[30deg] z-[1]"
+        </motion.span>
+        <motion.span
+          initial={{ opacity: 0, rotate: -40 }}
+          animate={{ opacity: 0.06, rotate: -30, y: [0, 10, 0] }}
+          transition={{
+            opacity: { duration: 1 },
+            y: { duration: 6, repeat: Infinity, ease: "easeInOut" },
+          }}
+          className="absolute left-[35%] bottom-[-45px] text-8xl sm:text-9xl text-white select-none pointer-events-none z-[1]"
           aria-hidden="true"
         >
           ❧
-        </span>
+        </motion.span>
 
-        {/* Hero Content */}
-        <div className="relative z-10 max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 w-full py-16 animate-hero-enter">
-          <div className="inline-flex items-center gap-2 px-3 py-1 mb-3 rounded-full bg-white/10 backdrop-blur-md border border-white/20 text-xs font-bold text-[#ffd000] tracking-widest uppercase">
-            <span>●</span> Discover Our Legacy &amp; Vision
-          </div>
-          <h1 className="text-4xl sm:text-6xl lg:text-7xl font-black tracking-tight text-white mb-2 leading-none drop-shadow-lg">
+        {/* Hero Content with Staggered Entrance */}
+        <motion.div
+          initial="hidden"
+          animate="visible"
+          variants={staggerContainer}
+          className="relative z-10 max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 w-full py-16"
+        >
+          <motion.div
+            variants={fadeInUp}
+            custom={0}
+            className="inline-flex items-center gap-2 px-3 py-1 mb-3 rounded-full bg-white/10 backdrop-blur-md border border-white/20 text-xs font-bold text-[#ffd000] tracking-widest uppercase shadow-sm"
+          >
+            <span className="w-2 h-2 rounded-full bg-[#ffd000] animate-ping" />
+            Discover Our Legacy &amp; Vision
+          </motion.div>
+          <motion.h1
+            variants={fadeInUp}
+            custom={1}
+            className="text-4xl sm:text-6xl lg:text-7xl font-black tracking-tight text-white mb-2 leading-none drop-shadow-lg"
+          >
             About Us
-          </h1>
-          <div className="w-20 sm:w-24 h-1.5 bg-[#ffd000] rounded-full mt-4" />
-        </div>
+          </motion.h1>
+          <motion.div
+            variants={fadeInUp}
+            custom={2}
+            className="w-20 sm:w-24 h-1.5 bg-[#ffd000] rounded-full mt-4"
+          />
+        </motion.div>
       </section>
 
       {/* 2. ABOUT MAIN DETAIL SECTION */}
@@ -79,7 +147,13 @@ export default function AboutView() {
         <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
           <div className="grid grid-cols-1 lg:grid-cols-2 gap-12 lg:gap-16 items-center">
             {/* Left Copy Column */}
-            <div className="space-y-6">
+            <motion.div
+              initial={{ opacity: 0, x: -35 }}
+              whileInView={{ opacity: 1, x: 0 }}
+              viewport={{ once: true, amount: 0.2 }}
+              transition={{ duration: 0.7, ease: [0.22, 1, 0.36, 1] }}
+              className="space-y-6"
+            >
               <div>
                 <p className="text-xs font-black uppercase tracking-[0.14em] text-[#00552f] mb-1">
                   About Us
@@ -100,43 +174,59 @@ export default function AboutView() {
               </p>
 
               <div className="pt-2">
-                <Button
-                  variant="contained"
-                  onClick={handleContactClick}
-                  sx={{
-                    bgcolor: "#ffd000",
-                    color: "#17351f",
-                    fontWeight: 900,
-                    fontSize: "0.8rem",
-                    px: 3.5,
-                    py: 1.3,
-                    borderRadius: "6px",
-                    textTransform: "uppercase",
-                    letterSpacing: "0.05em",
-                    boxShadow: "0 8px 22px rgba(216, 168, 0, 0.25)",
-                    "&:hover": {
-                      bgcolor: "#e6bc00",
-                      transform: "translateY(-2px)",
-                      boxShadow: "0 14px 28px rgba(216, 168, 0, 0.4)",
-                    },
-                    transition: "all 0.2s ease-in-out",
-                  }}
-                >
-                  Contact Us →
-                </Button>
+                <motion.div whileHover={{ scale: 1.04 }} whileTap={{ scale: 0.98 }} className="inline-block">
+                  <Button
+                    variant="contained"
+                    onClick={handleContactClick}
+                    sx={{
+                      bgcolor: "#ffd000",
+                      color: "#17351f",
+                      fontWeight: 900,
+                      fontSize: "0.8rem",
+                      px: 3.5,
+                      py: 1.3,
+                      borderRadius: "6px",
+                      textTransform: "uppercase",
+                      letterSpacing: "0.05em",
+                      boxShadow: "0 8px 22px rgba(216, 168, 0, 0.25)",
+                      "&:hover": {
+                        bgcolor: "#e6bc00",
+                        transform: "translateY(-2px)",
+                        boxShadow: "0 14px 28px rgba(216, 168, 0, 0.4)",
+                      },
+                      transition: "all 0.2s ease-in-out",
+                    }}
+                  >
+                    Contact Us →
+                  </Button>
+                </motion.div>
               </div>
-            </div>
+            </motion.div>
 
             {/* Right Collage Column */}
-            <div className="relative pt-4 pb-8 pl-4 pr-2">
+            <motion.div
+              initial={{ opacity: 0, x: 35 }}
+              whileInView={{ opacity: 1, x: 0 }}
+              viewport={{ once: true, amount: 0.2 }}
+              transition={{ duration: 0.7, ease: [0.22, 1, 0.36, 1] }}
+              className="relative pt-4 pb-8 pl-4 pr-2"
+            >
               {/* Gold decorative border box */}
-              <div
+              <motion.div
+                initial={{ opacity: 0, scale: 0.94 }}
+                whileInView={{ opacity: 1, scale: 1 }}
+                viewport={{ once: true }}
+                transition={{ duration: 0.8, delay: 0.2 }}
                 className="absolute left-0 top-8 w-[68%] h-[88%] border-2 border-[#ffd000] rounded-2xl pointer-events-none -z-0"
                 aria-hidden="true"
               />
 
               {/* Main warehouse logistics image */}
-              <div className="relative z-10 w-[72%] h-[320px] sm:h-[380px] rounded-xl overflow-hidden shadow-[0_20px_50px_rgba(0,61,35,0.22)] border border-emerald-100">
+              <motion.div
+                whileHover={{ y: -4 }}
+                transition={{ duration: 0.3 }}
+                className="relative z-10 w-[72%] h-[320px] sm:h-[380px] rounded-xl overflow-hidden shadow-[0_20px_50px_rgba(0,61,35,0.22)] border border-emerald-100"
+              >
                 <Image
                   src="https://images.unsplash.com/photo-1586528116311-ad8dd3c8310d?auto=format&fit=crop&w=900&q=86"
                   alt="Warehouse Logistics Hub"
@@ -144,10 +234,17 @@ export default function AboutView() {
                   sizes="(max-width: 1024px) 70vw, 35vw"
                   className="object-cover hover:scale-105 transition-transform duration-700"
                 />
-              </div>
+              </motion.div>
 
               {/* Secondary overlapping shipping image */}
-              <div className="absolute right-0 bottom-0 z-20 w-[48%] h-[200px] sm:h-[240px] rounded-xl overflow-hidden border-4 border-white shadow-[0_16px_36px_rgba(0,61,35,0.25)]">
+              <motion.div
+                initial={{ opacity: 0, y: 30, scale: 0.95 }}
+                whileInView={{ opacity: 1, y: 0, scale: 1 }}
+                viewport={{ once: true }}
+                transition={{ duration: 0.7, delay: 0.3 }}
+                whileHover={{ y: -4, scale: 1.02 }}
+                className="absolute right-0 bottom-0 z-20 w-[48%] h-[200px] sm:h-[240px] rounded-xl overflow-hidden border-4 border-white shadow-[0_16px_36px_rgba(0,61,35,0.25)]"
+              >
                 <Image
                   src="https://images.unsplash.com/photo-1494412519320-aa613dfb7738?auto=format&fit=crop&w=650&q=84"
                   alt="Global Freight Container Ship"
@@ -155,8 +252,8 @@ export default function AboutView() {
                   sizes="(max-width: 1024px) 50vw, 25vw"
                   className="object-cover hover:scale-105 transition-transform duration-700"
                 />
-              </div>
-            </div>
+              </motion.div>
+            </motion.div>
           </div>
         </div>
       </section>
@@ -171,7 +268,13 @@ export default function AboutView() {
         }}
       >
         <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 relative z-10">
-          <div className="text-center mb-14">
+          <motion.div
+            initial={{ opacity: 0, y: 24 }}
+            whileInView={{ opacity: 1, y: 0 }}
+            viewport={{ once: true, amount: 0.3 }}
+            transition={{ duration: 0.6 }}
+            className="text-center mb-14"
+          >
             <p className="text-xs font-black uppercase tracking-[0.14em] text-[#ffd000] mb-1">
               What We Offer
             </p>
@@ -179,16 +282,27 @@ export default function AboutView() {
               We Prefer Quality
             </h2>
             <div className="w-14 h-1 bg-[#ffd000] rounded-full mx-auto mt-3 animate-pulse-dash" />
-          </div>
+          </motion.div>
 
-          <div className="grid grid-cols-2 md:grid-cols-4 gap-8 relative">
+          <motion.div
+            initial="hidden"
+            whileInView="visible"
+            viewport={{ once: true, amount: 0.2 }}
+            variants={staggerContainer}
+            className="grid grid-cols-2 md:grid-cols-4 gap-8 relative"
+          >
             {[
               { icon: "🚚", title: "Fast Delivery" },
               { icon: "✓", title: "Certified Products" },
               { icon: "❦", title: "Only Healthy" },
               { icon: "♧", title: "Organic Making" },
             ].map((feature, idx) => (
-              <div key={feature.title} className="group relative text-center flex flex-col items-center">
+              <motion.div
+                key={feature.title}
+                variants={fadeInUp}
+                custom={idx}
+                className="group relative text-center flex flex-col items-center"
+              >
                 {/* Horizontal connector line on desktop */}
                 {idx < 3 && (
                   <div
@@ -197,22 +311,33 @@ export default function AboutView() {
                   />
                 )}
 
-                <div className="relative z-10 w-20 h-20 sm:w-22 sm:h-22 rounded-full border-3 border-[#ffd000] bg-[#004a2d] flex items-center justify-center text-3xl sm:text-4xl shadow-md group-hover:-translate-y-2 group-hover:rotate-6 group-hover:shadow-[0_12px_35px_rgba(0,0,0,0.35)] transition-all duration-300">
+                <motion.div
+                  whileHover={{ scale: 1.14, rotate: 6 }}
+                  whileTap={{ scale: 0.95 }}
+                  transition={{ type: "spring", stiffness: 350, damping: 15 }}
+                  className="relative z-10 w-20 h-20 sm:w-22 sm:h-22 rounded-full border-3 border-[#ffd000] bg-[#004a2d] flex items-center justify-center text-3xl sm:text-4xl shadow-md cursor-pointer transition-shadow hover:shadow-[0_14px_35px_rgba(0,0,0,0.35)]"
+                >
                   {feature.icon}
-                </div>
+                </motion.div>
                 <b className="block mt-4 text-sm sm:text-base font-bold text-white tracking-wide">
                   {feature.title}
                 </b>
-              </div>
+              </motion.div>
             ))}
-          </div>
+          </motion.div>
         </div>
       </section>
 
       {/* 4. OUR VALUES SECTION */}
       <section id="values" className="py-16 sm:py-24 bg-white relative">
         <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
-          <div className="text-center mb-14">
+          <motion.div
+            initial={{ opacity: 0, y: 24 }}
+            whileInView={{ opacity: 1, y: 0 }}
+            viewport={{ once: true, amount: 0.3 }}
+            transition={{ duration: 0.6 }}
+            className="text-center mb-14"
+          >
             <p className="text-xs font-black uppercase tracking-[0.14em] text-[#00552f] mb-1">
               Our Values
             </p>
@@ -220,11 +345,23 @@ export default function AboutView() {
               Our Values
             </h2>
             <div className="w-14 h-1 bg-[#ffd000] rounded-full mx-auto mt-3 animate-pulse-dash" />
-          </div>
+          </motion.div>
 
-          <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-4 sm:gap-6">
+          <motion.div
+            initial="hidden"
+            whileInView="visible"
+            viewport={{ once: true, amount: 0.15 }}
+            variants={staggerContainer}
+            className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-4 sm:gap-6"
+          >
             {/* Value 1: Passionate (spans 2 cols on lg) */}
-            <article className="lg:col-span-2 p-6 sm:p-7 rounded-xl border border-[#dce8df] bg-gradient-to-br from-white to-[#edf6ea] shadow-sm hover:-translate-y-1.5 hover:shadow-lg hover:border-[#a5c7b2] transition-all duration-300 flex items-center gap-5">
+            <motion.article
+              variants={fadeInUp}
+              custom={0}
+              whileHover={{ y: -6 }}
+              transition={{ duration: 0.25 }}
+              className="lg:col-span-2 p-6 sm:p-7 rounded-xl border border-[#dce8df] bg-gradient-to-br from-white to-[#edf6ea] shadow-sm hover:shadow-lg hover:border-[#a5c7b2] flex items-center gap-5 cursor-default"
+            >
               <div className="text-4xl sm:text-5xl text-[#00552f] shrink-0">
                 ♡
               </div>
@@ -236,10 +373,16 @@ export default function AboutView() {
                   To delight customers in every transaction with proactive care and tailored solutions.
                 </p>
               </div>
-            </article>
+            </motion.article>
 
             {/* Value 2: Reliable (spans 2 cols on lg, rich emerald card) */}
-            <article className="lg:col-span-2 p-6 sm:p-7 rounded-xl border border-emerald-800 bg-gradient-to-br from-[#00713e] to-[#004a2b] text-white shadow-md hover:-translate-y-1.5 hover:shadow-xl transition-all duration-300 flex items-center gap-5">
+            <motion.article
+              variants={fadeInUp}
+              custom={1}
+              whileHover={{ y: -6 }}
+              transition={{ duration: 0.25 }}
+              className="lg:col-span-2 p-6 sm:p-7 rounded-xl border border-emerald-800 bg-gradient-to-br from-[#00713e] to-[#004a2b] text-white shadow-md hover:shadow-xl flex items-center gap-5 cursor-default"
+            >
               <div className="text-4xl sm:text-5xl shrink-0">
                 🤝
               </div>
@@ -251,10 +394,16 @@ export default function AboutView() {
                   To deliver our commitments on time, every time, maintaining strict supply continuity.
                 </p>
               </div>
-            </article>
+            </motion.article>
 
             {/* Value 3: Focused */}
-            <article className="p-6 rounded-xl border border-[#dce8df] bg-gradient-to-br from-white to-[#edf6ea] shadow-sm hover:-translate-y-1.5 hover:shadow-lg hover:border-[#a5c7b2] transition-all duration-300 text-center flex flex-col items-center justify-center min-h-[170px]">
+            <motion.article
+              variants={fadeInUp}
+              custom={2}
+              whileHover={{ y: -6 }}
+              transition={{ duration: 0.25 }}
+              className="p-6 rounded-xl border border-[#dce8df] bg-gradient-to-br from-white to-[#edf6ea] shadow-sm hover:shadow-lg hover:border-[#a5c7b2] text-center flex flex-col items-center justify-center min-h-[170px] cursor-default"
+            >
               <div className="text-3xl sm:text-4xl mb-3 text-[#00552f]">
                 🎯
               </div>
@@ -264,10 +413,16 @@ export default function AboutView() {
               <p className="text-xs text-[#5f6963] leading-relaxed">
                 To adhere to our vision and achieve our business objectives.
               </p>
-            </article>
+            </motion.article>
 
             {/* Value 4: Ethical */}
-            <article className="p-6 rounded-xl border border-[#dce8df] bg-gradient-to-br from-white to-[#edf6ea] shadow-sm hover:-translate-y-1.5 hover:shadow-lg hover:border-[#a5c7b2] transition-all duration-300 text-center flex flex-col items-center justify-center min-h-[170px]">
+            <motion.article
+              variants={fadeInUp}
+              custom={3}
+              whileHover={{ y: -6 }}
+              transition={{ duration: 0.25 }}
+              className="p-6 rounded-xl border border-[#dce8df] bg-gradient-to-br from-white to-[#edf6ea] shadow-sm hover:shadow-lg hover:border-[#a5c7b2] text-center flex flex-col items-center justify-center min-h-[170px] cursor-default"
+            >
               <div className="text-3xl sm:text-4xl mb-3 text-[#00552f]">
                 ♢
               </div>
@@ -277,10 +432,16 @@ export default function AboutView() {
               <p className="text-xs text-[#5f6963] leading-relaxed">
                 To be upright and transparent in all our commercial practices.
               </p>
-            </article>
+            </motion.article>
 
             {/* Value 5: Relationships */}
-            <article className="p-6 rounded-xl border border-[#dce8df] bg-gradient-to-br from-white to-[#edf6ea] shadow-sm hover:-translate-y-1.5 hover:shadow-lg hover:border-[#a5c7b2] transition-all duration-300 text-center flex flex-col items-center justify-center min-h-[170px]">
+            <motion.article
+              variants={fadeInUp}
+              custom={4}
+              whileHover={{ y: -6 }}
+              transition={{ duration: 0.25 }}
+              className="p-6 rounded-xl border border-[#dce8df] bg-gradient-to-br from-white to-[#edf6ea] shadow-sm hover:shadow-lg hover:border-[#a5c7b2] text-center flex flex-col items-center justify-center min-h-[170px] cursor-default"
+            >
               <div className="text-3xl sm:text-4xl mb-3 text-[#00552f]">
                 ♧
               </div>
@@ -290,10 +451,16 @@ export default function AboutView() {
               <p className="text-xs text-[#5f6963] leading-relaxed">
                 To align with clients and partners who share our core values.
               </p>
-            </article>
+            </motion.article>
 
             {/* Value 6: Excellence */}
-            <article className="p-6 rounded-xl border border-[#dce8df] bg-gradient-to-br from-white to-[#edf6ea] shadow-sm hover:-translate-y-1.5 hover:shadow-lg hover:border-[#a5c7b2] transition-all duration-300 text-center flex flex-col items-center justify-center min-h-[170px]">
+            <motion.article
+              variants={fadeInUp}
+              custom={5}
+              whileHover={{ y: -6 }}
+              transition={{ duration: 0.25 }}
+              className="p-6 rounded-xl border border-[#dce8df] bg-gradient-to-br from-white to-[#edf6ea] shadow-sm hover:shadow-lg hover:border-[#a5c7b2] text-center flex flex-col items-center justify-center min-h-[170px] cursor-default"
+            >
               <div className="text-3xl sm:text-4xl mb-3 text-[#00552f]">
                 ☆
               </div>
@@ -303,15 +470,21 @@ export default function AboutView() {
               <p className="text-xs text-[#5f6963] leading-relaxed">
                 To achieve our true potential through continuous progress.
               </p>
-            </article>
-          </div>
+            </motion.article>
+          </motion.div>
         </div>
       </section>
 
       {/* 5. RECENT ADDED / WHAT'S NEW GALLERY */}
       <section id="news" className="py-16 sm:py-20 bg-[#f6faf7] border-t border-[#d9e4dc]">
         <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
-          <div className="text-center mb-12">
+          <motion.div
+            initial={{ opacity: 0, y: 24 }}
+            whileInView={{ opacity: 1, y: 0 }}
+            viewport={{ once: true, amount: 0.3 }}
+            transition={{ duration: 0.6 }}
+            className="text-center mb-12"
+          >
             <p className="text-xs font-black uppercase tracking-[0.14em] text-[#00552f] mb-1">
               Recent Added
             </p>
@@ -319,11 +492,22 @@ export default function AboutView() {
               What’s New?
             </h2>
             <div className="w-14 h-1 bg-[#ffd000] rounded-full mx-auto mt-3 animate-pulse-dash" />
-          </div>
+          </motion.div>
 
-          <div className="grid grid-cols-1 md:grid-cols-3 gap-6 sm:gap-8">
+          <motion.div
+            initial="hidden"
+            whileInView="visible"
+            viewport={{ once: true, amount: 0.2 }}
+            variants={staggerContainer}
+            className="grid grid-cols-1 md:grid-cols-3 gap-6 sm:gap-8"
+          >
             {/* Gallery Image 1: Spices */}
-            <figure className="group relative rounded-xl overflow-hidden border border-[#d9e4dc] bg-white shadow-sm hover:shadow-xl transition-all duration-300 m-0">
+            <motion.figure
+              variants={scaleIn}
+              whileHover={{ y: -6 }}
+              transition={{ duration: 0.3 }}
+              className="group relative rounded-xl overflow-hidden border border-[#d9e4dc] bg-white shadow-sm hover:shadow-xl m-0 cursor-pointer"
+            >
               <div className="relative h-60 sm:h-64 overflow-hidden">
                 <Image
                   src="https://images.unsplash.com/photo-1596040033229-a9821ebd058d?auto=format&fit=crop&w=800&q=86"
@@ -337,10 +521,15 @@ export default function AboutView() {
                 <b className="block text-sm font-bold text-[#173c29]">Agro Commodities</b>
                 <span className="text-xs text-[#5f6d65]">Premium sesame seeds, spices, and pulses</span>
               </figcaption>
-            </figure>
+            </motion.figure>
 
             {/* Gallery Image 2: Industrial Chemicals */}
-            <figure className="group relative rounded-xl overflow-hidden border border-[#d9e4dc] bg-white shadow-sm hover:shadow-xl transition-all duration-300 m-0">
+            <motion.figure
+              variants={scaleIn}
+              whileHover={{ y: -6 }}
+              transition={{ duration: 0.3 }}
+              className="group relative rounded-xl overflow-hidden border border-[#d9e4dc] bg-white shadow-sm hover:shadow-xl m-0 cursor-pointer"
+            >
               <div className="relative h-60 sm:h-64 overflow-hidden">
                 <Image
                   src="https://images.unsplash.com/photo-1532187863486-abf9dbad1b69?auto=format&fit=crop&w=800&q=86"
@@ -354,10 +543,15 @@ export default function AboutView() {
                 <b className="block text-sm font-bold text-[#173c29]">Industrial Chemicals</b>
                 <span className="text-xs text-[#5f6d65]">Specialty acids, reagents, and polymer solutions</span>
               </figcaption>
-            </figure>
+            </motion.figure>
 
             {/* Gallery Image 3: Cargo Logistics */}
-            <figure className="group relative rounded-xl overflow-hidden border border-[#d9e4dc] bg-white shadow-sm hover:shadow-xl transition-all duration-300 m-0">
+            <motion.figure
+              variants={scaleIn}
+              whileHover={{ y: -6 }}
+              transition={{ duration: 0.3 }}
+              className="group relative rounded-xl overflow-hidden border border-[#d9e4dc] bg-white shadow-sm hover:shadow-xl m-0 cursor-pointer"
+            >
               <div className="relative h-60 sm:h-64 overflow-hidden">
                 <Image
                   src="https://images.unsplash.com/photo-1494412519320-aa613dfb7738?auto=format&fit=crop&w=800&q=86"
@@ -371,8 +565,8 @@ export default function AboutView() {
                 <b className="block text-sm font-bold text-[#173c29]">Maritime Logistics</b>
                 <span className="text-xs text-[#5f6d65]">Scheduled global shipments and port operations</span>
               </figcaption>
-            </figure>
-          </div>
+            </motion.figure>
+          </motion.div>
         </div>
       </section>
 

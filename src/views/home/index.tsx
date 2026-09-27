@@ -283,79 +283,111 @@ export default function HomeView() {
 
               <div className="grid grid-cols-1 sm:grid-cols-2 gap-4">
                 {/* Red Chilli */}
-                <article className="group bg-white rounded-lg border border-[#d9e4dc] overflow-hidden shadow-sm hover:shadow-md hover:border-[#a5c7b2] hover:-translate-y-1.5 transition-all duration-300">
-                  <div className="relative h-36 overflow-hidden">
-                    <Image
-                      src="https://images.unsplash.com/photo-1588252303782-cb80119abd6d?auto=format&fit=crop&w=500&q=80"
-                      alt="Red chilli"
-                      fill
-                      sizes="(max-width: 640px) 100vw, (max-width: 1024px) 50vw, 25vw"
-                      className="object-cover transition-transform duration-500 group-hover:scale-110"
-                    />
-                  </div>
-                  <div className="p-3">
-                    <b className="block text-xs sm:text-sm font-bold text-[#173e2a] truncate">
-                      Red Chilli
-                    </b>
-                    <span className="text-[0.68rem] text-[#5f6d65] font-medium">Export Grade</span>
-                  </div>
+                <article className="group bg-white rounded-lg border border-[#d9e4dc] overflow-hidden shadow-sm hover:shadow-lg hover:border-[#a5c7b2] hover:-translate-y-1.5 transition-all duration-300">
+                  <Link href="/export/red-chilli" className="block">
+                    <div className="relative h-36 overflow-hidden">
+                      <Image
+                        src="https://images.unsplash.com/photo-1588252303782-cb80119abd6d?auto=format&fit=crop&w=500&q=80"
+                        alt="Red chilli"
+                        fill
+                        sizes="(max-width: 640px) 100vw, (max-width: 1024px) 50vw, 25vw"
+                        className="object-cover transition-transform duration-500 group-hover:scale-110"
+                      />
+                      <div className="absolute inset-0 bg-gradient-to-t from-black/40 via-transparent to-transparent opacity-0 group-hover:opacity-100 transition-opacity" />
+                    </div>
+                    <div className="p-3.5 flex items-center justify-between">
+                      <div>
+                        <b className="block text-xs sm:text-sm font-bold text-[#173e2a] group-hover:text-[#005b32] transition-colors truncate">
+                          Red Chilli
+                        </b>
+                        <span className="text-[0.68rem] text-[#5f6d65] font-medium">Export Grade Teja &amp; Sanam</span>
+                      </div>
+                      <span className="text-xs font-bold text-[#005b32] opacity-0 group-hover:opacity-100 group-hover:translate-x-1 transition-all">
+                        →
+                      </span>
+                    </div>
+                  </Link>
                 </article>
 
                 {/* Mango Pulp */}
-                <article className="group bg-white rounded-lg border border-[#d9e4dc] overflow-hidden shadow-sm hover:shadow-md hover:border-[#a5c7b2] hover:-translate-y-1.5 transition-all duration-300">
-                  <div className="relative h-36 overflow-hidden">
-                    <Image
-                      src="https://images.unsplash.com/photo-1601493700631-2b16ec4b4716?auto=format&fit=crop&w=500&q=80"
-                      alt="Mangoes & Pulp"
-                      fill
-                      sizes="(max-width: 640px) 100vw, (max-width: 1024px) 50vw, 25vw"
-                      className="object-cover transition-transform duration-500 group-hover:scale-110"
-                    />
-                  </div>
-                  <div className="p-3">
-                    <b className="block text-xs sm:text-sm font-bold text-[#173e2a] truncate">
-                      Mango Pulp
-                    </b>
-                    <span className="text-[0.68rem] text-[#5f6d65] font-medium">Totapuri &amp; Alphonso</span>
-                  </div>
+                <article className="group bg-white rounded-lg border border-[#d9e4dc] overflow-hidden shadow-sm hover:shadow-lg hover:border-[#a5c7b2] hover:-translate-y-1.5 transition-all duration-300">
+                  <Link href="/export/mango-pulp" className="block">
+                    <div className="relative h-36 overflow-hidden">
+                      <Image
+                        src="https://images.unsplash.com/photo-1601493700631-2b16ec4b4716?auto=format&fit=crop&w=500&q=80"
+                        alt="Mangoes & Pulp"
+                        fill
+                        sizes="(max-width: 640px) 100vw, (max-width: 1024px) 50vw, 25vw"
+                        className="object-cover transition-transform duration-500 group-hover:scale-110"
+                      />
+                      <div className="absolute inset-0 bg-gradient-to-t from-black/40 via-transparent to-transparent opacity-0 group-hover:opacity-100 transition-opacity" />
+                    </div>
+                    <div className="p-3.5 flex items-center justify-between">
+                      <div>
+                        <b className="block text-xs sm:text-sm font-bold text-[#173e2a] group-hover:text-[#005b32] transition-colors truncate">
+                          Mango Pulp
+                        </b>
+                        <span className="text-[0.68rem] text-[#5f6d65] font-medium">Totapuri &amp; Alphonso Aseptic</span>
+                      </div>
+                      <span className="text-xs font-bold text-[#005b32] opacity-0 group-hover:opacity-100 group-hover:translate-x-1 transition-all">
+                        →
+                      </span>
+                    </div>
+                  </Link>
                 </article>
 
                 {/* Sesame Seeds */}
-                <article className="group bg-white rounded-lg border border-[#d9e4dc] overflow-hidden shadow-sm hover:shadow-md hover:border-[#a5c7b2] hover:-translate-y-1.5 transition-all duration-300">
-                  <div className="relative h-36 overflow-hidden">
-                    <Image
-                      src="https://images.unsplash.com/photo-1596040033229-a9821ebd058d?auto=format&fit=crop&w=500&q=80"
-                      alt="Sesame seeds"
-                      fill
-                      sizes="(max-width: 640px) 100vw, (max-width: 1024px) 50vw, 25vw"
-                      className="object-cover transition-transform duration-500 group-hover:scale-110"
-                    />
-                  </div>
-                  <div className="p-3">
-                    <b className="block text-xs sm:text-sm font-bold text-[#173e2a] truncate">
-                      Sesame Seeds
-                    </b>
-                    <span className="text-[0.68rem] text-[#5f6d65] font-medium">Natural &amp; Hulled</span>
-                  </div>
+                <article className="group bg-white rounded-lg border border-[#d9e4dc] overflow-hidden shadow-sm hover:shadow-lg hover:border-[#a5c7b2] hover:-translate-y-1.5 transition-all duration-300">
+                  <Link href="/export/sesame-seed" className="block">
+                    <div className="relative h-36 overflow-hidden">
+                      <Image
+                        src="https://images.unsplash.com/photo-1596040033229-a9821ebd058d?auto=format&fit=crop&w=500&q=80"
+                        alt="Sesame seeds"
+                        fill
+                        sizes="(max-width: 640px) 100vw, (max-width: 1024px) 50vw, 25vw"
+                        className="object-cover transition-transform duration-500 group-hover:scale-110"
+                      />
+                      <div className="absolute inset-0 bg-gradient-to-t from-black/40 via-transparent to-transparent opacity-0 group-hover:opacity-100 transition-opacity" />
+                    </div>
+                    <div className="p-3.5 flex items-center justify-between">
+                      <div>
+                        <b className="block text-xs sm:text-sm font-bold text-[#173e2a] group-hover:text-[#005b32] transition-colors truncate">
+                          Sesame Seeds
+                        </b>
+                        <span className="text-[0.68rem] text-[#5f6d65] font-medium">Natural &amp; Hulled Sortex</span>
+                      </div>
+                      <span className="text-xs font-bold text-[#005b32] opacity-0 group-hover:opacity-100 group-hover:translate-x-1 transition-all">
+                        →
+                      </span>
+                    </div>
+                  </Link>
                 </article>
 
-                {/* Spices & Agro Commodities */}
-                <article className="group bg-white rounded-lg border border-[#d9e4dc] overflow-hidden shadow-sm hover:shadow-md hover:border-[#a5c7b2] hover:-translate-y-1.5 transition-all duration-300">
-                  <div className="relative h-36 overflow-hidden">
-                    <Image
-                      src="https://images.unsplash.com/photo-1596040033229-a9821ebd058d?auto=format&fit=crop&w=500&q=80"
-                      alt="Spices and Agro"
-                      fill
-                      sizes="(max-width: 640px) 100vw, (max-width: 1024px) 50vw, 25vw"
-                      className="object-cover transition-transform duration-500 group-hover:scale-110"
-                    />
-                  </div>
-                  <div className="p-3">
-                    <b className="block text-xs sm:text-sm font-bold text-[#173e2a] truncate">
-                      Spices &amp; Agro
-                    </b>
-                    <span className="text-[0.68rem] text-[#5f6d65] font-medium">Whole &amp; Ground</span>
-                  </div>
+                {/* Quality Rice */}
+                <article className="group bg-white rounded-lg border border-[#d9e4dc] overflow-hidden shadow-sm hover:shadow-lg hover:border-[#a5c7b2] hover:-translate-y-1.5 transition-all duration-300">
+                  <Link href="/export/quality-rice" className="block">
+                    <div className="relative h-36 overflow-hidden">
+                      <Image
+                        src="https://images.unsplash.com/photo-1586201375761-83865001e31c?auto=format&fit=crop&w=500&q=80"
+                        alt="Quality Rice"
+                        fill
+                        sizes="(max-width: 640px) 100vw, (max-width: 1024px) 50vw, 25vw"
+                        className="object-cover transition-transform duration-500 group-hover:scale-110"
+                      />
+                      <div className="absolute inset-0 bg-gradient-to-t from-black/40 via-transparent to-transparent opacity-0 group-hover:opacity-100 transition-opacity" />
+                    </div>
+                    <div className="p-3.5 flex items-center justify-between">
+                      <div>
+                        <b className="block text-xs sm:text-sm font-bold text-[#173e2a] group-hover:text-[#005b32] transition-colors truncate">
+                          Quality Rice
+                        </b>
+                        <span className="text-[0.68rem] text-[#5f6d65] font-medium">Basmati &amp; Non-Basmati</span>
+                      </div>
+                      <span className="text-xs font-bold text-[#005b32] opacity-0 group-hover:opacity-100 group-hover:translate-x-1 transition-all">
+                        →
+                      </span>
+                    </div>
+                  </Link>
                 </article>
               </div>
             </div>
@@ -368,79 +400,111 @@ export default function HomeView() {
 
               <div className="grid grid-cols-1 sm:grid-cols-2 gap-4">
                 {/* Metal Scrap */}
-                <article className="group bg-white rounded-lg border border-[#d9e4dc] overflow-hidden shadow-sm hover:shadow-md hover:border-[#a5c7b2] hover:-translate-y-1.5 transition-all duration-300">
-                  <div className="relative h-36 overflow-hidden">
-                    <Image
-                      src="https://images.unsplash.com/photo-1611288875785-24b9062e2bcb?auto=format&fit=crop&w=500&q=80"
-                      alt="Metal scrap"
-                      fill
-                      sizes="(max-width: 640px) 100vw, (max-width: 1024px) 50vw, 25vw"
-                      className="object-cover transition-transform duration-500 group-hover:scale-110"
-                    />
-                  </div>
-                  <div className="p-3">
-                    <b className="block text-xs sm:text-sm font-bold text-[#173e2a] truncate">
-                      Metal Scrap
-                    </b>
-                    <span className="text-[0.68rem] text-[#5f6d65] font-medium">Ferrous &amp; Non-Ferrous</span>
-                  </div>
+                <article className="group bg-white rounded-lg border border-[#d9e4dc] overflow-hidden shadow-sm hover:shadow-lg hover:border-[#a5c7b2] hover:-translate-y-1.5 transition-all duration-300">
+                  <Link href="/import/metal-scrap" className="block">
+                    <div className="relative h-36 overflow-hidden">
+                      <Image
+                        src="https://images.unsplash.com/photo-1611288875785-24b9062e2bcb?auto=format&fit=crop&w=500&q=80"
+                        alt="Metal scrap"
+                        fill
+                        sizes="(max-width: 640px) 100vw, (max-width: 1024px) 50vw, 25vw"
+                        className="object-cover transition-transform duration-500 group-hover:scale-110"
+                      />
+                      <div className="absolute inset-0 bg-gradient-to-t from-black/40 via-transparent to-transparent opacity-0 group-hover:opacity-100 transition-opacity" />
+                    </div>
+                    <div className="p-3.5 flex items-center justify-between">
+                      <div>
+                        <b className="block text-xs sm:text-sm font-bold text-[#173e2a] group-hover:text-[#005b32] transition-colors truncate">
+                          Metal Scrap
+                        </b>
+                        <span className="text-[0.68rem] text-[#5f6d65] font-medium">Ferrous &amp; Non-Ferrous HMS</span>
+                      </div>
+                      <span className="text-xs font-bold text-[#005b32] opacity-0 group-hover:opacity-100 group-hover:translate-x-1 transition-all">
+                        →
+                      </span>
+                    </div>
+                  </Link>
                 </article>
 
                 {/* Acids */}
-                <article className="group bg-white rounded-lg border border-[#d9e4dc] overflow-hidden shadow-sm hover:shadow-md hover:border-[#a5c7b2] hover:-translate-y-1.5 transition-all duration-300">
-                  <div className="relative h-36 overflow-hidden">
-                    <Image
-                      src="https://images.unsplash.com/photo-1532187863486-abf9dbad1b69?auto=format&fit=crop&w=500&q=80"
-                      alt="Laboratory acids"
-                      fill
-                      sizes="(max-width: 640px) 100vw, (max-width: 1024px) 50vw, 25vw"
-                      className="object-cover transition-transform duration-500 group-hover:scale-110"
-                    />
-                  </div>
-                  <div className="p-3">
-                    <b className="block text-xs sm:text-sm font-bold text-[#173e2a] truncate">
-                      Acids
-                    </b>
-                    <span className="text-[0.68rem] text-[#5f6d65] font-medium">Industrial &amp; Tech Grade</span>
-                  </div>
+                <article className="group bg-white rounded-lg border border-[#d9e4dc] overflow-hidden shadow-sm hover:shadow-lg hover:border-[#a5c7b2] hover:-translate-y-1.5 transition-all duration-300">
+                  <Link href="/import/acids" className="block">
+                    <div className="relative h-36 overflow-hidden">
+                      <Image
+                        src="https://images.unsplash.com/photo-1532187863486-abf9dbad1b69?auto=format&fit=crop&w=500&q=80"
+                        alt="Laboratory acids"
+                        fill
+                        sizes="(max-width: 640px) 100vw, (max-width: 1024px) 50vw, 25vw"
+                        className="object-cover transition-transform duration-500 group-hover:scale-110"
+                      />
+                      <div className="absolute inset-0 bg-gradient-to-t from-black/40 via-transparent to-transparent opacity-0 group-hover:opacity-100 transition-opacity" />
+                    </div>
+                    <div className="p-3.5 flex items-center justify-between">
+                      <div>
+                        <b className="block text-xs sm:text-sm font-bold text-[#173e2a] group-hover:text-[#005b32] transition-colors truncate">
+                          Acids
+                        </b>
+                        <span className="text-[0.68rem] text-[#5f6d65] font-medium">Industrial &amp; Tech Grade</span>
+                      </div>
+                      <span className="text-xs font-bold text-[#005b32] opacity-0 group-hover:opacity-100 group-hover:translate-x-1 transition-all">
+                        →
+                      </span>
+                    </div>
+                  </Link>
                 </article>
 
                 {/* Cosmetic Chemical */}
-                <article className="group bg-white rounded-lg border border-[#d9e4dc] overflow-hidden shadow-sm hover:shadow-md hover:border-[#a5c7b2] hover:-translate-y-1.5 transition-all duration-300">
-                  <div className="relative h-36 overflow-hidden">
-                    <Image
-                      src="https://images.unsplash.com/photo-1532187863486-abf9dbad1b69?auto=format&fit=crop&w=500&q=80"
-                      alt="Cosmetic Chemical"
-                      fill
-                      sizes="(max-width: 640px) 100vw, (max-width: 1024px) 50vw, 25vw"
-                      className="object-cover transition-transform duration-500 group-hover:scale-110"
-                    />
-                  </div>
-                  <div className="p-3">
-                    <b className="block text-xs sm:text-sm font-bold text-[#173e2a] truncate">
-                      Cosmetic Chemical
-                    </b>
-                    <span className="text-[0.68rem] text-[#5f6d65] font-medium">Personal Care &amp; Beauty</span>
-                  </div>
+                <article className="group bg-white rounded-lg border border-[#d9e4dc] overflow-hidden shadow-sm hover:shadow-lg hover:border-[#a5c7b2] hover:-translate-y-1.5 transition-all duration-300">
+                  <Link href="/import/cosmetic-chemical" className="block">
+                    <div className="relative h-36 overflow-hidden">
+                      <Image
+                        src="https://images.unsplash.com/photo-1532187863486-abf9dbad1b69?auto=format&fit=crop&w=500&q=80"
+                        alt="Cosmetic Chemical"
+                        fill
+                        sizes="(max-width: 640px) 100vw, (max-width: 1024px) 50vw, 25vw"
+                        className="object-cover transition-transform duration-500 group-hover:scale-110"
+                      />
+                      <div className="absolute inset-0 bg-gradient-to-t from-black/40 via-transparent to-transparent opacity-0 group-hover:opacity-100 transition-opacity" />
+                    </div>
+                    <div className="p-3.5 flex items-center justify-between">
+                      <div>
+                        <b className="block text-xs sm:text-sm font-bold text-[#173e2a] group-hover:text-[#005b32] transition-colors truncate">
+                          Cosmetic Chemical
+                        </b>
+                        <span className="text-[0.68rem] text-[#5f6d65] font-medium">Personal Care &amp; Beauty</span>
+                      </div>
+                      <span className="text-xs font-bold text-[#005b32] opacity-0 group-hover:opacity-100 group-hover:translate-x-1 transition-all">
+                        →
+                      </span>
+                    </div>
+                  </Link>
                 </article>
 
                 {/* Plastic Chemical */}
-                <article className="group bg-white rounded-lg border border-[#d9e4dc] overflow-hidden shadow-sm hover:shadow-md hover:border-[#a5c7b2] hover:-translate-y-1.5 transition-all duration-300">
-                  <div className="relative h-36 overflow-hidden">
-                    <Image
-                      src="https://images.unsplash.com/photo-1582408921715-18e7806365c1?auto=format&fit=crop&w=500&q=80"
-                      alt="Plastic granules"
-                      fill
-                      sizes="(max-width: 640px) 100vw, (max-width: 1024px) 50vw, 25vw"
-                      className="object-cover transition-transform duration-500 group-hover:scale-110"
-                    />
-                  </div>
-                  <div className="p-3">
-                    <b className="block text-xs sm:text-sm font-bold text-[#173e2a] truncate">
-                      Plastic Chemical
-                    </b>
-                    <span className="text-[0.68rem] text-[#5f6d65] font-medium">Polymers &amp; Resins</span>
-                  </div>
+                <article className="group bg-white rounded-lg border border-[#d9e4dc] overflow-hidden shadow-sm hover:shadow-lg hover:border-[#a5c7b2] hover:-translate-y-1.5 transition-all duration-300">
+                  <Link href="/#contact" className="block">
+                    <div className="relative h-36 overflow-hidden">
+                      <Image
+                        src="https://images.unsplash.com/photo-1582408921715-18e7806365c1?auto=format&fit=crop&w=500&q=80"
+                        alt="Plastic granules"
+                        fill
+                        sizes="(max-width: 640px) 100vw, (max-width: 1024px) 50vw, 25vw"
+                        className="object-cover transition-transform duration-500 group-hover:scale-110"
+                      />
+                      <div className="absolute inset-0 bg-gradient-to-t from-black/40 via-transparent to-transparent opacity-0 group-hover:opacity-100 transition-opacity" />
+                    </div>
+                    <div className="p-3.5 flex items-center justify-between">
+                      <div>
+                        <b className="block text-xs sm:text-sm font-bold text-[#173e2a] group-hover:text-[#005b32] transition-colors truncate">
+                          Plastic Chemical
+                        </b>
+                        <span className="text-[0.68rem] text-[#5f6d65] font-medium">Polymers &amp; Resins</span>
+                      </div>
+                      <span className="text-xs font-bold text-[#005b32] opacity-0 group-hover:opacity-100 group-hover:translate-x-1 transition-all">
+                        →
+                      </span>
+                    </div>
+                  </Link>
                 </article>
               </div>
             </div>

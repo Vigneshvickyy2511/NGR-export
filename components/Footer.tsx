@@ -2,7 +2,7 @@
 
 import React, { useState } from "react";
 import Link from "next/link";
-import { Button, TextField, Snackbar, Alert } from "@mui/material";
+import { Button, Snackbar, Alert } from "@mui/material";
 
 export default function Footer() {
   const [email, setEmail] = useState("");

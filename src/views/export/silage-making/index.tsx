@@ -12,10 +12,6 @@ import {
   DialogContent,
   DialogActions,
   IconButton,
-  MenuItem,
-  Select,
-  FormControl,
-  InputLabel,
 } from "@mui/material";
 
 interface SilageCrop {
