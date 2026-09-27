@@ -102,6 +102,31 @@ export default function Footer() {
                 </Link>
               </li>
               <li>
+                <Link href="/export/red-chilli" className="hover:text-[#ffd000] transition-colors flex items-center gap-2">
+                  <span className="text-[#ffd000]">›</span> Dried Red Chilli
+                </Link>
+              </li>
+              <li>
+                <Link href="/export/mango-pulp" className="hover:text-[#ffd000] transition-colors flex items-center gap-2">
+                  <span className="text-[#ffd000]">›</span> Mango Pulp
+                </Link>
+              </li>
+              <li>
+                <Link href="/export/sesame-seed" className="hover:text-[#ffd000] transition-colors flex items-center gap-2">
+                  <span className="text-[#ffd000]">›</span> Sesame Seeds
+                </Link>
+              </li>
+              <li>
+                <Link href="/export/quality-rice" className="hover:text-[#ffd000] transition-colors flex items-center gap-2">
+                  <span className="text-[#ffd000]">›</span> Quality Rice
+                </Link>
+              </li>
+              <li>
+                <Link href="/export/silage-making" className="hover:text-[#ffd000] transition-colors flex items-center gap-2">
+                  <span className="text-[#ffd000]">›</span> Silage Making
+                </Link>
+              </li>
+              <li>
                 <Link href="/#products" className="hover:text-[#ffd000] transition-colors flex items-center gap-2">
                   <span className="text-[#ffd000]">›</span> Export Commodities
                 </Link>

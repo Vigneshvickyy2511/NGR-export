@@ -110,3 +110,97 @@ body {
 .shine-box:hover::before {
   transform: translateX(120%);
 }
+
+/* Scroll Reveal Entrance Animations */
+.reveal {
+  opacity: 0;
+  transform: translateY(32px);
+  transition: opacity 0.8s cubic-bezier(0.2, 0.8, 0.2, 1), transform 0.8s cubic-bezier(0.2, 0.8, 0.2, 1);
+  will-change: opacity, transform;
+}
+
+.reveal.left {
+  transform: translateX(-38px);
+}
+
+.reveal.right {
+  transform: translateX(38px);
+}
+
+.reveal.show {
+  opacity: 1 !important;
+  transform: none !important;
+}
+
+/* Interactive Button Glossy Sweep */
+.btn-shine {
+  position: relative;
+  overflow: hidden;
+  transition: all 0.35s ease;
+}
+
+.btn-shine:hover {
+  transform: translateY(-3px);
+}
+
+.btn-shine::after {
+  content: "";
+  position: absolute;
+  inset: 0;
+  background: linear-gradient(105deg, transparent 30%, rgba(255, 255, 255, 0.6) 50%, transparent 70%);
+  transform: translateX(-130%);
+  transition: transform 0.65s ease;
+  pointer-events: none;
+}
+
+.btn-shine:hover::after {
+  transform: translateX(130%);
+}
+
+/* Package Image Hover Lift */
+.package {
+  transition: transform 0.7s cubic-bezier(0.2, 0.8, 0.2, 1), box-shadow 0.7s ease;
+}
+.package:hover {
+  transform: translateY(-8px) scale(1.015);
+}
+
+/* Quality Item Rotating Icon Hover */
+.qitem .icon {
+  transition: transform 0.4s ease, box-shadow 0.4s ease;
+}
+.qitem:hover .icon {
+  transform: translateY(-7px) rotate(5deg);
+  box-shadow: 0 14px 28px rgba(150, 116, 0, 0.15);
+}
+
+/* Silage Hero Photo with Solid Offset Shadow & Hover Lift */
+.hero-photo {
+  box-shadow: 22px 22px 0 #cfe9c9, 0 20px 55px rgba(0, 59, 35, 0.14);
+  transition: transform 0.7s cubic-bezier(0.2, 0.8, 0.2, 1), box-shadow 0.7s ease;
+}
+.hero-photo:hover {
+  transform: translateY(-8px) scale(1.015);
+  box-shadow: 26px 26px 0 #bfe4b7, 0 24px 60px rgba(0, 59, 35, 0.2);
+}
+
+/* Silage Card Hover */
+.silage-card {
+  transition: transform 0.4s ease, box-shadow 0.4s ease, border-color 0.4s ease;
+}
+.silage-card:hover {
+  transform: translateY(-8px);
+  box-shadow: 0 18px 40px rgba(0, 59, 35, 0.12);
+  border-color: #a8cfb2;
+}
+
+
+@media (prefers-reduced-motion: reduce) {
+  .reveal {
+    opacity: 1 !important;
+    transform: none !important;
+    transition: none !important;
+  }
+}
+
+

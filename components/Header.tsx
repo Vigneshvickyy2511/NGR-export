@@ -46,10 +46,12 @@ export default function Header() {
   ];
 
   const exportItems = [
-    { label: "Red Chilli", href: "/#products" },
-    { label: "Mango Pulp", href: "/#products" },
-    { label: "Sesame Seeds", href: "/#products" },
-    { label: "Spices & Agro Commodities", href: "/#products" },
+    { label: "Dried Red Chilli", href: "/export/red-chilli" },
+    { label: "Mango Pulp", href: "/export/mango-pulp" },
+    { label: "Sesame Seeds", href: "/export/sesame-seed" },
+    { label: "Quality Rice", href: "/export/quality-rice" },
+    { label: "Rice DDGS", href: "/#products" },
+    { label: "Silage Making", href: "/export/silage-making" },
   ];
 
   const isLinkActive = (href: string) => {
@@ -280,8 +282,10 @@ export default function Header() {
               <button
                 type="button"
                 onClick={() => setExportDropdownOpen((prev) => !prev)}
-                className={`text-[0.84rem] font-bold flex items-center gap-1.5 transition-colors cursor-pointer select-none border-b-2 border-transparent ${
-                  exportDropdownOpen ? "text-[#005b32]" : "text-[#173e2a] hover:text-[#005b32]"
+                className={`text-[0.84rem] font-bold flex items-center gap-1.5 transition-colors cursor-pointer select-none border-b-2 ${
+                  pathname.startsWith("/export") || exportDropdownOpen
+                    ? "text-[#005b32] border-[#005b32]"
+                    : "text-[#173e2a] border-transparent hover:text-[#005b32]"
                 }`}
                 aria-expanded={exportDropdownOpen}
               >
@@ -299,7 +303,11 @@ export default function Header() {
                       key={item.label}
                       href={item.href}
                       onClick={(e) => handleDropdownItemClick(e, item.href)}
-                      className="block px-4 py-2.5 text-[0.84rem] font-bold text-[#005b32] hover:bg-[#f4f8f4] hover:text-[#003f26] transition-colors"
+                      className={`block px-4 py-2.5 text-[0.84rem] font-bold transition-colors ${
+                        pathname === item.href
+                          ? "bg-[#edf6f0] text-[#003f26] font-extrabold"
+                          : "text-[#005b32] hover:bg-[#f4f8f4] hover:text-[#003f26]"
+                      }`}
                     >
                       {item.label}
                     </Link>
@@ -500,9 +508,18 @@ export default function Header() {
                     component={Link}
                     href={subItem.href}
                     onClick={(e) => handleDropdownItemClick(e, subItem.href)}
-                    sx={{ py: 1 }}
+                    sx={{
+                      py: 1,
+                      bgcolor: pathname === subItem.href ? "#edf6f0" : "transparent",
+                    }}
                   >
-                    <span className="text-xs font-bold text-[#005b32]">● {subItem.label}</span>
+                    <span
+                      className={`text-xs font-bold ${
+                        pathname === subItem.href ? "text-[#003f26] font-extrabold" : "text-[#005b32]"
+                      }`}
+                    >
+                      ● {subItem.label}
+                    </span>
                   </ListItemButton>
                 ))}
               </List>
