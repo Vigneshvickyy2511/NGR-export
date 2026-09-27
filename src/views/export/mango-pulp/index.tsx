@@ -5,7 +5,6 @@ import Link from "next/link";
 import Image from "next/image";
 import {
   Button,
-  TextField,
   Snackbar,
   Alert,
   Dialog,
@@ -33,18 +32,6 @@ export default function MangoPulpView() {
 
   // Dialog state for variety specifications
   const [selectedVariety, setSelectedVariety] = useState<MangoVariety | null>(null);
-
-  // Form state
-  const [formData, setFormData] = useState({
-    fullName: "",
-    companyName: "",
-    email: "",
-    telephone: "",
-    variety: "Alphonso Mango Pulp (Aseptic)",
-    packaging: "215 Kg Aseptic Bag in Steel Drum",
-    quantity: "",
-    comments: "",
-  });
 
   // Toast notification state
   const [toastOpen, setToastOpen] = useState(false);
@@ -81,34 +68,6 @@ export default function MangoPulpView() {
     const x = ((e.clientX - rect.left) / rect.width) * 100;
     const y = ((e.clientY - rect.top) / rect.height) * 100;
     setSpotlight({ x, y });
-  };
-
-  const handleFormChange = (field: string, value: string) => {
-    setFormData((prev) => ({ ...prev, [field]: value }));
-  };
-
-  const handleSubmit = (e: React.FormEvent) => {
-    e.preventDefault();
-    if (!formData.fullName || !formData.email) {
-      setToastSeverity("info");
-      setToastMessage("Please enter your name and email address.");
-      setToastOpen(true);
-      return;
-    }
-
-    setToastSeverity("success");
-    setToastMessage("Thank you! Your mango pulp export inquiry has been submitted to NGR Impex.");
-    setToastOpen(true);
-    setFormData({
-      fullName: "",
-      companyName: "",
-      email: "",
-      telephone: "",
-      variety: "Alphonso Mango Pulp (Aseptic)",
-      packaging: "215 Kg Aseptic Bag in Steel Drum",
-      quantity: "",
-      comments: "",
-    });
   };
 
   const handleDownloadSpecs = () => {
@@ -726,158 +685,6 @@ export default function MangoPulpView() {
         </div>
       </section>
 
-      {/* 9. INQUIRY / PROCUREMENT SECTION */}
-      <section id="contact" className="py-16 sm:py-24 bg-[#f8fbf8]">
-        <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
-          <div className="grid grid-cols-1 lg:grid-cols-12 gap-12 lg:gap-16">
-            {/* Left Contact Details (reveal left) */}
-            <div className="lg:col-span-5 space-y-5 reveal left">
-              <div>
-                <p className="text-xs font-black uppercase tracking-[0.18em] text-[#004b2b] mb-1 font-sans">
-                  Export Desk
-                </p>
-                <h2
-                  className="text-2xl sm:text-4xl font-bold text-[#102d20]"
-                  style={{ fontFamily: "Georgia, serif" }}
-                >
-                  Request a Quote
-                </h2>
-                <div className="w-12 h-1 bg-[#ffbd09] rounded-full mt-3" />
-              </div>
-
-              <blockquote className="p-5 rounded-xl bg-white border-l-4 border-[#ffbd09] shadow-sm text-sm text-[#526059] italic leading-relaxed">
-                “We supply global beverage manufacturers, dairies, and bakeries with sterile Aseptic Mango Purees guaranteeing year-round freshness and harvest authenticity.”
-              </blockquote>
-
-              <div className="space-y-3 pt-2 text-xs text-[#526059] font-sans">
-                <p className="flex items-center gap-2.5">
-                  <span className="text-base text-[#004b2b]">📍</span>
-                  <span>7/66 Krishnagiri Main Road, Kandili Post, Tirupathur, Tamil Nadu, India</span>
-                </p>
-                <p className="flex items-center gap-2.5">
-                  <span className="text-base text-[#004b2b]">☎</span>
-                  <a href="tel:+916382584350" className="hover:text-[#004b2b] font-semibold">
-                    +91 63825 84350
-                  </a>
-                </p>
-                <p className="flex items-center gap-2.5">
-                  <span className="text-base text-[#004b2b]">✉</span>
-                  <a href="mailto:exim@ngrimpex.in" className="hover:text-[#004b2b] font-semibold">
-                    exim@ngrimpex.in
-                  </a>
-                </p>
-              </div>
-            </div>
-
-            {/* Right Inquiry Form (reveal right) */}
-            <div className="lg:col-span-7 reveal right">
-              <form
-                onSubmit={handleSubmit}
-                className="bg-white p-6 sm:p-8 rounded-xl border border-[#e7ddc9] shadow-[0_7px_25px_rgba(0,52,30,0.08)] space-y-4"
-              >
-                <div className="grid grid-cols-1 sm:grid-cols-2 gap-4">
-                  <TextField
-                    fullWidth
-                    label="Full Name *"
-                    variant="outlined"
-                    size="small"
-                    value={formData.fullName}
-                    onChange={(e) => handleFormChange("fullName", e.target.value)}
-                    required
-                  />
-
-                  <TextField
-                    fullWidth
-                    label="Company Name"
-                    variant="outlined"
-                    size="small"
-                    value={formData.companyName}
-                    onChange={(e) => handleFormChange("companyName", e.target.value)}
-                  />
-
-                  <TextField
-                    fullWidth
-                    label="Email Address *"
-                    type="email"
-                    variant="outlined"
-                    size="small"
-                    value={formData.email}
-                    onChange={(e) => handleFormChange("email", e.target.value)}
-                    required
-                  />
-
-                  <TextField
-                    fullWidth
-                    label="Telephone / WhatsApp"
-                    type="tel"
-                    variant="outlined"
-                    size="small"
-                    value={formData.telephone}
-                    onChange={(e) => handleFormChange("telephone", e.target.value)}
-                  />
-
-                  <TextField
-                    fullWidth
-                    label="Target Mango Variety"
-                    variant="outlined"
-                    size="small"
-                    value={formData.variety}
-                    onChange={(e) => handleFormChange("variety", e.target.value)}
-                  />
-
-                  <TextField
-                    fullWidth
-                    label="Packaging Preference"
-                    variant="outlined"
-                    size="small"
-                    value={formData.packaging}
-                    onChange={(e) => handleFormChange("packaging", e.target.value)}
-                  />
-                </div>
-
-                <TextField
-                  fullWidth
-                  label="Inquiry Details & Required Metric Tonnes (MT)"
-                  multiline
-                  rows={4}
-                  variant="outlined"
-                  value={formData.comments}
-                  onChange={(e) => handleFormChange("comments", e.target.value)}
-                  placeholder="Specify destination sea port, FCL volume (e.g. 1x20ft FCL = 80 Drums / 17.2 MT), target delivery month, or specific Brix preferences..."
-                />
-
-                <Button
-                  type="submit"
-                  fullWidth
-                  variant="contained"
-                  className="btn-shine"
-                  sx={{
-                    bgcolor: "#ffbd09",
-                    color: "#142e20",
-                    fontWeight: 900,
-                    fontSize: "0.85rem",
-                    py: 1.4,
-                    borderRadius: "999px",
-                    textTransform: "uppercase",
-                    letterSpacing: "0.05em",
-                    boxShadow: "0 8px 24px rgba(201, 146, 0, 0.35)",
-                    "&:hover": {
-                      bgcolor: "#e5a700",
-                      transform: "translateY(-3px)",
-                      boxShadow: "0 14px 30px rgba(201, 146, 0, 0.46)",
-                    },
-                    transition: "all 0.35s ease",
-                    fontFamily: "Inter, Arial, sans-serif",
-                  }}
-                >
-                  Submit Mango Pulp Inquiry &nbsp; →
-                </Button>
-              </form>
-            </div>
-          </div>
-        </div>
-      </section>
-
       {/* Specifications Dialog Modal */}
       <Dialog
         open={Boolean(selectedVariety)}
@@ -962,28 +769,6 @@ export default function MangoPulpView() {
                 sx={{ color: "#004b2b", fontWeight: 700, fontSize: "0.75rem", fontFamily: "Inter, Arial, sans-serif" }}
               >
                 Download Data Sheet
-              </Button>
-              <Button
-                variant="contained"
-                className="btn-shine"
-                onClick={() => {
-                  const targetName = selectedVariety.name;
-                  setSelectedVariety(null);
-                  setFormData((prev) => ({ ...prev, variety: targetName }));
-                  const el = document.getElementById("contact");
-                  if (el) el.scrollIntoView({ behavior: "smooth" });
-                }}
-                sx={{
-                  bgcolor: "#ffbd09",
-                  color: "#142e20",
-                  fontWeight: 800,
-                  fontSize: "0.75rem",
-                  borderRadius: "999px",
-                  "&:hover": { bgcolor: "#e5a700" },
-                  fontFamily: "Inter, Arial, sans-serif",
-                }}
-              >
-                Inquire For This Variety →
               </Button>
             </DialogActions>
           </>

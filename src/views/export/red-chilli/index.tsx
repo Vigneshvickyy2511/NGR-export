@@ -5,7 +5,6 @@ import Link from "next/link";
 import Image from "next/image";
 import {
   Button,
-  TextField,
   Snackbar,
   Alert,
   Dialog,
@@ -32,17 +31,6 @@ export default function RedChilliView() {
   // Dialog state for variety specifications
   const [selectedVariety, setSelectedVariety] = useState<ChilliVariety | null>(null);
 
-  // Form state
-  const [formData, setFormData] = useState({
-    fullName: "",
-    companyName: "",
-    email: "",
-    telephone: "",
-    variety: "Teja S17 Dried Red Chilli",
-    quantity: "",
-    comments: "",
-  });
-
   // Toast notification state
   const [toastOpen, setToastOpen] = useState(false);
   const [toastMessage, setToastMessage] = useState("");
@@ -54,33 +42,6 @@ export default function RedChilliView() {
     const x = ((e.clientX - rect.left) / rect.width) * 100;
     const y = ((e.clientY - rect.top) / rect.height) * 100;
     setSpotlight({ x, y });
-  };
-
-  const handleFormChange = (field: string, value: string) => {
-    setFormData((prev) => ({ ...prev, [field]: value }));
-  };
-
-  const handleSubmit = (e: React.FormEvent) => {
-    e.preventDefault();
-    if (!formData.fullName || !formData.email) {
-      setToastSeverity("info");
-      setToastMessage("Please enter your name and email address.");
-      setToastOpen(true);
-      return;
-    }
-
-    setToastSeverity("success");
-    setToastMessage("Thank you! Your dried red chilli export inquiry has been submitted to NGR Impex.");
-    setToastOpen(true);
-    setFormData({
-      fullName: "",
-      companyName: "",
-      email: "",
-      telephone: "",
-      variety: "Teja S17 Dried Red Chilli",
-      quantity: "",
-      comments: "",
-    });
   };
 
   const handleDownloadSpecs = () => {
@@ -702,25 +663,6 @@ export default function RedChilliView() {
                 sx={{ color: "#00552e", fontWeight: 700, fontSize: "0.75rem" }}
               >
                 Download Quality Specs
-              </Button>
-              <Button
-                variant="contained"
-                onClick={() => {
-                  const targetName = selectedVariety.name;
-                  setSelectedVariety(null);
-                  setFormData((prev) => ({ ...prev, variety: targetName }));
-                  const el = document.getElementById("contact");
-                  if (el) el.scrollIntoView({ behavior: "smooth" });
-                }}
-                sx={{
-                  bgcolor: "#ffc400",
-                  color: "#17351f",
-                  fontWeight: 800,
-                  fontSize: "0.75rem",
-                  "&:hover": { bgcolor: "#e0ad00" },
-                }}
-              >
-                Inquire For This Variety →
               </Button>
             </DialogActions>
           </>

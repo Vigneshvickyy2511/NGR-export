@@ -5,7 +5,6 @@ import Link from "next/link";
 import Image from "next/image";
 import {
   Button,
-  TextField,
   Snackbar,
   Alert,
   Dialog,
@@ -35,17 +34,6 @@ export default function SilageMakingView() {
   // Modal state for product / crop specifications
   const [selectedCrop, setSelectedCrop] = useState<SilageCrop | null>(null);
 
-  // Form state
-  const [formData, setFormData] = useState({
-    fullName: "",
-    companyName: "",
-    email: "",
-    telephone: "",
-    subject: "Silage products",
-    comments: "",
-    captcha: "",
-  });
-
   // Toast feedback state
   const [toastOpen, setToastOpen] = useState(false);
   const [toastMessage, setToastMessage] = useState("");
@@ -74,33 +62,6 @@ export default function SilageMakingView() {
 
     return () => io.disconnect();
   }, []);
-
-  const handleFormChange = (field: string, value: string) => {
-    setFormData((prev) => ({ ...prev, [field]: value }));
-  };
-
-  const handleFormSubmit = (e: React.FormEvent) => {
-    e.preventDefault();
-    if (!formData.fullName || !formData.email) {
-      setToastSeverity("info");
-      setToastMessage("Please enter your name and email address.");
-      setToastOpen(true);
-      return;
-    }
-
-    setToastSeverity("success");
-    setToastMessage("Thank you! Your silage inquiry has been submitted to the NGR Impex Agri Desk.");
-    setToastOpen(true);
-    setFormData({
-      fullName: "",
-      companyName: "",
-      email: "",
-      telephone: "",
-      subject: "Silage products",
-      comments: "",
-      captcha: "",
-    });
-  };
 
   const handleCatalogueDownload = () => {
     setToastSeverity("info");
@@ -804,31 +765,6 @@ export default function SilageMakingView() {
                 sx={{ color: "#00613a", fontWeight: 700, fontSize: "0.75rem" }}
               >
                 Download Tech Sheet
-              </Button>
-              <Button
-                variant="contained"
-                className="btn-shine"
-                onClick={() => {
-                  const targetName = selectedCrop.name;
-                  setSelectedCrop(null);
-                  setFormData((prev) => ({
-                    ...prev,
-                    subject: targetName.includes("Kem") ? "Kem LAC® HD Inoculant" : "Silage products",
-                    comments: `Requesting quote and export specifications for ${targetName}.`,
-                  }));
-                  const el = document.getElementById("contact");
-                  if (el) el.scrollIntoView({ behavior: "smooth" });
-                }}
-                sx={{
-                  bgcolor: "#00613a",
-                  color: "#fff",
-                  fontWeight: 800,
-                  fontSize: "0.75rem",
-                  borderRadius: "6px",
-                  "&:hover": { bgcolor: "#004027" },
-                }}
-              >
-                Inquire For This Grade →
               </Button>
             </DialogActions>
           </>

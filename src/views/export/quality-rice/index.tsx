@@ -33,18 +33,6 @@ export default function QualityRiceView() {
   // Dialog state for variety specifications
   const [selectedVariety, setSelectedVariety] = useState<RiceVariety | null>(null);
 
-  // Form state
-  const [formData, setFormData] = useState({
-    fullName: "",
-    companyName: "",
-    email: "",
-    telephone: "",
-    variety: "1121 XXL Basmati Rice (Steam)",
-    packaging: "25 Kg BOPP Multi-Color Bags",
-    quantity: "",
-    comments: "",
-  });
-
   // Toast notification state
   const [toastOpen, setToastOpen] = useState(false);
   const [toastMessage, setToastMessage] = useState("");
@@ -80,34 +68,6 @@ export default function QualityRiceView() {
     const x = ((e.clientX - rect.left) / rect.width) * 100;
     const y = ((e.clientY - rect.top) / rect.height) * 100;
     setSpotlight({ x, y });
-  };
-
-  const handleFormChange = (field: string, value: string) => {
-    setFormData((prev) => ({ ...prev, [field]: value }));
-  };
-
-  const handleSubmit = (e: React.FormEvent) => {
-    e.preventDefault();
-    if (!formData.fullName || !formData.email) {
-      setToastSeverity("info");
-      setToastMessage("Please enter your name and email address.");
-      setToastOpen(true);
-      return;
-    }
-
-    setToastSeverity("success");
-    setToastMessage("Thank you! Your quality rice export inquiry has been submitted to NGR Impex.");
-    setToastOpen(true);
-    setFormData({
-      fullName: "",
-      companyName: "",
-      email: "",
-      telephone: "",
-      variety: "1121 XXL Basmati Rice (Steam)",
-      packaging: "25 Kg BOPP Multi-Color Bags",
-      quantity: "",
-      comments: "",
-    });
   };
 
   const handleDownloadSpecs = () => {
@@ -696,27 +656,6 @@ export default function QualityRiceView() {
                 sx={{ color: "#00532f", fontWeight: 700, fontSize: "0.75rem" }}
               >
                 Download Data Sheet
-              </Button>
-              <Button
-                variant="contained"
-                className="btn-shine"
-                onClick={() => {
-                  const targetName = selectedVariety.name;
-                  setSelectedVariety(null);
-                  setFormData((prev) => ({ ...prev, variety: targetName }));
-                  const el = document.getElementById("contact");
-                  if (el) el.scrollIntoView({ behavior: "smooth" });
-                }}
-                sx={{
-                  bgcolor: "#e7b622",
-                  color: "#17351f",
-                  fontWeight: 800,
-                  fontSize: "0.75rem",
-                  borderRadius: "999px",
-                  "&:hover": { bgcolor: "#d4a415" },
-                }}
-              >
-                Inquire For This Grade →
               </Button>
             </DialogActions>
           </>

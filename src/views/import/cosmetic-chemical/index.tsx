@@ -5,7 +5,6 @@ import Link from "next/link";
 import Image from "next/image";
 import {
   Button,
-  TextField,
   Snackbar,
   Alert,
   Dialog,
@@ -32,17 +31,6 @@ export default function CosmeticChemicalView() {
   // Dialog state for product details
   const [selectedProduct, setSelectedProduct] = useState<CosmeticProduct | null>(null);
 
-  // Form state
-  const [formData, setFormData] = useState({
-    fullName: "",
-    companyName: "",
-    email: "",
-    telephone: "",
-    productInterest: "Cosmetic Chemicals",
-    captcha: "",
-    comments: "",
-  });
-
   // Toast notification state
   const [toastOpen, setToastOpen] = useState(false);
   const [toastMessage, setToastMessage] = useState("");
@@ -54,33 +42,6 @@ export default function CosmeticChemicalView() {
     const x = ((e.clientX - rect.left) / rect.width) * 100;
     const y = ((e.clientY - rect.top) / rect.height) * 100;
     setSpotlight({ x, y });
-  };
-
-  const handleFormChange = (field: string, value: string) => {
-    setFormData((prev) => ({ ...prev, [field]: value }));
-  };
-
-  const handleSubmit = (e: React.FormEvent) => {
-    e.preventDefault();
-    if (!formData.fullName || !formData.email) {
-      setToastSeverity("info");
-      setToastMessage("Please enter your name and email address.");
-      setToastOpen(true);
-      return;
-    }
-
-    setToastSeverity("success");
-    setToastMessage("Thank you! Your cosmetic chemical inquiry has been submitted to NGR Impex.");
-    setToastOpen(true);
-    setFormData({
-      fullName: "",
-      companyName: "",
-      email: "",
-      telephone: "",
-      productInterest: "Cosmetic Chemicals",
-      captcha: "",
-      comments: "",
-    });
   };
 
   const handleDownloadSpecs = () => {
@@ -474,25 +435,6 @@ export default function CosmeticChemicalView() {
                 sx={{ color: "#004d2d", fontWeight: 700, fontSize: "0.75rem" }}
               >
                 Download COA
-              </Button>
-              <Button
-                variant="contained"
-                onClick={() => {
-                  const targetName = selectedProduct.name;
-                  setSelectedProduct(null);
-                  setFormData((prev) => ({ ...prev, productInterest: targetName }));
-                  const el = document.getElementById("contact");
-                  if (el) el.scrollIntoView({ behavior: "smooth" });
-                }}
-                sx={{
-                  bgcolor: "#f8c400",
-                  color: "#17351f",
-                  fontWeight: 800,
-                  fontSize: "0.75rem",
-                  "&:hover": { bgcolor: "#e0b000" },
-                }}
-              >
-                Inquire For This Product →
               </Button>
             </DialogActions>
           </>

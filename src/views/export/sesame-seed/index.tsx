@@ -32,18 +32,6 @@ export default function SesameSeedView() {
   // Dialog state for variety specifications
   const [selectedVariety, setSelectedVariety] = useState<SesameVariety | null>(null);
 
-  // Form state
-  const [formData, setFormData] = useState({
-    fullName: "",
-    companyName: "",
-    email: "",
-    telephone: "",
-    variety: "Hulled White Sesame Seeds (99.95% Sortex)",
-    packaging: "25 Kg Multi-Wall Paper Bags",
-    quantity: "",
-    comments: "",
-  });
-
   // Toast notification state
   const [toastOpen, setToastOpen] = useState(false);
   const [toastMessage, setToastMessage] = useState("");
@@ -79,34 +67,6 @@ export default function SesameSeedView() {
     const x = ((e.clientX - rect.left) / rect.width) * 100;
     const y = ((e.clientY - rect.top) / rect.height) * 100;
     setSpotlight({ x, y });
-  };
-
-  const handleFormChange = (field: string, value: string) => {
-    setFormData((prev) => ({ ...prev, [field]: value }));
-  };
-
-  const handleSubmit = (e: React.FormEvent) => {
-    e.preventDefault();
-    if (!formData.fullName || !formData.email) {
-      setToastSeverity("info");
-      setToastMessage("Please enter your name and email address.");
-      setToastOpen(true);
-      return;
-    }
-
-    setToastSeverity("success");
-    setToastMessage("Thank you! Your sesame seed export inquiry has been submitted to NGR Impex.");
-    setToastOpen(true);
-    setFormData({
-      fullName: "",
-      companyName: "",
-      email: "",
-      telephone: "",
-      variety: "Hulled White Sesame Seeds (99.95% Sortex)",
-      packaging: "25 Kg Multi-Wall Paper Bags",
-      quantity: "",
-      comments: "",
-    });
   };
 
   const handleDownloadSpecs = () => {
@@ -682,27 +642,6 @@ export default function SesameSeedView() {
                 sx={{ color: "#075b31", fontWeight: 700, fontSize: "0.75rem" }}
               >
                 Download Data Sheet
-              </Button>
-              <Button
-                variant="contained"
-                className="btn-shine"
-                onClick={() => {
-                  const targetName = selectedVariety.name;
-                  setSelectedVariety(null);
-                  setFormData((prev) => ({ ...prev, variety: targetName }));
-                  const el = document.getElementById("contact");
-                  if (el) el.scrollIntoView({ behavior: "smooth" });
-                }}
-                sx={{
-                  bgcolor: "#e7b600",
-                  color: "#183427",
-                  fontWeight: 800,
-                  fontSize: "0.75rem",
-                  borderRadius: "999px",
-                  "&:hover": { bgcolor: "#d6a700" },
-                }}
-              >
-                Inquire For This Variety →
               </Button>
             </DialogActions>
           </>
