@@ -1,4 +1,4 @@
-import QualityRiceView from "@/src/views/quality-rice";
+import QualityRiceView from "@/src/views/export/quality-rice";
 import type { Metadata } from "next";
 
 export const metadata: Metadata = {

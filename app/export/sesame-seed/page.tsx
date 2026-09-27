@@ -1,4 +1,4 @@
-import SesameSeedView from "@/src/views/sesame-seed";
+import SesameSeedView from "@/src/views/export/sesame-seed";
 import type { Metadata } from "next";
 
 export const metadata: Metadata = {

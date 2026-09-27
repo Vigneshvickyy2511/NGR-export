@@ -1,4 +1,4 @@
-import CosmeticChemicalView from "@/src/views/cosmetic-chemical";
+import CosmeticChemicalView from "@/src/views/import/cosmetic-chemical";
 import type { Metadata } from "next";
 
 export const metadata: Metadata = {

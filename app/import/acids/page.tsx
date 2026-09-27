@@ -1,4 +1,4 @@
-import AcidsView from "@/src/views/acids";
+import AcidsView from "@/src/views/import/acids";
 import type { Metadata } from "next";
 
 export const metadata: Metadata = {

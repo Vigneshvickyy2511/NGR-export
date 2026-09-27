@@ -1,4 +1,4 @@
-import MangoPulpView from "@/src/views/mango-pulp";
+import MangoPulpView from "@/src/views/export/mango-pulp";
 import type { Metadata } from "next";
 
 export const metadata: Metadata = {

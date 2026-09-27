@@ -1,4 +1,4 @@
-import MetalScrapView from "@/src/views/metal-scrap";
+import MetalScrapView from "@/src/views/import/metal-scrap";
 import type { Metadata } from "next";
 
 export const metadata: Metadata = {

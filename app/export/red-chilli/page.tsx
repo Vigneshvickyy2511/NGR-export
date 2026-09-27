@@ -1,4 +1,4 @@
-import RedChilliView from "@/src/views/red-chilli";
+import RedChilliView from "@/src/views/export/red-chilli";
 import type { Metadata } from "next";
 
 export const metadata: Metadata = {

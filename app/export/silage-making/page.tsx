@@ -1,4 +1,4 @@
-import SilageMakingView from "@/src/views/silage-making";
+import SilageMakingView from "@/src/views/export/silage-making";
 import type { Metadata } from "next";
 
 export const metadata: Metadata = {
