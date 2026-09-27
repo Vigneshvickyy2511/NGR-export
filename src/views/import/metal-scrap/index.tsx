@@ -514,10 +514,9 @@ export default function MetalScrapView() {
       </section>
 
       {/* 9. CONTACT SECTION */}
-      <section id="contact" className="py-16 sm:py-24 bg-[#fbfcfb]">
+      {/* <section id="contact" className="py-16 sm:py-24 bg-[#fbfcfb]">
         <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
           <div className="grid grid-cols-1 lg:grid-cols-12 gap-12 lg:gap-16">
-            {/* Left Column Quote */}
             <div className="lg:col-span-5 space-y-5">
               <div>
                 <p className="text-xs font-black uppercase tracking-[0.15em] text-[#00572f] mb-1">
@@ -553,7 +552,6 @@ export default function MetalScrapView() {
               </div>
             </div>
 
-            {/* Right Column Form */}
             <div className="lg:col-span-7">
               <form
                 onSubmit={handleSubmit}
@@ -658,7 +656,7 @@ export default function MetalScrapView() {
             </div>
           </div>
         </div>
-      </section>
+      </section> */}
 
       {/* Snackbar feedback */}
       <Snackbar
