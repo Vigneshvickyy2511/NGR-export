@@ -87,12 +87,22 @@ export default function Footer() {
                 </Link>
               </li>
               <li>
-                <Link href="/import" className="hover:text-[#ffd000] transition-colors flex items-center gap-2">
-                  <span className="text-[#ffd000]">›</span> Import Products
+                <Link href="/import/metal-scrap" className="hover:text-[#ffd000] transition-colors flex items-center gap-2">
+                  <span className="text-[#ffd000]">›</span> Metal Scrap
                 </Link>
               </li>
               <li>
-                <Link href="/export" className="hover:text-[#ffd000] transition-colors flex items-center gap-2">
+                <Link href="/import/acids" className="hover:text-[#ffd000] transition-colors flex items-center gap-2">
+                  <span className="text-[#ffd000]">›</span> Industrial Acids
+                </Link>
+              </li>
+              <li>
+                <Link href="/import/cosmetic-chemical" className="hover:text-[#ffd000] transition-colors flex items-center gap-2">
+                  <span className="text-[#ffd000]">›</span> Cosmetic Chemicals
+                </Link>
+              </li>
+              <li>
+                <Link href="/#products" className="hover:text-[#ffd000] transition-colors flex items-center gap-2">
                   <span className="text-[#ffd000]">›</span> Export Commodities
                 </Link>
               </li>

@@ -1,6 +1,6 @@
 "use client";
 
-import React, { useState, useEffect } from "react";
+import React, { useState, useEffect, useRef } from "react";
 import Link from "next/link";
 import { usePathname } from "next/navigation";
 import {
@@ -11,13 +11,23 @@ import {
   List,
   ListItem,
   ListItemButton,
-  ListItemText,
+  Collapse,
   Divider,
 } from "@mui/material";
 
 export default function Header() {
   const [scrolled, setScrolled] = useState(false);
   const [mobileOpen, setMobileOpen] = useState(false);
+  const [mobileImportOpen, setMobileImportOpen] = useState(false);
+  const [mobileExportOpen, setMobileExportOpen] = useState(false);
+
+  // Desktop dropdown state
+  const [importDropdownOpen, setImportDropdownOpen] = useState(false);
+  const [exportDropdownOpen, setExportDropdownOpen] = useState(false);
+
+  const importTimeoutRef = useRef<NodeJS.Timeout | null>(null);
+  const exportTimeoutRef = useRef<NodeJS.Timeout | null>(null);
+
   const pathname = usePathname();
 
   useEffect(() => {
@@ -28,13 +38,18 @@ export default function Header() {
     return () => window.removeEventListener("scroll", handleScroll);
   }, []);
 
-  const navLinks = [
-    { label: "Home", href: "/" },
-    { label: "About Us", href: "/about" },
-    { label: "Import", href: "/import" },
-    { label: "Export", href: "/export" },
-    { label: "Our Principal", href: "/#industries" },
-    { label: "News & Blog", href: "/#focus" },
+  const importItems = [
+    { label: "Metal Scrap", href: "/import/metal-scrap" },
+    { label: "Acids", href: "/import/acids" },
+    { label: "Cosmetic Chemical", href: "/import/cosmetic-chemical" },
+    { label: "Plastic Chemical", href: "/#products" },
+  ];
+
+  const exportItems = [
+    { label: "Red Chilli", href: "/#products" },
+    { label: "Mango Pulp", href: "/#products" },
+    { label: "Sesame Seeds", href: "/#products" },
+    { label: "Spices & Agro Commodities", href: "/#products" },
   ];
 
   const isLinkActive = (href: string) => {
@@ -45,8 +60,25 @@ export default function Header() {
 
   const handleNavClick = (e: React.MouseEvent<HTMLAnchorElement>, href: string) => {
     setMobileOpen(false);
-    // If on home page and href is an anchor, smooth scroll
+    setImportDropdownOpen(false);
+    setExportDropdownOpen(false);
+
     if (pathname === "/" && href.startsWith("/#")) {
+      e.preventDefault();
+      const targetId = href.replace("/#", "");
+      const elem = document.getElementById(targetId);
+      if (elem) {
+        elem.scrollIntoView({ behavior: "smooth" });
+      }
+    }
+  };
+
+  const handleDropdownItemClick = (e: React.MouseEvent<HTMLAnchorElement>, href: string) => {
+    setImportDropdownOpen(false);
+    setExportDropdownOpen(false);
+    setMobileOpen(false);
+
+    if (href.startsWith("/#") && pathname === "/") {
       e.preventDefault();
       const targetId = href.replace("/#", "");
       const elem = document.getElementById(targetId);
@@ -58,7 +90,7 @@ export default function Header() {
 
   return (
     <>
-      {/* Top Bar */}
+      {/* Top Bar - Original Light Pale Background */}
       <div className="hidden sm:block bg-[#f6faf7] border-b border-[#d9e4dc] text-[0.72rem] text-[#5f6d65] font-medium transition-all">
         <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 h-9 flex items-center justify-between">
           <div className="flex items-center gap-6">
@@ -71,6 +103,7 @@ export default function Header() {
               </svg>
               <span>+91 63825 84350</span>
             </a>
+            <span className="text-[#d9e4dc]">|</span>
             <a
               href="mailto:exim@ngrimpex.in"
               className="flex items-center gap-1.5 hover:text-[#005b32] transition-colors"
@@ -80,27 +113,19 @@ export default function Header() {
               </svg>
               <span>exim@ngrimpex.in</span>
             </a>
+            <span className="text-[#d9e4dc]">|</span>
             <span className="flex items-center gap-1.5">
               <svg className="w-3.5 h-3.5 text-[#005b32]" fill="none" viewBox="0 0 24 24" stroke="currentColor">
                 <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M17.657 16.657L13.414 20.9a1.998 1.998 0 01-2.827 0l-4.244-4.243a8 8 0 1111.314 0z" />
                 <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M15 11a3 3 0 11-6 0 3 3 0 016 0z" />
               </svg>
-              <span>Chennai, Tamil Nadu, India</span>
+              <span>Tamil Nadu, India</span>
             </span>
           </div>
 
           <div className="flex items-center gap-3">
             <span className="text-gray-400">Follow us:</span>
             <div className="flex items-center gap-2 text-xs font-semibold">
-              <a
-                href="https://linkedin.com"
-                target="_blank"
-                rel="noreferrer"
-                className="w-5 h-5 rounded-full bg-emerald-100/60 hover:bg-[#005b32] hover:text-white flex items-center justify-center transition-colors text-[0.65rem] font-bold text-[#005b32]"
-                title="LinkedIn"
-              >
-                in
-              </a>
               <a
                 href="https://facebook.com"
                 target="_blank"
@@ -111,20 +136,38 @@ export default function Header() {
                 f
               </a>
               <a
-                href="https://instagram.com"
+                href="https://twitter.com"
+                target="_blank"
+                rel="noreferrer"
+                className="w-5 h-5 rounded-full bg-emerald-100/60 hover:bg-[#005b32] hover:text-white flex items-center justify-center transition-colors text-[0.62rem] font-bold text-[#005b32]"
+                title="Twitter"
+              >
+                𝕏
+              </a>
+              <a
+                href="https://youtube.com"
+                target="_blank"
+                rel="noreferrer"
+                className="w-5 h-5 rounded-full bg-emerald-100/60 hover:bg-[#005b32] hover:text-white flex items-center justify-center transition-colors text-[0.58rem] font-bold text-[#005b32]"
+                title="YouTube"
+              >
+                ▶
+              </a>
+              <a
+                href="https://linkedin.com"
                 target="_blank"
                 rel="noreferrer"
                 className="w-5 h-5 rounded-full bg-emerald-100/60 hover:bg-[#005b32] hover:text-white flex items-center justify-center transition-colors text-[0.65rem] font-bold text-[#005b32]"
-                title="Instagram"
+                title="LinkedIn"
               >
-                ◎
+                in
               </a>
             </div>
           </div>
         </div>
       </div>
 
-      {/* Main Navigation Bar */}
+      {/* Main Navigation Bar - Original Clean White Background */}
       <header
         className={`sticky top-0 z-50 w-full transition-all duration-300 ${
           scrolled
@@ -133,7 +176,7 @@ export default function Header() {
         }`}
       >
         <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 flex items-center justify-between gap-4">
-          {/* Logo */}
+          {/* Logo with Green & Gold Typography */}
           <Link href="/#home" className="group flex flex-col items-start leading-none select-none">
             <span className="text-2xl sm:text-3xl font-black tracking-tight text-[#005b32] flex items-baseline">
               NG<span className="text-[#b6a700] group-hover:text-[#ffd000] transition-colors">R</span>
@@ -145,23 +188,143 @@ export default function Header() {
 
           {/* Desktop Nav Links */}
           <nav className="hidden lg:flex items-center gap-7">
-            {navLinks.map((item) => {
-              const active = isLinkActive(item.href);
-              return (
-                <Link
-                  key={item.label}
-                  href={item.href}
-                  onClick={(e) => handleNavClick(e, item.href)}
-                  className={`text-[0.84rem] font-bold py-2 relative border-b-2 transition-all ${
-                    active
-                      ? "text-[#005b32] border-[#005b32]"
-                      : "text-[#173e2a] border-transparent hover:text-[#005b32] hover:border-[#005b32]"
-                  }`}
-                >
-                  {item.label}
-                </Link>
-              );
-            })}
+            {/* Home */}
+            <Link
+              href="/"
+              onClick={(e) => handleNavClick(e, "/")}
+              className={`text-[0.84rem] font-bold py-2 relative border-b-2 transition-all ${
+                isLinkActive("/")
+                  ? "text-[#005b32] border-[#005b32]"
+                  : "text-[#173e2a] border-transparent hover:text-[#005b32] hover:border-[#005b32]"
+              }`}
+            >
+              Home
+            </Link>
+
+            {/* About Us */}
+            <Link
+              href="/about"
+              onClick={(e) => handleNavClick(e, "/about")}
+              className={`text-[0.84rem] font-bold py-2 relative border-b-2 transition-all ${
+                isLinkActive("/about")
+                  ? "text-[#005b32] border-[#005b32]"
+                  : "text-[#173e2a] border-transparent hover:text-[#005b32] hover:border-[#005b32]"
+              }`}
+            >
+              About Us
+            </Link>
+
+            {/* Import Dropdown */}
+            <div
+              className="relative py-2"
+              onMouseEnter={() => {
+                if (importTimeoutRef.current) clearTimeout(importTimeoutRef.current);
+                setImportDropdownOpen(true);
+              }}
+              onMouseLeave={() => {
+                importTimeoutRef.current = setTimeout(() => {
+                  setImportDropdownOpen(false);
+                }, 150);
+              }}
+            >
+              <button
+                type="button"
+                onClick={() => setImportDropdownOpen((prev) => !prev)}
+                className={`text-[0.84rem] font-bold flex items-center gap-1.5 transition-colors cursor-pointer select-none border-b-2 ${
+                  pathname.startsWith("/import") || importDropdownOpen
+                    ? "text-[#005b32] border-[#005b32]"
+                    : "text-[#173e2a] border-transparent hover:text-[#005b32]"
+                }`}
+                aria-expanded={importDropdownOpen}
+              >
+                <span>Import</span>
+                <span className={`text-[0.65rem] transition-transform duration-200 ${importDropdownOpen ? "rotate-180 text-[#005b32]" : ""}`}>
+                  ▾
+                </span>
+              </button>
+
+              {/* Import Dropdown Menu Box */}
+              {importDropdownOpen && (
+                <div className="absolute left-0 top-full mt-2 w-48 bg-white rounded-lg shadow-[0_12px_30px_rgba(0,59,35,0.15)] border border-[#d9e4dc] py-2 z-50 animate-fadeIn">
+                  {importItems.map((item) => (
+                    <Link
+                      key={item.label}
+                      href={item.href}
+                      onClick={(e) => handleDropdownItemClick(e, item.href)}
+                      className={`block px-4 py-2.5 text-[0.84rem] font-bold transition-colors ${
+                        pathname === item.href
+                          ? "bg-[#edf6f0] text-[#003f26] font-extrabold"
+                          : "text-[#005b32] hover:bg-[#f4f8f4] hover:text-[#003f26]"
+                      }`}
+                    >
+                      {item.label}
+                    </Link>
+                  ))}
+                </div>
+              )}
+            </div>
+
+            {/* Export Dropdown */}
+            <div
+              className="relative py-2"
+              onMouseEnter={() => {
+                if (exportTimeoutRef.current) clearTimeout(exportTimeoutRef.current);
+                setExportDropdownOpen(true);
+              }}
+              onMouseLeave={() => {
+                exportTimeoutRef.current = setTimeout(() => {
+                  setExportDropdownOpen(false);
+                }, 150);
+              }}
+            >
+              <button
+                type="button"
+                onClick={() => setExportDropdownOpen((prev) => !prev)}
+                className={`text-[0.84rem] font-bold flex items-center gap-1.5 transition-colors cursor-pointer select-none border-b-2 border-transparent ${
+                  exportDropdownOpen ? "text-[#005b32]" : "text-[#173e2a] hover:text-[#005b32]"
+                }`}
+                aria-expanded={exportDropdownOpen}
+              >
+                <span>Export</span>
+                <span className={`text-[0.65rem] transition-transform duration-200 ${exportDropdownOpen ? "rotate-180 text-[#005b32]" : ""}`}>
+                  ▾
+                </span>
+              </button>
+
+              {/* Export Dropdown Menu Box */}
+              {exportDropdownOpen && (
+                <div className="absolute left-0 top-full mt-2 w-56 bg-white rounded-lg shadow-[0_12px_30px_rgba(0,59,35,0.15)] border border-[#d9e4dc] py-2 z-50 animate-fadeIn">
+                  {exportItems.map((item) => (
+                    <Link
+                      key={item.label}
+                      href={item.href}
+                      onClick={(e) => handleDropdownItemClick(e, item.href)}
+                      className="block px-4 py-2.5 text-[0.84rem] font-bold text-[#005b32] hover:bg-[#f4f8f4] hover:text-[#003f26] transition-colors"
+                    >
+                      {item.label}
+                    </Link>
+                  ))}
+                </div>
+              )}
+            </div>
+
+            {/* Our Principal */}
+            <Link
+              href="/#industries"
+              onClick={(e) => handleNavClick(e, "/#industries")}
+              className="text-[0.84rem] font-bold text-[#173e2a] hover:text-[#005b32] py-2 relative border-b-2 border-transparent hover:border-[#005b32] transition-all"
+            >
+              Our Principal
+            </Link>
+
+            {/* News & Blog */}
+            <Link
+              href="/#focus"
+              onClick={(e) => handleNavClick(e, "/#focus")}
+              className="text-[0.84rem] font-bold text-[#173e2a] hover:text-[#005b32] py-2 relative border-b-2 border-transparent hover:border-[#005b32] transition-all"
+            >
+              News &amp; Blog
+            </Link>
           </nav>
 
           {/* Action Button & Mobile Hamburger */}
@@ -227,7 +390,7 @@ export default function Header() {
         slotProps={{
           paper: {
             sx: {
-              width: "80%",
+              width: "82%",
               maxWidth: 320,
               bgcolor: "#ffffff",
               p: 2,
@@ -251,34 +414,126 @@ export default function Header() {
           </IconButton>
         </Box>
         <Divider />
-        <List sx={{ pt: 2 }}>
-          {navLinks.map((item) => {
-            const active = isLinkActive(item.href);
-            return (
-              <ListItem key={item.label} disablePadding>
-                <ListItemButton
-                  component={Link}
-                  href={item.href}
-                  onClick={(e) => handleNavClick(e, item.href)}
-                  sx={{
-                    py: 1.5,
-                    borderRadius: "6px",
-                    bgcolor: active ? "#f0f7f2" : "transparent",
-                    "&:hover": { bgcolor: "#f4f8f4", color: "#005b32" },
-                  }}
-                >
-                  <span
-                    className={`font-bold text-[0.95rem] ${
-                      active ? "text-[#005b32]" : "text-[#173e2a]"
-                    }`}
+
+        <List sx={{ pt: 1.5 }}>
+          {/* Home */}
+          <ListItem disablePadding>
+            <ListItemButton
+              component={Link}
+              href="/"
+              onClick={(e) => handleNavClick(e, "/")}
+              sx={{ py: 1.2, borderRadius: "6px", bgcolor: isLinkActive("/") ? "#f0f7f2" : "transparent" }}
+            >
+              <span className={`font-bold text-[0.92rem] ${isLinkActive("/") ? "text-[#005b32]" : "text-[#173e2a]"}`}>
+                Home
+              </span>
+            </ListItemButton>
+          </ListItem>
+
+          {/* About Us */}
+          <ListItem disablePadding>
+            <ListItemButton
+              component={Link}
+              href="/about"
+              onClick={(e) => handleNavClick(e, "/about")}
+              sx={{ py: 1.2, borderRadius: "6px", bgcolor: isLinkActive("/about") ? "#f0f7f2" : "transparent" }}
+            >
+              <span className={`font-bold text-[0.92rem] ${isLinkActive("/about") ? "text-[#005b32]" : "text-[#173e2a]"}`}>
+                About Us
+              </span>
+            </ListItemButton>
+          </ListItem>
+
+          {/* Import Dropdown Accordion */}
+          <ListItem disablePadding sx={{ flexDirection: "column", alignItems: "stretch" }}>
+            <ListItemButton
+              onClick={() => setMobileImportOpen((prev) => !prev)}
+              sx={{ py: 1.2, borderRadius: "6px", display: "flex", justifyContent: "space-between" }}
+            >
+              <span className="font-bold text-[0.92rem] text-[#173e2a]">Import</span>
+              <span className={`text-xs text-gray-400 transition-transform ${mobileImportOpen ? "rotate-180" : ""}`}>
+                ▾
+              </span>
+            </ListItemButton>
+            <Collapse in={mobileImportOpen} timeout="auto" unmountOnExit>
+              <List component="div" disablePadding sx={{ pl: 2, bgcolor: "#f9fcf9", borderRadius: "6px" }}>
+                {importItems.map((subItem) => (
+                  <ListItemButton
+                    key={subItem.label}
+                    component={Link}
+                    href={subItem.href}
+                    onClick={(e) => handleDropdownItemClick(e, subItem.href)}
+                    sx={{
+                      py: 1,
+                      bgcolor: pathname === subItem.href ? "#edf6f0" : "transparent",
+                    }}
                   >
-                    {item.label}
-                  </span>
-                </ListItemButton>
-              </ListItem>
-            );
-          })}
+                    <span
+                      className={`text-xs font-bold ${
+                        pathname === subItem.href ? "text-[#003f26] font-extrabold" : "text-[#005b32]"
+                      }`}
+                    >
+                      ● {subItem.label}
+                    </span>
+                  </ListItemButton>
+                ))}
+              </List>
+            </Collapse>
+          </ListItem>
+
+          {/* Export Dropdown Accordion */}
+          <ListItem disablePadding sx={{ flexDirection: "column", alignItems: "stretch" }}>
+            <ListItemButton
+              onClick={() => setMobileExportOpen((prev) => !prev)}
+              sx={{ py: 1.2, borderRadius: "6px", display: "flex", justifyContent: "space-between" }}
+            >
+              <span className="font-bold text-[0.92rem] text-[#173e2a]">Export</span>
+              <span className={`text-xs text-gray-400 transition-transform ${mobileExportOpen ? "rotate-180" : ""}`}>
+                ▾
+              </span>
+            </ListItemButton>
+            <Collapse in={mobileExportOpen} timeout="auto" unmountOnExit>
+              <List component="div" disablePadding sx={{ pl: 2, bgcolor: "#f9fcf9", borderRadius: "6px" }}>
+                {exportItems.map((subItem) => (
+                  <ListItemButton
+                    key={subItem.label}
+                    component={Link}
+                    href={subItem.href}
+                    onClick={(e) => handleDropdownItemClick(e, subItem.href)}
+                    sx={{ py: 1 }}
+                  >
+                    <span className="text-xs font-bold text-[#005b32]">● {subItem.label}</span>
+                  </ListItemButton>
+                ))}
+              </List>
+            </Collapse>
+          </ListItem>
+
+          {/* Our Principal */}
+          <ListItem disablePadding>
+            <ListItemButton
+              component={Link}
+              href="/#industries"
+              onClick={(e) => handleNavClick(e, "/#industries")}
+              sx={{ py: 1.2, borderRadius: "6px" }}
+            >
+              <span className="font-bold text-[0.92rem] text-[#173e2a]">Our Principal</span>
+            </ListItemButton>
+          </ListItem>
+
+          {/* News & Blog */}
+          <ListItem disablePadding>
+            <ListItemButton
+              component={Link}
+              href="/#focus"
+              onClick={(e) => handleNavClick(e, "/#focus")}
+              sx={{ py: 1.2, borderRadius: "6px" }}
+            >
+              <span className="font-bold text-[0.92rem] text-[#173e2a]">News &amp; Blog</span>
+            </ListItemButton>
+          </ListItem>
         </List>
+
         <Box sx={{ mt: 3, pt: 2, borderTop: "1px solid #d9e4dc" }}>
           <Button
             fullWidth
@@ -313,7 +568,7 @@ export default function Header() {
               <span>✉</span> exim@ngrimpex.in
             </p>
             <p className="flex items-center gap-2">
-              <span>📍</span> Chennai, Tamil Nadu, India
+              <span>📍</span> Tamil Nadu, India
             </p>
           </div>
         </Box>
