@@ -2,6 +2,7 @@
 
 import React, { useState, useRef } from "react";
 import Link from "next/link";
+import Image from "next/image";
 import {
   Button,
   TextField,
@@ -311,11 +312,13 @@ export default function RedChilliView() {
 
             {/* Right Photo */}
             <div className="lg:col-span-6">
-              <div className="rounded-xl overflow-hidden shadow-[0_18px_48px_rgba(0,58,32,0.18)] border border-[#dce6dd] group">
-                <img
+              <div className="relative h-[360px] sm:h-[430px] rounded-xl overflow-hidden shadow-[0_18px_48px_rgba(0,58,32,0.18)] border border-[#dce6dd] group">
+                <Image
                   src="https://images.unsplash.com/photo-1588252303782-cb80119abd6d?auto=format&fit=crop&w=1000&q=88"
                   alt="Dried red chillies harvest"
-                  className="w-full h-[360px] sm:h-[430px] object-cover transition-transform duration-700 group-hover:scale-105"
+                  fill
+                  sizes="(max-width: 1024px) 100vw, 50vw"
+                  className="object-cover transition-transform duration-700 group-hover:scale-105"
                 />
               </div>
             </div>
@@ -329,11 +332,13 @@ export default function RedChilliView() {
           <div className="grid grid-cols-1 lg:grid-cols-12 gap-12 lg:gap-16 items-center">
             {/* Left Tall Image */}
             <div className="lg:col-span-5">
-              <div className="rounded-xl overflow-hidden shadow-[0_16px_40px_rgba(0,58,32,0.16)] border border-[#dce6dd] group">
-                <img
+              <div className="relative h-[400px] sm:h-[540px] rounded-xl overflow-hidden shadow-[0_16px_40px_rgba(0,58,32,0.16)] border border-[#dce6dd] group">
+                <Image
                   src="https://images.unsplash.com/photo-1588252303782-cb80119abd6d?auto=format&fit=crop&w=800&q=90"
                   alt="Premium red chillies sorting"
-                  className="w-full h-[400px] sm:h-[540px] object-cover transition-transform duration-700 group-hover:scale-105"
+                  fill
+                  sizes="(max-width: 1024px) 100vw, 42vw"
+                  className="object-cover transition-transform duration-700 group-hover:scale-105"
                 />
               </div>
             </div>
@@ -584,11 +589,15 @@ export default function RedChilliView() {
                   From Our Trade Blog
                 </h2>
                 <div className="flex flex-col sm:flex-row gap-5 items-center">
-                  <img
-                    src="https://images.unsplash.com/photo-1588252303782-cb80119abd6d?auto=format&fit=crop&w=500&q=85"
-                    alt="Red chilli news"
-                    className="w-full sm:w-44 h-32 object-cover rounded-xl border border-[#dce6dd]"
-                  />
+                  <div className="relative w-full sm:w-44 h-32 shrink-0 rounded-xl overflow-hidden border border-[#dce6dd]">
+                    <Image
+                      src="https://images.unsplash.com/photo-1588252303782-cb80119abd6d?auto=format&fit=crop&w=500&q=85"
+                      alt="Red chilli news"
+                      fill
+                      sizes="(max-width: 640px) 100vw, 176px"
+                      className="object-cover"
+                    />
+                  </div>
                   <div>
                     <h3 className="text-sm sm:text-base font-bold text-[#14261b]">
                       Global Demand for Indian Dried Red Chilli Continues to Rise

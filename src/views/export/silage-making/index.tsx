@@ -2,6 +2,7 @@
 
 import React, { useState, useEffect } from "react";
 import Link from "next/link";
+import Image from "next/image";
 import {
   Button,
   TextField,
@@ -333,11 +334,13 @@ export default function SilageMakingView() {
 
             {/* Right Hero Photo with Solid Offset Shadow & Scale Lift */}
             <div className="lg:col-span-6 reveal right">
-              <div className="relative mx-auto max-w-lg">
-                <img
+              <div className="relative mx-auto max-w-lg h-[320px] sm:h-[380px] rounded-[10px] overflow-hidden hero-photo">
+                <Image
                   src="https://images.unsplash.com/photo-1500076656116-558758c991c1?auto=format&fit=crop&w=1100&q=88"
                   alt="Silage production and harvest on an agricultural farm"
-                  className="w-full h-[320px] sm:h-[380px] object-cover rounded-[10px] hero-photo"
+                  fill
+                  sizes="(max-width: 1024px) 100vw, 50vw"
+                  className="object-cover rounded-[10px]"
                 />
               </div>
             </div>
@@ -415,11 +418,13 @@ export default function SilageMakingView() {
                 </div>
               </div>
 
-              <div className="rounded-lg overflow-hidden border border-[#d8e5dc]">
-                <img
+              <div className="relative h-56 w-full rounded-lg overflow-hidden border border-[#d8e5dc]">
+                <Image
                   src="https://images.unsplash.com/photo-1621955964441-c173e01c135b?auto=format&fit=crop&w=800&q=86"
                   alt="High quality fermented silage feed for cattle"
-                  className="w-full h-56 object-cover hover:scale-105 transition-transform duration-700"
+                  fill
+                  sizes="(max-width: 1024px) 100vw, 58vw"
+                  className="object-cover hover:scale-105 transition-transform duration-700"
                 />
               </div>
             </article>
@@ -678,11 +683,13 @@ export default function SilageMakingView() {
           </h2>
 
           <div className="grid grid-cols-1 md:grid-cols-12 gap-6 items-center bg-white p-6 sm:p-8 rounded-xl border border-[#d8e5dc] shadow-sm blog-row reveal">
-            <div className="md:col-span-4">
-              <img
+            <div className="relative md:col-span-4 h-40 w-full rounded-lg overflow-hidden border border-[#d8e5dc]">
+              <Image
                 src="https://images.unsplash.com/photo-1500382017468-9049fed747ef?auto=format&fit=crop&w=600&q=85"
                 alt="Agricultural farm fields"
-                className="w-full h-40 object-cover rounded-lg border border-[#d8e5dc]"
+                fill
+                sizes="(max-width: 768px) 100vw, 33vw"
+                className="object-cover"
               />
             </div>
             <div className="md:col-span-8">

@@ -2,6 +2,7 @@
 
 import React, { useState, useRef, useEffect } from "react";
 import Link from "next/link";
+import Image from "next/image";
 import {
   Button,
   TextField,
@@ -358,11 +359,13 @@ export default function QualityRiceView() {
 
             {/* Right Packaging Image with Hover Lift & Scale */}
             <div className="lg:col-span-5">
-              <div className="rounded-xl overflow-hidden shadow-[0_20px_48px_rgba(0,55,31,0.18)] border border-[#e1dfd5] group">
-                <img
+              <div className="relative h-[420px] sm:h-[485px] rounded-xl overflow-hidden shadow-[0_20px_48px_rgba(0,55,31,0.18)] border border-[#e1dfd5] group">
+                <Image
                   src="https://images.unsplash.com/photo-1586201375761-83865001e31c?auto=format&fit=crop&w=850&q=88"
                   alt="Premium packaged rice grain bags"
-                  className="w-full h-[420px] sm:h-[485px] object-cover transition-transform duration-700 group-hover:scale-105 package reveal right"
+                  fill
+                  sizes="(max-width: 1024px) 100vw, 42vw"
+                  className="object-cover transition-transform duration-700 group-hover:scale-105 package reveal right"
                 />
               </div>
             </div>
@@ -580,11 +583,13 @@ export default function QualityRiceView() {
           <div className="w-14 h-1 bg-[#e7b622] rounded-full my-3" />
 
           <div className="grid grid-cols-1 md:grid-cols-12 gap-8 items-center bg-[#fbf7eb] p-6 sm:p-8 rounded-2xl border border-[#e1dfd5] news reveal">
-            <div className="md:col-span-4">
-              <img
+            <div className="relative md:col-span-4 h-44 w-full rounded-xl overflow-hidden border border-[#e1dfd5]">
+              <Image
                 src="https://images.unsplash.com/photo-1500382017468-9049fed747ef?auto=format&fit=crop&w=800&q=85"
                 alt="Fertile paddy rice fields"
-                className="w-full h-44 object-cover rounded-xl border border-[#e1dfd5]"
+                fill
+                sizes="(max-width: 768px) 100vw, 33vw"
+                className="object-cover"
               />
             </div>
             <div className="md:col-span-8">

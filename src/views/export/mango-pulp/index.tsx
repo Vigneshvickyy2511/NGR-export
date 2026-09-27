@@ -2,6 +2,7 @@
 
 import React, { useState, useRef, useEffect } from "react";
 import Link from "next/link";
+import Image from "next/image";
 import {
   Button,
   TextField,
@@ -367,11 +368,13 @@ export default function MangoPulpView() {
         <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
           <div className="grid grid-cols-1 lg:grid-cols-12 gap-8 items-stretch rounded-2xl overflow-hidden border border-[#e7ddc9] shadow-sm">
             {/* Column 1: Image (reveal left) */}
-            <div className="lg:col-span-4 min-h-[300px] lg:min-h-full overflow-hidden reveal left">
-              <img
+            <div className="relative lg:col-span-4 min-h-[300px] h-72 sm:h-80 lg:h-auto lg:min-h-full overflow-hidden reveal left">
+              <Image
                 src="https://images.unsplash.com/photo-1553279768-865429fa0078?auto=format&fit=crop&w=900&q=88"
                 alt="Freshly sliced mango"
-                className="w-full h-full object-cover transition-transform duration-700 hover:scale-105"
+                fill
+                sizes="(max-width: 1024px) 100vw, 33vw"
+                className="object-cover transition-transform duration-700 hover:scale-105"
               />
             </div>
 
@@ -605,11 +608,15 @@ export default function MangoPulpView() {
                   key={card.title}
                   className="card reveal bg-white rounded-xl overflow-hidden shadow-sm hover:shadow-xl hover:-translate-y-2 transition-all duration-400 border border-[#e7ddc9]"
                 >
-                  <img
-                    src={card.image}
-                    alt={card.title}
-                    className="w-full h-32 object-cover transition-transform duration-700 hover:scale-108"
-                  />
+                  <div className="relative w-full h-32 overflow-hidden">
+                    <Image
+                      src={card.image}
+                      alt={card.title}
+                      fill
+                      sizes="(max-width: 640px) 100vw, (max-width: 768px) 50vw, 25vw"
+                      className="object-cover transition-transform duration-700 hover:scale-108"
+                    />
+                  </div>
                   <div className="p-4">
                     <h3
                       className="text-sm font-bold text-[#102d20] mb-1"
@@ -634,11 +641,15 @@ export default function MangoPulpView() {
           <div className="grid grid-cols-1 md:grid-cols-12 gap-8 items-stretch">
             {/* Download Resource (reveal left) */}
             <article className="md:col-span-6 bg-[#fffaf0] p-7 sm:p-8 rounded-2xl border border-[#e7ddc9] flex flex-col sm:flex-row items-center gap-6 shadow-sm reveal left">
-              <img
-                src="https://images.unsplash.com/photo-1553279768-865429fa0078?auto=format&fit=crop&w=500&q=85"
-                alt="Product details sheet"
-                className="w-full sm:w-40 h-32 object-cover rounded-xl border border-[#e7ddc9]"
-              />
+              <div className="relative w-full sm:w-40 h-32 shrink-0 rounded-xl overflow-hidden border border-[#e7ddc9]">
+                <Image
+                  src="https://images.unsplash.com/photo-1553279768-865429fa0078?auto=format&fit=crop&w=500&q=85"
+                  alt="Product details sheet"
+                  fill
+                  sizes="(max-width: 640px) 100vw, 160px"
+                  className="object-cover"
+                />
+              </div>
               <div className="flex-1 text-center sm:text-left">
                 <h3
                   className="text-xl font-bold text-[#102d20] mb-2"
@@ -680,11 +691,15 @@ export default function MangoPulpView() {
 
             {/* News Resource (reveal right) */}
             <article className="md:col-span-6 bg-[#fffaf0] p-7 sm:p-8 rounded-2xl border border-[#e7ddc9] flex flex-col sm:flex-row items-center gap-6 shadow-sm reveal right">
-              <img
-                src="https://images.unsplash.com/photo-1591073113125-e46713c829ed?auto=format&fit=crop&w=500&q=85"
-                alt="Mango harvest news"
-                className="w-full sm:w-40 h-32 object-cover rounded-xl border border-[#e7ddc9]"
-              />
+              <div className="relative w-full sm:w-40 h-32 shrink-0 rounded-xl overflow-hidden border border-[#e7ddc9]">
+                <Image
+                  src="https://images.unsplash.com/photo-1591073113125-e46713c829ed?auto=format&fit=crop&w=500&q=85"
+                  alt="Mango harvest news"
+                  fill
+                  sizes="(max-width: 640px) 100vw, 160px"
+                  className="object-cover"
+                />
+              </div>
               <div className="flex-1 text-center sm:text-left">
                 <h3
                   className="text-xl font-bold text-[#102d20] mb-2"

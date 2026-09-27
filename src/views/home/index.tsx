@@ -2,6 +2,7 @@
 
 import React, { useState, useRef } from "react";
 import Link from "next/link";
+import Image from "next/image";
 import {
   Button,
   TextField,
@@ -235,11 +236,13 @@ export default function HomeView() {
 
             {/* Right Column: Visual Card */}
             <div className="relative group">
-              <div className="relative min-h-[340px] sm:min-h-[400px] rounded-xl overflow-hidden shadow-[0_15px_35px_rgba(0,60,36,0.18)] border border-[#d9e4dc] shine-box">
-                <img
+              <div className="relative min-h-[340px] sm:min-h-[400px] h-[340px] sm:h-[400px] rounded-xl overflow-hidden shadow-[0_15px_35px_rgba(0,60,36,0.18)] border border-[#d9e4dc] shine-box">
+                <Image
                   src="https://images.unsplash.com/photo-1578575437130-527eed3abbec?auto=format&fit=crop&w=1100&q=86"
                   alt="Global Sourcing Cargo Hub"
-                  className="w-full h-full object-cover min-h-[340px] sm:min-h-[400px] transition-transform duration-700 group-hover:scale-105"
+                  fill
+                  sizes="(max-width: 1024px) 100vw, 50vw"
+                  className="object-cover min-h-[340px] sm:min-h-[400px] transition-transform duration-700 group-hover:scale-105"
                 />
                 <div className="absolute inset-0 bg-gradient-to-t from-[#003a24]/90 via-[#003a24]/30 to-transparent" />
 
@@ -281,11 +284,13 @@ export default function HomeView() {
               <div className="grid grid-cols-1 sm:grid-cols-2 gap-4">
                 {/* Red Chilli */}
                 <article className="group bg-white rounded-lg border border-[#d9e4dc] overflow-hidden shadow-sm hover:shadow-md hover:border-[#a5c7b2] hover:-translate-y-1.5 transition-all duration-300">
-                  <div className="h-36 overflow-hidden">
-                    <img
+                  <div className="relative h-36 overflow-hidden">
+                    <Image
                       src="https://images.unsplash.com/photo-1588252303782-cb80119abd6d?auto=format&fit=crop&w=500&q=80"
                       alt="Red chilli"
-                      className="w-full h-full object-cover transition-transform duration-500 group-hover:scale-110"
+                      fill
+                      sizes="(max-width: 640px) 100vw, (max-width: 1024px) 50vw, 25vw"
+                      className="object-cover transition-transform duration-500 group-hover:scale-110"
                     />
                   </div>
                   <div className="p-3">
@@ -298,11 +303,13 @@ export default function HomeView() {
 
                 {/* Mango Pulp */}
                 <article className="group bg-white rounded-lg border border-[#d9e4dc] overflow-hidden shadow-sm hover:shadow-md hover:border-[#a5c7b2] hover:-translate-y-1.5 transition-all duration-300">
-                  <div className="h-36 overflow-hidden">
-                    <img
+                  <div className="relative h-36 overflow-hidden">
+                    <Image
                       src="https://images.unsplash.com/photo-1601493700631-2b16ec4b4716?auto=format&fit=crop&w=500&q=80"
                       alt="Mangoes & Pulp"
-                      className="w-full h-full object-cover transition-transform duration-500 group-hover:scale-110"
+                      fill
+                      sizes="(max-width: 640px) 100vw, (max-width: 1024px) 50vw, 25vw"
+                      className="object-cover transition-transform duration-500 group-hover:scale-110"
                     />
                   </div>
                   <div className="p-3">
@@ -315,11 +322,13 @@ export default function HomeView() {
 
                 {/* Sesame Seeds */}
                 <article className="group bg-white rounded-lg border border-[#d9e4dc] overflow-hidden shadow-sm hover:shadow-md hover:border-[#a5c7b2] hover:-translate-y-1.5 transition-all duration-300">
-                  <div className="h-36 overflow-hidden">
-                    <img
+                  <div className="relative h-36 overflow-hidden">
+                    <Image
                       src="https://images.unsplash.com/photo-1596040033229-a9821ebd058d?auto=format&fit=crop&w=500&q=80"
                       alt="Sesame seeds"
-                      className="w-full h-full object-cover transition-transform duration-500 group-hover:scale-110"
+                      fill
+                      sizes="(max-width: 640px) 100vw, (max-width: 1024px) 50vw, 25vw"
+                      className="object-cover transition-transform duration-500 group-hover:scale-110"
                     />
                   </div>
                   <div className="p-3">
@@ -332,11 +341,13 @@ export default function HomeView() {
 
                 {/* Spices & Agro Commodities */}
                 <article className="group bg-white rounded-lg border border-[#d9e4dc] overflow-hidden shadow-sm hover:shadow-md hover:border-[#a5c7b2] hover:-translate-y-1.5 transition-all duration-300">
-                  <div className="h-36 overflow-hidden">
-                    <img
+                  <div className="relative h-36 overflow-hidden">
+                    <Image
                       src="https://images.unsplash.com/photo-1596040033229-a9821ebd058d?auto=format&fit=crop&w=500&q=80"
                       alt="Spices and Agro"
-                      className="w-full h-full object-cover transition-transform duration-500 group-hover:scale-110"
+                      fill
+                      sizes="(max-width: 640px) 100vw, (max-width: 1024px) 50vw, 25vw"
+                      className="object-cover transition-transform duration-500 group-hover:scale-110"
                     />
                   </div>
                   <div className="p-3">
@@ -358,11 +369,13 @@ export default function HomeView() {
               <div className="grid grid-cols-1 sm:grid-cols-2 gap-4">
                 {/* Metal Scrap */}
                 <article className="group bg-white rounded-lg border border-[#d9e4dc] overflow-hidden shadow-sm hover:shadow-md hover:border-[#a5c7b2] hover:-translate-y-1.5 transition-all duration-300">
-                  <div className="h-36 overflow-hidden">
-                    <img
+                  <div className="relative h-36 overflow-hidden">
+                    <Image
                       src="https://images.unsplash.com/photo-1611288875785-24b9062e2bcb?auto=format&fit=crop&w=500&q=80"
                       alt="Metal scrap"
-                      className="w-full h-full object-cover transition-transform duration-500 group-hover:scale-110"
+                      fill
+                      sizes="(max-width: 640px) 100vw, (max-width: 1024px) 50vw, 25vw"
+                      className="object-cover transition-transform duration-500 group-hover:scale-110"
                     />
                   </div>
                   <div className="p-3">
@@ -375,11 +388,13 @@ export default function HomeView() {
 
                 {/* Acids */}
                 <article className="group bg-white rounded-lg border border-[#d9e4dc] overflow-hidden shadow-sm hover:shadow-md hover:border-[#a5c7b2] hover:-translate-y-1.5 transition-all duration-300">
-                  <div className="h-36 overflow-hidden">
-                    <img
+                  <div className="relative h-36 overflow-hidden">
+                    <Image
                       src="https://images.unsplash.com/photo-1532187863486-abf9dbad1b69?auto=format&fit=crop&w=500&q=80"
                       alt="Laboratory acids"
-                      className="w-full h-full object-cover transition-transform duration-500 group-hover:scale-110"
+                      fill
+                      sizes="(max-width: 640px) 100vw, (max-width: 1024px) 50vw, 25vw"
+                      className="object-cover transition-transform duration-500 group-hover:scale-110"
                     />
                   </div>
                   <div className="p-3">
@@ -392,11 +407,13 @@ export default function HomeView() {
 
                 {/* Cosmetic Chemical */}
                 <article className="group bg-white rounded-lg border border-[#d9e4dc] overflow-hidden shadow-sm hover:shadow-md hover:border-[#a5c7b2] hover:-translate-y-1.5 transition-all duration-300">
-                  <div className="h-36 overflow-hidden">
-                    <img
+                  <div className="relative h-36 overflow-hidden">
+                    <Image
                       src="https://images.unsplash.com/photo-1532187863486-abf9dbad1b69?auto=format&fit=crop&w=500&q=80"
                       alt="Cosmetic Chemical"
-                      className="w-full h-full object-cover transition-transform duration-500 group-hover:scale-110"
+                      fill
+                      sizes="(max-width: 640px) 100vw, (max-width: 1024px) 50vw, 25vw"
+                      className="object-cover transition-transform duration-500 group-hover:scale-110"
                     />
                   </div>
                   <div className="p-3">
@@ -409,11 +426,13 @@ export default function HomeView() {
 
                 {/* Plastic Chemical */}
                 <article className="group bg-white rounded-lg border border-[#d9e4dc] overflow-hidden shadow-sm hover:shadow-md hover:border-[#a5c7b2] hover:-translate-y-1.5 transition-all duration-300">
-                  <div className="h-36 overflow-hidden">
-                    <img
+                  <div className="relative h-36 overflow-hidden">
+                    <Image
                       src="https://images.unsplash.com/photo-1582408921715-18e7806365c1?auto=format&fit=crop&w=500&q=80"
                       alt="Plastic granules"
-                      className="w-full h-full object-cover transition-transform duration-500 group-hover:scale-110"
+                      fill
+                      sizes="(max-width: 640px) 100vw, (max-width: 1024px) 50vw, 25vw"
+                      className="object-cover transition-transform duration-500 group-hover:scale-110"
                     />
                   </div>
                   <div className="p-3">
@@ -550,11 +569,13 @@ export default function HomeView() {
           <div className="grid grid-cols-1 md:grid-cols-3 gap-6 sm:gap-8">
             {/* Card 1 */}
             <article className="group bg-white rounded-xl border border-[#d9e4dc] overflow-hidden shadow-sm hover:shadow-xl hover:border-[#a5c7b2] hover:-translate-y-2 transition-all duration-300">
-              <div className="h-48 overflow-hidden">
-                <img
+              <div className="relative h-48 overflow-hidden">
+                <Image
                   src="https://images.unsplash.com/photo-1504307651254-35680f356dfd?auto=format&fit=crop&w=700&q=80"
                   alt="Construction and coating"
-                  className="w-full h-full object-cover transition-transform duration-700 group-hover:scale-105"
+                  fill
+                  sizes="(max-width: 768px) 100vw, 33vw"
+                  className="object-cover transition-transform duration-700 group-hover:scale-105"
                 />
               </div>
               <div className="p-5">
@@ -569,11 +590,13 @@ export default function HomeView() {
 
             {/* Card 2 */}
             <article className="group bg-white rounded-xl border border-[#d9e4dc] overflow-hidden shadow-sm hover:shadow-xl hover:border-[#a5c7b2] hover:-translate-y-2 transition-all duration-300">
-              <div className="h-48 overflow-hidden">
-                <img
+              <div className="relative h-48 overflow-hidden">
+                <Image
                   src="https://images.unsplash.com/photo-1582408921715-18e7806365c1?auto=format&fit=crop&w=700&q=80"
                   alt="Plastic and rubber manufacturing"
-                  className="w-full h-full object-cover transition-transform duration-700 group-hover:scale-105"
+                  fill
+                  sizes="(max-width: 768px) 100vw, 33vw"
+                  className="object-cover transition-transform duration-700 group-hover:scale-105"
                 />
               </div>
               <div className="p-5">
@@ -588,11 +611,13 @@ export default function HomeView() {
 
             {/* Card 3 */}
             <article className="group bg-white rounded-xl border border-[#d9e4dc] overflow-hidden shadow-sm hover:shadow-xl hover:border-[#a5c7b2] hover:-translate-y-2 transition-all duration-300">
-              <div className="h-48 overflow-hidden">
-                <img
+              <div className="relative h-48 overflow-hidden">
+                <Image
                   src="https://images.unsplash.com/photo-1513828583688-c52646db42da?auto=format&fit=crop&w=700&q=80"
                   alt="Industrial plant facility"
-                  className="w-full h-full object-cover transition-transform duration-700 group-hover:scale-105"
+                  fill
+                  sizes="(max-width: 768px) 100vw, 33vw"
+                  className="object-cover transition-transform duration-700 group-hover:scale-105"
                 />
               </div>
               <div className="p-5">

@@ -2,6 +2,7 @@
 
 import React, { useState, useRef } from "react";
 import Link from "next/link";
+import Image from "next/image";
 import {
   Button,
   TextField,
@@ -287,13 +288,15 @@ export default function CosmeticChemicalView() {
                 key={card.title}
                 className="bg-white rounded-xl overflow-hidden border border-[#dce7df] shadow-sm hover:shadow-xl hover:-translate-y-1.5 transition-all duration-300 flex flex-col"
               >
-                <div className="h-44 overflow-hidden relative">
-                  <img
+                <div className="relative h-44 w-full overflow-hidden">
+                  <Image
                     src={card.image}
                     alt={card.title}
-                    className="w-full h-full object-cover transition-transform duration-700 hover:scale-105"
+                    fill
+                    sizes="(max-width: 640px) 100vw, (max-width: 1024px) 50vw, 25vw"
+                    className="object-cover transition-transform duration-700 hover:scale-105"
                   />
-                  <span className="absolute top-3 left-3 bg-[#004d2d] text-white text-[0.68rem] font-bold px-2.5 py-0.5 rounded-full shadow-sm">
+                  <span className="absolute top-3 left-3 bg-[#004d2d] text-white text-[0.68rem] font-bold px-2.5 py-0.5 rounded-full shadow-sm z-10">
                     {card.tag}
                   </span>
                 </div>

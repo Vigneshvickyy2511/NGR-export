@@ -1,6 +1,7 @@
 "use client";
 
 import React, { useState, useRef } from "react";
+import Image from "next/image";
 import { Button, Snackbar, Alert } from "@mui/material";
 
 export default function AboutView() {
@@ -136,19 +137,23 @@ export default function AboutView() {
 
               {/* Main warehouse logistics image */}
               <div className="relative z-10 w-[72%] h-[320px] sm:h-[380px] rounded-xl overflow-hidden shadow-[0_20px_50px_rgba(0,61,35,0.22)] border border-emerald-100">
-                <img
+                <Image
                   src="https://images.unsplash.com/photo-1586528116311-ad8dd3c8310d?auto=format&fit=crop&w=900&q=86"
                   alt="Warehouse Logistics Hub"
-                  className="w-full h-full object-cover hover:scale-105 transition-transform duration-700"
+                  fill
+                  sizes="(max-width: 1024px) 70vw, 35vw"
+                  className="object-cover hover:scale-105 transition-transform duration-700"
                 />
               </div>
 
               {/* Secondary overlapping shipping image */}
               <div className="absolute right-0 bottom-0 z-20 w-[48%] h-[200px] sm:h-[240px] rounded-xl overflow-hidden border-4 border-white shadow-[0_16px_36px_rgba(0,61,35,0.25)]">
-                <img
+                <Image
                   src="https://images.unsplash.com/photo-1494412519320-aa613dfb7738?auto=format&fit=crop&w=650&q=84"
                   alt="Global Freight Container Ship"
-                  className="w-full h-full object-cover hover:scale-105 transition-transform duration-700"
+                  fill
+                  sizes="(max-width: 1024px) 50vw, 25vw"
+                  className="object-cover hover:scale-105 transition-transform duration-700"
                 />
               </div>
             </div>
@@ -319,11 +324,13 @@ export default function AboutView() {
           <div className="grid grid-cols-1 md:grid-cols-3 gap-6 sm:gap-8">
             {/* Gallery Image 1: Spices */}
             <figure className="group relative rounded-xl overflow-hidden border border-[#d9e4dc] bg-white shadow-sm hover:shadow-xl transition-all duration-300 m-0">
-              <div className="h-60 sm:h-64 overflow-hidden">
-                <img
+              <div className="relative h-60 sm:h-64 overflow-hidden">
+                <Image
                   src="https://images.unsplash.com/photo-1596040033229-a9821ebd058d?auto=format&fit=crop&w=800&q=86"
                   alt="Premium Sesame Seeds and Spices"
-                  className="w-full h-full object-cover transition-transform duration-700 group-hover:scale-110 group-hover:saturate-115"
+                  fill
+                  sizes="(max-width: 768px) 100vw, 33vw"
+                  className="object-cover transition-transform duration-700 group-hover:scale-110 group-hover:saturate-115"
                 />
               </div>
               <figcaption className="p-4 bg-white border-t border-[#d9e4dc]">
@@ -334,11 +341,13 @@ export default function AboutView() {
 
             {/* Gallery Image 2: Industrial Chemicals */}
             <figure className="group relative rounded-xl overflow-hidden border border-[#d9e4dc] bg-white shadow-sm hover:shadow-xl transition-all duration-300 m-0">
-              <div className="h-60 sm:h-64 overflow-hidden">
-                <img
+              <div className="relative h-60 sm:h-64 overflow-hidden">
+                <Image
                   src="https://images.unsplash.com/photo-1532187863486-abf9dbad1b69?auto=format&fit=crop&w=800&q=86"
                   alt="Industrial Chemicals and Laboratory Acids"
-                  className="w-full h-full object-cover transition-transform duration-700 group-hover:scale-110 group-hover:saturate-115"
+                  fill
+                  sizes="(max-width: 768px) 100vw, 33vw"
+                  className="object-cover transition-transform duration-700 group-hover:scale-110 group-hover:saturate-115"
                 />
               </div>
               <figcaption className="p-4 bg-white border-t border-[#d9e4dc]">
@@ -349,11 +358,13 @@ export default function AboutView() {
 
             {/* Gallery Image 3: Cargo Logistics */}
             <figure className="group relative rounded-xl overflow-hidden border border-[#d9e4dc] bg-white shadow-sm hover:shadow-xl transition-all duration-300 m-0">
-              <div className="h-60 sm:h-64 overflow-hidden">
-                <img
+              <div className="relative h-60 sm:h-64 overflow-hidden">
+                <Image
                   src="https://images.unsplash.com/photo-1494412519320-aa613dfb7738?auto=format&fit=crop&w=800&q=86"
                   alt="Global Container Freight"
-                  className="w-full h-full object-cover transition-transform duration-700 group-hover:scale-110 group-hover:saturate-115"
+                  fill
+                  sizes="(max-width: 768px) 100vw, 33vw"
+                  className="object-cover transition-transform duration-700 group-hover:scale-110 group-hover:saturate-115"
                 />
               </div>
               <figcaption className="p-4 bg-white border-t border-[#d9e4dc]">

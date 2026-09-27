@@ -2,6 +2,7 @@
 
 import React, { useState, useRef } from "react";
 import Link from "next/link";
+import Image from "next/image";
 import {
   Button,
   TextField,
@@ -283,11 +284,13 @@ export default function MetalScrapView() {
 
             {/* Right Image */}
             <div className="lg:col-span-6">
-              <div className="rounded-xl overflow-hidden shadow-[0_18px_48px_rgba(0,60,35,0.18)] border border-[#d9e5dd] group">
-                <img
+              <div className="relative h-[340px] sm:h-[400px] rounded-xl overflow-hidden shadow-[0_18px_48px_rgba(0,60,35,0.18)] border border-[#d9e5dd] group">
+                <Image
                   src="https://images.unsplash.com/photo-1530587191325-3db32d826c18?auto=format&fit=crop&w=1100&q=88"
                   alt="Industrial metal recycling facility"
-                  className="w-full h-[340px] sm:h-[400px] object-cover transition-transform duration-700 group-hover:scale-105"
+                  fill
+                  sizes="(max-width: 1024px) 100vw, 50vw"
+                  className="object-cover transition-transform duration-700 group-hover:scale-105"
                 />
               </div>
             </div>
@@ -317,11 +320,13 @@ export default function MetalScrapView() {
                 key={p.title}
                 className="group relative bg-white rounded-xl overflow-hidden border border-[#d9e5dd] shadow-sm hover:shadow-xl hover:border-[#a5c7b2] hover:-translate-y-1.5 transition-all duration-300 grid grid-cols-1 sm:grid-cols-12"
               >
-                <div className="sm:col-span-5 h-44 sm:h-auto overflow-hidden">
-                  <img
+                <div className="relative sm:col-span-5 h-44 sm:h-auto sm:min-h-full overflow-hidden">
+                  <Image
                     src={p.image}
                     alt={p.title}
-                    className="w-full h-full object-cover transition-transform duration-700 group-hover:scale-110"
+                    fill
+                    sizes="(max-width: 640px) 100vw, 25vw"
+                    className="object-cover transition-transform duration-700 group-hover:scale-110"
                   />
                 </div>
                 <div className="sm:col-span-7 p-5 flex flex-col justify-center">
@@ -344,11 +349,13 @@ export default function MetalScrapView() {
           <div className="grid grid-cols-1 lg:grid-cols-12 gap-12 lg:gap-16 items-center">
             {/* Left Photo */}
             <div className="lg:col-span-5">
-              <div className="rounded-xl overflow-hidden shadow-[0_16px_40px_rgba(0,60,35,0.16)] border border-[#d9e5dd] group">
-                <img
+              <div className="relative h-[380px] sm:h-[450px] rounded-xl overflow-hidden shadow-[0_16px_40px_rgba(0,60,35,0.16)] border border-[#d9e5dd] group">
+                <Image
                   src="https://images.unsplash.com/photo-1530587191325-3db32d826c18?auto=format&fit=crop&w=900&q=86"
                   alt="Recycled metal bales"
-                  className="w-full h-[380px] sm:h-[450px] object-cover transition-transform duration-700 group-hover:scale-105"
+                  fill
+                  sizes="(max-width: 1024px) 100vw, 42vw"
+                  className="object-cover transition-transform duration-700 group-hover:scale-105"
                 />
               </div>
             </div>
@@ -406,11 +413,13 @@ export default function MetalScrapView() {
                 key={ind.name}
                 className="group bg-[#f3f7f4] rounded-xl overflow-hidden border border-[#d9e5dd] shadow-sm hover:shadow-xl hover:-translate-y-2 transition-all duration-300 text-center"
               >
-                <div className="h-40 overflow-hidden">
-                  <img
+                <div className="relative h-40 overflow-hidden">
+                  <Image
                     src={ind.image}
                     alt={ind.name}
-                    className="w-full h-full object-cover transition-transform duration-700 group-hover:scale-110"
+                    fill
+                    sizes="(max-width: 640px) 100vw, (max-width: 768px) 50vw, 33vw"
+                    className="object-cover transition-transform duration-700 group-hover:scale-110"
                   />
                 </div>
                 <div className="p-5">
@@ -454,11 +463,15 @@ export default function MetalScrapView() {
             </div>
 
             <div className="md:col-span-8 flex flex-col sm:flex-row items-center gap-6">
-              <img
-                src="https://images.unsplash.com/photo-1596040033229-a9821ebd058d?auto=format&fit=crop&w=700&q=80"
-                alt="Industry news"
-                className="w-full sm:w-44 h-32 object-cover rounded-xl shadow-sm"
-              />
+              <div className="relative w-full sm:w-44 h-32 shrink-0 rounded-xl overflow-hidden shadow-sm">
+                <Image
+                  src="https://images.unsplash.com/photo-1596040033229-a9821ebd058d?auto=format&fit=crop&w=700&q=80"
+                  alt="Industry news"
+                  fill
+                  sizes="(max-width: 640px) 100vw, 176px"
+                  className="object-cover"
+                />
+              </div>
               <div>
                 <h3 className="text-base sm:text-lg font-bold text-[#153526] hover:text-[#00572f] transition-colors cursor-pointer">
                   Why NGR Impex is Your Trusted Partner for High-Quality Products
@@ -512,151 +525,6 @@ export default function MetalScrapView() {
           </Button>
         </div>
       </section>
-
-      {/* 9. CONTACT SECTION */}
-      {/* <section id="contact" className="py-16 sm:py-24 bg-[#fbfcfb]">
-        <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
-          <div className="grid grid-cols-1 lg:grid-cols-12 gap-12 lg:gap-16">
-            <div className="lg:col-span-5 space-y-5">
-              <div>
-                <p className="text-xs font-black uppercase tracking-[0.15em] text-[#00572f] mb-1">
-                  Get in Touch
-                </p>
-                <h2 className="text-2xl sm:text-4xl font-extrabold text-[#153526]">
-                  Get In Touch
-                </h2>
-                <div className="w-12 h-1 bg-[#ffc600] rounded-full mt-3" />
-              </div>
-
-              <blockquote className="p-5 rounded-xl bg-white border-l-4 border-[#00572f] shadow-sm text-sm text-[#59675f] italic leading-relaxed">
-                “We look forward to building a long-term and mutually beneficial relationship with your esteemed organization.”
-              </blockquote>
-
-              <div className="space-y-3 pt-2 text-xs text-[#59675f]">
-                <p className="flex items-center gap-2">
-                  <span className="text-base text-[#00572f]">📍</span>
-                  <span>7/66 Krishnagiri Main Road, Kandili, Tirupathur, Tamil Nadu, India</span>
-                </p>
-                <p className="flex items-center gap-2">
-                  <span className="text-base text-[#00572f]">☎</span>
-                  <a href="tel:+916382584350" className="hover:text-[#00572f] font-semibold">
-                    +91 63825 84350
-                  </a>
-                </p>
-                <p className="flex items-center gap-2">
-                  <span className="text-base text-[#00572f]">✉</span>
-                  <a href="mailto:exim@ngrimpex.in" className="hover:text-[#00572f] font-semibold">
-                    exim@ngrimpex.in
-                  </a>
-                </p>
-              </div>
-            </div>
-
-            <div className="lg:col-span-7">
-              <form
-                onSubmit={handleSubmit}
-                className="bg-white p-6 sm:p-8 rounded-xl border border-[#d9e5dd] shadow-[0_7px_25px_rgba(0,58,33,0.08)] space-y-4"
-              >
-                <div className="grid grid-cols-1 sm:grid-cols-2 gap-4">
-                  <TextField
-                    fullWidth
-                    label="Full Name *"
-                    variant="outlined"
-                    size="small"
-                    value={formData.fullName}
-                    onChange={(e) => handleFormChange("fullName", e.target.value)}
-                    required
-                  />
-
-                  <TextField
-                    fullWidth
-                    label="Company Name"
-                    variant="outlined"
-                    size="small"
-                    value={formData.companyName}
-                    onChange={(e) => handleFormChange("companyName", e.target.value)}
-                  />
-
-                  <TextField
-                    fullWidth
-                    label="Email Address *"
-                    type="email"
-                    variant="outlined"
-                    size="small"
-                    value={formData.email}
-                    onChange={(e) => handleFormChange("email", e.target.value)}
-                    required
-                  />
-
-                  <TextField
-                    fullWidth
-                    label="Telephone"
-                    type="tel"
-                    variant="outlined"
-                    size="small"
-                    value={formData.telephone}
-                    onChange={(e) => handleFormChange("telephone", e.target.value)}
-                  />
-
-                  <TextField
-                    fullWidth
-                    label="Subject"
-                    variant="outlined"
-                    size="small"
-                    value={formData.subject}
-                    onChange={(e) => handleFormChange("subject", e.target.value)}
-                  />
-
-                  <TextField
-                    fullWidth
-                    label="Enter Captcha (e.g. 7 + 3 = 10)"
-                    variant="outlined"
-                    size="small"
-                    value={formData.captcha}
-                    onChange={(e) => handleFormChange("captcha", e.target.value)}
-                  />
-                </div>
-
-                <TextField
-                  fullWidth
-                  label="Comments / Questions"
-                  multiline
-                  rows={4}
-                  variant="outlined"
-                  value={formData.comments}
-                  onChange={(e) => handleFormChange("comments", e.target.value)}
-                  placeholder="Specify material grades, quantity requirement in MT, destination port..."
-                />
-
-                <Button
-                  type="submit"
-                  fullWidth
-                  variant="contained"
-                  sx={{
-                    bgcolor: "#ffc600",
-                    color: "#163821",
-                    fontWeight: 900,
-                    fontSize: "0.85rem",
-                    py: 1.4,
-                    borderRadius: "6px",
-                    textTransform: "uppercase",
-                    letterSpacing: "0.05em",
-                    boxShadow: "0 4px 14px rgba(255, 198, 0, 0.4)",
-                    "&:hover": {
-                      bgcolor: "#e6b000",
-                      transform: "translateY(-1px)",
-                      boxShadow: "0 8px 20px rgba(0, 59, 35, 0.2)",
-                    },
-                    transition: "all 0.2s",
-                  }}
-                >
-                  Submit →
-                </Button>
-              </form>
-            </div>
-          </div>
-        </div>
-      </section> */}
 
       {/* Snackbar feedback */}
       <Snackbar

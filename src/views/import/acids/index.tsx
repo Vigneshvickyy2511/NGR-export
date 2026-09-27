@@ -2,6 +2,7 @@
 
 import React, { useState, useRef } from "react";
 import Link from "next/link";
+import Image from "next/image";
 import {
   Button,
   TextField,
@@ -298,11 +299,13 @@ export default function AcidsView() {
 
             {/* Right Image */}
             <div className="lg:col-span-6">
-              <div className="rounded-xl overflow-hidden shadow-[0_18px_45px_rgba(0,59,34,0.18)] border border-[#dae6de] group">
-                <img
+              <div className="relative h-[350px] sm:h-[420px] rounded-xl overflow-hidden shadow-[0_18px_45px_rgba(0,59,34,0.18)] border border-[#dae6de] group">
+                <Image
                   src="https://images.unsplash.com/photo-1581092918056-0c4c3acd3789?auto=format&fit=crop&w=1100&q=88"
                   alt="Industrial chemical storage containers"
-                  className="w-full h-[350px] sm:h-[420px] object-cover transition-transform duration-700 group-hover:scale-105"
+                  fill
+                  sizes="(max-width: 1024px) 100vw, 50vw"
+                  className="object-cover transition-transform duration-700 group-hover:scale-105"
                 />
               </div>
             </div>
@@ -382,11 +385,13 @@ export default function AcidsView() {
                 </div>
 
                 {/* Right/Bottom Image */}
-                <div className="sm:col-span-5 h-52 sm:h-auto overflow-hidden relative">
-                  <img
+                <div className="relative sm:col-span-5 h-52 sm:h-auto sm:min-h-full overflow-hidden">
+                  <Image
                     src={acid.image}
                     alt={acid.title}
-                    className="w-full h-full object-cover transition-transform duration-700 group-hover:scale-110"
+                    fill
+                    sizes="(max-width: 640px) 100vw, 25vw"
+                    className="object-cover transition-transform duration-700 group-hover:scale-110"
                   />
                   <div className="absolute inset-0 bg-gradient-to-t from-black/25 via-transparent to-transparent pointer-events-none" />
                 </div>
