@@ -1,7 +1,6 @@
 "use client";
 
 import React, { useState, useRef } from "react";
-import Link from "next/link";
 import Image from "next/image";
 import {
   Button,
@@ -13,6 +12,21 @@ import {
   DialogActions,
   IconButton,
 } from "@mui/material";
+import {
+  Sparkles,
+  FlaskConical,
+  Droplets,
+  Layers,
+  Leaf,
+  Sun,
+  ShieldCheck,
+  Globe2,
+  Boxes,
+  TestTube,
+  Download,
+  ArrowRight,
+  X,
+} from "lucide-react";
 
 interface CosmeticProduct {
   id: string;
@@ -50,6 +64,15 @@ export default function CosmeticChemicalView() {
     setToastOpen(true);
   };
 
+  const getProductIcon = (category: string) => {
+    if (category.includes("Humectant") || category.includes("Moisturizer")) return Droplets;
+    if (category.includes("Polymer")) return Boxes;
+    if (category.includes("Thickener") || category.includes("Emulsifier")) return Layers;
+    if (category.includes("Vitamin") || category.includes("Active")) return Sparkles;
+    if (category.includes("Solvent")) return TestTube;
+    return FlaskConical;
+  };
+
   const productsList = [
     { num: "01", name: "Glycerin Liquid", category: "Humectant & Emollient", grade: "USP / EP Grade 99.7%", purity: "99.7% min", desc: "Pure vegetable glycerin acting as a deeply hydrating humectant, moisture retainer, and carrier for premium creams and lotions.", apps: ["Skincare moisturizing creams", "Hair conditioners & serums", "Oral care pastes", "Body washes & soaps"] },
     { num: "02", name: "PVC Polyvinyle Chloride", category: "Polymer Base", grade: "Cosmetic Packaging Grade", purity: "Strict compliance", desc: "Specialty resin tailored for high-barrier cosmetic bottles, tubes, and sterile cosmetic packaging.", apps: ["Cosmetic tube containers", "High-clarity bottles", "Dispenser caps & pumps", "Protective seals"] },
@@ -70,6 +93,7 @@ export default function CosmeticChemicalView() {
     {
       title: "Glycerin Liquid (USP 99.7%)",
       tag: "Deep Humectant",
+      icon: Droplets,
       desc: "Vegetable-derived solvent & humectant locking deep dermal moisture in skincare creams, serums, and body washes.",
       image: "https://images.unsplash.com/photo-1608571423902-eed4a5ad8108?auto=format&fit=crop&w=600&q=85",
       product: productsList[0],
@@ -77,6 +101,7 @@ export default function CosmeticChemicalView() {
     {
       title: "Stearic Acid (Triple Pressed)",
       tag: "Emulsifier & Texture",
+      icon: Layers,
       desc: "Plant-derived structural builder providing velvety body, creamy lather, and long-lasting stability in lotions and soaps.",
       image: "https://images.unsplash.com/photo-1556228720-195a672e8a03?auto=format&fit=crop&w=600&q=85",
       product: productsList[5],
@@ -84,6 +109,7 @@ export default function CosmeticChemicalView() {
     {
       title: "Guar Gum (High Viscosity)",
       tag: "Natural Rheology",
+      icon: Leaf,
       desc: "Cold-soluble botanical polymer providing silky slip, conditioning lather, and suspension stability for haircare.",
       image: "https://images.unsplash.com/photo-1581092918056-0c4c3acd3789?auto=format&fit=crop&w=600&q=85",
       product: productsList[7],
@@ -91,6 +117,7 @@ export default function CosmeticChemicalView() {
     {
       title: "Ascorbic Acid (Pure Vitamin C)",
       tag: "Bioactive Antioxidant",
+      icon: Sun,
       desc: "Pharmaceutical-grade L-Ascorbic Acid for high-efficacy brightening serums, collagen boosters, and anti-aging treatments.",
       image: "https://images.unsplash.com/photo-1532187863486-abf9dbad1b69?auto=format&fit=crop&w=600&q=85",
       product: productsList[12],
@@ -124,6 +151,10 @@ export default function CosmeticChemicalView() {
 
         {/* Hero Content */}
         <div className="relative z-10 max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 w-full py-20 animate-hero-enter">
+          <div className="inline-flex items-center gap-2 px-3 py-1 mb-3 rounded-full bg-white/10 backdrop-blur-md border border-white/20 text-xs font-bold text-[#f8c400] tracking-widest uppercase">
+            <Sparkles className="w-3.5 h-3.5 text-[#f8c400]" />
+            USP / EP Certified Cosmetic &amp; Personal Care Ingredients
+          </div>
           <div className="w-16 h-1 bg-[#f8c400] rounded-full mb-3" />
           <h1
             className="text-4xl sm:text-6xl lg:text-7xl font-bold tracking-tight text-white mb-4 leading-[0.95] drop-shadow-md"
@@ -156,6 +187,39 @@ export default function CosmeticChemicalView() {
           <p className="text-sm sm:text-base text-[#5d6661] mt-5 leading-relaxed">
             Empower your formulations with our world-class range of cosmetic chemicals, meticulously sourced from leading global manufacturers. From high-performance surfactants and specialty emulsifiers to potent active ingredients, we provide the essential building blocks for innovative skincare, haircare, and personal care products. We prioritize rigorous quality control, full regulatory compliance, and consistent supply chains to help your brand achieve excellence.
           </p>
+
+          {/* Quality & Assurance Badges */}
+          <div className="pt-6 grid grid-cols-1 sm:grid-cols-3 gap-3 text-left">
+            <div className="flex items-center gap-3 p-3.5 rounded-xl bg-[#f5faf6] border border-[#dce8df]">
+              <div className="w-10 h-10 rounded-lg bg-[#004d2d]/10 text-[#004d2d] flex items-center justify-center shrink-0">
+                <FlaskConical className="w-5 h-5 text-[#004d2d]" />
+              </div>
+              <div>
+                <span className="block text-xs font-bold text-[#102b1e]">USP / EP Grades</span>
+                <span className="block text-[11px] text-[#5d6661]">High-Assay Purity</span>
+              </div>
+            </div>
+
+            <div className="flex items-center gap-3 p-3.5 rounded-xl bg-[#f5faf6] border border-[#dce8df]">
+              <div className="w-10 h-10 rounded-lg bg-[#004d2d]/10 text-[#004d2d] flex items-center justify-center shrink-0">
+                <ShieldCheck className="w-5 h-5 text-[#004d2d]" />
+              </div>
+              <div>
+                <span className="block text-xs font-bold text-[#102b1e]">Regulatory Dossier</span>
+                <span className="block text-[11px] text-[#5d6661]">COA &amp; SDS Compliant</span>
+              </div>
+            </div>
+
+            <div className="flex items-center gap-3 p-3.5 rounded-xl bg-[#f5faf6] border border-[#dce8df]">
+              <div className="w-10 h-10 rounded-lg bg-[#004d2d]/10 text-[#004d2d] flex items-center justify-center shrink-0">
+                <Globe2 className="w-5 h-5 text-[#004d2d]" />
+              </div>
+              <div>
+                <span className="block text-xs font-bold text-[#102b1e]">Global Sourcing</span>
+                <span className="block text-[11px] text-[#5d6661]">Direct Port Logistics</span>
+              </div>
+            </div>
+          </div>
         </div>
       </section>
 
@@ -171,7 +235,8 @@ export default function CosmeticChemicalView() {
         <div className="absolute inset-0 bg-gradient-to-b from-white via-transparent to-white" />
         <div className="absolute inset-0 bg-[#004d2d]/25" />
         <div className="relative z-10 max-w-7xl mx-auto h-full flex flex-col justify-center items-center text-center px-4">
-          <span className="px-4 py-1.5 rounded-full bg-white/90 backdrop-blur-sm text-xs font-black uppercase tracking-widest text-[#004d2d] shadow-sm mb-2 border border-[#dce7df]">
+          <span className="px-4 py-1.5 rounded-full bg-white/90 backdrop-blur-sm text-xs font-black uppercase tracking-widest text-[#004d2d] shadow-sm mb-2 border border-[#dce7df] inline-flex items-center gap-2">
+            <FlaskConical className="w-3.5 h-3.5 text-[#004d2d]" />
             Laboratory Certified Purity
           </span>
           <h3
@@ -203,58 +268,62 @@ export default function CosmeticChemicalView() {
           </div>
 
           <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-6">
-            {featuredCards.map((card) => (
-              <article
-                key={card.title}
-                className="bg-white rounded-xl overflow-hidden border border-[#dce7df] shadow-sm hover:shadow-xl hover:-translate-y-1.5 transition-all duration-300 flex flex-col"
-              >
-                <div className="relative h-44 w-full overflow-hidden">
-                  <Image
-                    src={card.image}
-                    alt={card.title}
-                    fill
-                    sizes="(max-width: 640px) 100vw, (max-width: 1024px) 50vw, 25vw"
-                    className="object-cover transition-transform duration-700 hover:scale-105"
-                  />
-                  <span className="absolute top-3 left-3 bg-[#004d2d] text-white text-[0.68rem] font-bold px-2.5 py-0.5 rounded-full shadow-sm z-10">
-                    {card.tag}
-                  </span>
-                </div>
-                <div className="p-5 flex-1 flex flex-col justify-between">
-                  <div>
-                    <h3 className="text-base font-extrabold text-[#102b1e] mb-1.5">
-                      {card.title}
-                    </h3>
-                    <p className="text-xs text-[#5d6661] leading-relaxed">
-                      {card.desc}
-                    </p>
-                  </div>
-                  <div className="pt-4 border-t border-[#f0f4f1] mt-4 flex items-center justify-between">
-                    <button
-                      type="button"
-                      onClick={() =>
-                        setSelectedProduct({
-                          id: card.product.num,
-                          name: card.product.name,
-                          category: card.product.category,
-                          purity: card.product.purity,
-                          grade: card.product.grade,
-                          description: card.product.desc,
-                          applications: card.product.apps,
-                        })
-                      }
-                      className="text-xs font-bold text-[#004d2d] hover:text-[#00351f] flex items-center gap-1 cursor-pointer"
-                    >
-                      <span>Specifications</span>
-                      <span>→</span>
-                    </button>
-                    <span className="text-[0.7rem] font-mono font-bold text-[#f8c400] bg-[#f8c400]/15 px-2 py-0.5 rounded">
-                      {card.product.num}
+            {featuredCards.map((card) => {
+              const CardIcon = card.icon;
+              return (
+                <article
+                  key={card.title}
+                  className="group bg-white rounded-xl overflow-hidden border border-[#dce7df] shadow-sm hover:shadow-xl hover:-translate-y-1.5 transition-all duration-300 flex flex-col"
+                >
+                  <div className="relative h-44 w-full overflow-hidden">
+                    <Image
+                      src={card.image}
+                      alt={card.title}
+                      fill
+                      sizes="(max-width: 640px) 100vw, (max-width: 1024px) 50vw, 25vw"
+                      className="object-cover transition-transform duration-700 hover:scale-105"
+                    />
+                    <span className="absolute top-3 left-3 bg-[#004d2d] text-white text-[0.68rem] font-bold px-2.5 py-0.5 rounded-full shadow-sm z-10 flex items-center gap-1.5">
+                      <CardIcon className="w-3 h-3 text-[#f8c400]" />
+                      {card.tag}
                     </span>
                   </div>
-                </div>
-              </article>
-            ))}
+                  <div className="p-5 flex-1 flex flex-col justify-between">
+                    <div>
+                      <h3 className="text-base font-extrabold text-[#102b1e] mb-1.5 group-hover:text-[#004d2d] transition-colors">
+                        {card.title}
+                      </h3>
+                      <p className="text-xs text-[#5d6661] leading-relaxed">
+                        {card.desc}
+                      </p>
+                    </div>
+                    <div className="pt-4 border-t border-[#f0f4f1] mt-4 flex items-center justify-between">
+                      <button
+                        type="button"
+                        onClick={() =>
+                          setSelectedProduct({
+                            id: card.product.num,
+                            name: card.product.name,
+                            category: card.product.category,
+                            purity: card.product.purity,
+                            grade: card.product.grade,
+                            description: card.product.desc,
+                            applications: card.product.apps,
+                          })
+                        }
+                        className="text-xs font-bold text-[#004d2d] hover:text-[#00351f] flex items-center gap-1.5 cursor-pointer group/btn"
+                      >
+                        <span>Specifications</span>
+                        <ArrowRight className="w-3.5 h-3.5 group-hover/btn:translate-x-1 transition-transform" />
+                      </button>
+                      <span className="text-[0.7rem] font-mono font-bold text-[#f8c400] bg-[#f8c400]/15 px-2 py-0.5 rounded">
+                        {card.product.num}
+                      </span>
+                    </div>
+                  </div>
+                </article>
+              );
+            })}
           </div>
         </div>
       </section>
@@ -279,37 +348,44 @@ export default function CosmeticChemicalView() {
               </p>
             </div>
 
-            {/* 3-Column List with 01, 02 Numbers and Hover States */}
+            {/* 3-Column List with Category Icons and Hover States */}
             <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-y-2 gap-x-10">
-              {productsList.map((item) => (
-                <div
-                  key={item.num}
-                  onClick={() =>
-                    setSelectedProduct({
-                      id: item.num,
-                      name: item.name,
-                      category: item.category,
-                      purity: item.purity,
-                      grade: item.grade,
-                      description: item.desc,
-                      applications: item.apps,
-                    })
-                  }
-                  className="group flex items-center justify-between py-3.5 px-3 border-b border-[#dce7df] hover:border-[#f8c400] hover:bg-[#f4f8f2] hover:pl-5 rounded transition-all duration-200 cursor-pointer"
-                >
-                  <div className="flex items-center gap-4">
-                    <span className="text-sm font-black font-mono text-[#f8c400] group-hover:text-[#004d2d] transition-colors">
-                      {item.num}
-                    </span>
-                    <span className="text-sm sm:text-base font-bold text-[#102b1e] group-hover:text-[#004d2d] transition-colors">
-                      {item.name}
+              {productsList.map((item) => {
+                const ItemIcon = getProductIcon(item.category);
+                return (
+                  <div
+                    key={item.num}
+                    onClick={() =>
+                      setSelectedProduct({
+                        id: item.num,
+                        name: item.name,
+                        category: item.category,
+                        purity: item.purity,
+                        grade: item.grade,
+                        description: item.desc,
+                        applications: item.apps,
+                      })
+                    }
+                    className="group flex items-center justify-between py-3 px-3 border-b border-[#dce7df] hover:border-[#f8c400] hover:bg-[#f4f8f2] hover:pl-4 rounded-lg transition-all duration-200 cursor-pointer"
+                  >
+                    <div className="flex items-center gap-3">
+                      <span className="text-xs font-black font-mono text-[#f8c400] group-hover:text-[#004d2d] transition-colors w-5">
+                        {item.num}
+                      </span>
+                      <div className="w-7 h-7 rounded-md bg-[#004d2d]/10 text-[#004d2d] flex items-center justify-center shrink-0 group-hover:bg-[#004d2d] group-hover:text-[#f8c400] transition-colors">
+                        <ItemIcon className="w-3.5 h-3.5" />
+                      </div>
+                      <span className="text-sm font-bold text-[#102b1e] group-hover:text-[#004d2d] transition-colors">
+                        {item.name}
+                      </span>
+                    </div>
+                    <span className="inline-flex items-center gap-1 text-xs font-bold text-[#004d2d] opacity-0 group-hover:opacity-100 transition-all duration-200">
+                      <span>Specs</span>
+                      <ArrowRight className="w-3 h-3 group-hover:translate-x-0.5 transition-transform" />
                     </span>
                   </div>
-                  <span className="text-xs font-bold text-[#004d2d] opacity-0 group-hover:opacity-100 transition-opacity">
-                    Specs →
-                  </span>
-                </div>
-              ))}
+                );
+              })}
             </div>
           </div>
         </div>
@@ -320,9 +396,9 @@ export default function CosmeticChemicalView() {
         <button
           type="button"
           onClick={handleDownloadSpecs}
-          className="inline-flex items-center gap-2 text-xs sm:text-sm font-black uppercase tracking-wider text-[#004d2d] hover:text-[#f8c400] transition-colors cursor-pointer"
+          className="group inline-flex items-center gap-2 text-xs sm:text-sm font-black uppercase tracking-wider text-[#004d2d] hover:text-[#f8c400] transition-colors cursor-pointer"
         >
-          <span className="text-base text-[#f8c400]">▣</span>
+          <Download className="w-4.5 h-4.5 text-[#f8c400] group-hover:translate-y-0.5 transition-transform" />
           <span>Download Cosmetic Chemicals Full Technical Dossier &amp; COA</span>
         </button>
       </div>
@@ -353,8 +429,8 @@ export default function CosmeticChemicalView() {
                   {selectedProduct.name}
                 </span>
               </div>
-              <IconButton onClick={() => setSelectedProduct(null)} size="small">
-                ✕
+              <IconButton onClick={() => setSelectedProduct(null)} size="small" aria-label="Close dialog">
+                <X className="w-5 h-5 text-[#102b1e]" />
               </IconButton>
             </DialogTitle>
             <DialogContent dividers sx={{ py: 2 }}>
@@ -391,9 +467,28 @@ export default function CosmeticChemicalView() {
                   setSelectedProduct(null);
                   handleDownloadSpecs();
                 }}
+                startIcon={<Download className="w-4 h-4" />}
                 sx={{ color: "#004d2d", fontWeight: 700, fontSize: "0.75rem" }}
               >
                 Download COA
+              </Button>
+              <Button
+                variant="contained"
+                onClick={() => {
+                  setSelectedProduct(null);
+                  const el = document.getElementById("contact");
+                  if (el) el.scrollIntoView({ behavior: "smooth" });
+                }}
+                endIcon={<ArrowRight className="w-4 h-4" />}
+                sx={{
+                  bgcolor: "#f8c400",
+                  color: "#102b1e",
+                  fontWeight: 800,
+                  fontSize: "0.75rem",
+                  "&:hover": { bgcolor: "#e0b000" },
+                }}
+              >
+                Inquire For This Product
               </Button>
             </DialogActions>
           </>

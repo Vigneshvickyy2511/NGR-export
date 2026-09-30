@@ -2,6 +2,18 @@
 
 import React, { useState } from "react";
 import { Snackbar, Alert } from "@mui/material";
+import {
+  MapPin,
+  Phone,
+  Mail,
+  Clock,
+  Zap,
+  ShieldCheck,
+  Ship,
+  ArrowRight,
+  ExternalLink,
+  Lock,
+} from "lucide-react";
 
 export default function Contact() {
   // Form state
@@ -100,10 +112,7 @@ export default function Contact() {
                 {/* 1. Head Office */}
                 <div className="group p-5 rounded-2xl bg-white border border-[#d9e4dc] hover:border-[#005b32]/40 transition-all duration-300 shadow-[0_4px_16px_rgba(0,58,33,0.04)] hover:shadow-[0_8px_24px_rgba(0,58,33,0.08)] flex items-start gap-4">
                   <div className="w-11 h-11 rounded-xl bg-[#005b32]/10 text-[#005b32] flex items-center justify-center shrink-0 border border-[#005b32]/15 shadow-xs group-hover:bg-[#005b32] group-hover:text-white transition-colors">
-                    <svg className="w-5 h-5" fill="none" viewBox="0 0 24 24" stroke="currentColor">
-                      <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M17.657 16.657L13.414 20.9a1.998 1.998 0 01-2.827 0l-4.244-4.243a8 8 0 1111.314 0z" />
-                      <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M15 11a3 3 0 11-6 0 3 3 0 016 0z" />
-                    </svg>
+                    <MapPin className="w-5 h-5 stroke-[2]" />
                   </div>
                   <div className="flex-1">
                     <b className="block text-xs font-bold text-[#173e2a] uppercase tracking-wider mb-1">
@@ -116,10 +125,10 @@ export default function Contact() {
                       href="https://maps.google.com/?q=Kandili,Tirupathur,Tamil+Nadu,India"
                       target="_blank"
                       rel="noopener noreferrer"
-                      className="inline-flex items-center gap-1 text-[11px] font-bold text-[#005b32] hover:text-[#004727] group-hover:underline"
+                      className="inline-flex items-center gap-1.5 text-[11px] font-bold text-[#005b32] hover:text-[#004727] group-hover:underline"
                     >
                       <span>View on Google Maps</span>
-                      <span>↗</span>
+                      <ExternalLink className="w-3 h-3" />
                     </a>
                   </div>
                 </div>
@@ -127,9 +136,7 @@ export default function Contact() {
                 {/* 2. Direct Phone & WhatsApp */}
                 <div className="group p-5 rounded-2xl bg-white border border-[#d9e4dc] hover:border-[#005b32]/40 transition-all duration-300 shadow-[0_4px_16px_rgba(0,58,33,0.04)] hover:shadow-[0_8px_24px_rgba(0,58,33,0.08)] flex items-start gap-4">
                   <div className="w-11 h-11 rounded-xl bg-[#005b32]/10 text-[#005b32] flex items-center justify-center shrink-0 border border-[#005b32]/15 shadow-xs group-hover:bg-[#005b32] group-hover:text-white transition-colors">
-                    <svg className="w-5 h-5" fill="none" viewBox="0 0 24 24" stroke="currentColor">
-                      <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M3 5a2 2 0 012-2h3.28a1 1 0 01.948.684l1.498 4.493a1 1 0 01-.502 1.21l-2.257 1.13a11.042 11.042 0 005.516 5.516l1.13-2.257a1 1 0 011.21-.502l4.493 1.498a1 1 0 01.684.949V19a2 2 0 01-2 2h-1C9.716 21 3 14.284 3 6V5z" />
-                    </svg>
+                    <Phone className="w-5 h-5 stroke-[2]" />
                   </div>
                   <div className="flex-1">
                     <b className="block text-xs font-bold text-[#173e2a] uppercase tracking-wider mb-1">
@@ -146,6 +153,7 @@ export default function Contact() {
                         href="tel:+916382584350"
                         className="inline-flex items-center gap-1.5 px-3 py-1 rounded-lg bg-[#f0f6f2] hover:bg-[#005b32] text-[#005b32] hover:text-white text-[11px] font-bold transition-colors"
                       >
+                        <Phone className="w-3 h-3" />
                         <span>Call Direct</span>
                       </a>
                       <a
@@ -166,9 +174,7 @@ export default function Contact() {
                 {/* 3. Official Email */}
                 <div className="group p-5 rounded-2xl bg-white border border-[#d9e4dc] hover:border-[#005b32]/40 transition-all duration-300 shadow-[0_4px_16px_rgba(0,58,33,0.04)] hover:shadow-[0_8px_24px_rgba(0,58,33,0.08)] flex items-start gap-4">
                   <div className="w-11 h-11 rounded-xl bg-[#005b32]/10 text-[#005b32] flex items-center justify-center shrink-0 border border-[#005b32]/15 shadow-xs group-hover:bg-[#005b32] group-hover:text-white transition-colors">
-                    <svg className="w-5 h-5" fill="none" viewBox="0 0 24 24" stroke="currentColor">
-                      <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M3 8l7.89 5.26a2 2 0 002.22 0L21 8M5 19h14a2 2 0 002-2V7a2 2 0 00-2-2H5a2 2 0 00-2 2v10a2 2 0 002 2z" />
-                    </svg>
+                    <Mail className="w-5 h-5 stroke-[2]" />
                   </div>
                   <div className="flex-1">
                     <b className="block text-xs font-bold text-[#173e2a] uppercase tracking-wider mb-1">
@@ -189,9 +195,7 @@ export default function Contact() {
                 {/* 4. Business Hours */}
                 <div className="group p-5 rounded-2xl bg-white border border-[#d9e4dc] hover:border-[#005b32]/40 transition-all duration-300 shadow-[0_4px_16px_rgba(0,58,33,0.04)] hover:shadow-[0_8px_24px_rgba(0,58,33,0.08)] flex items-start gap-4">
                   <div className="w-11 h-11 rounded-xl bg-[#005b32]/10 text-[#005b32] flex items-center justify-center shrink-0 border border-[#005b32]/15 shadow-xs group-hover:bg-[#005b32] group-hover:text-white transition-colors">
-                    <svg className="w-5 h-5" fill="none" viewBox="0 0 24 24" stroke="currentColor">
-                      <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M12 8v4l3 3m6-3a9 9 0 11-18 0 9 9 0 0118 0z" />
-                    </svg>
+                    <Clock className="w-5 h-5 stroke-[2]" />
                   </div>
                   <div className="flex-1">
                     <b className="block text-xs font-bold text-[#173e2a] uppercase tracking-wider mb-1">
@@ -209,18 +213,24 @@ export default function Contact() {
 
               {/* Trust Pillars */}
               <div className="pt-2 grid grid-cols-3 gap-2.5 text-center">
-                <div className="p-3 rounded-xl bg-white/80 border border-[#d9e4dc]">
-                  <span className="text-base block mb-0.5">⚡</span>
+                <div className="p-3 rounded-xl bg-white/80 border border-[#d9e4dc] flex flex-col items-center">
+                  <div className="w-8 h-8 rounded-lg bg-amber-50 text-amber-600 flex items-center justify-center mb-1">
+                    <Zap className="w-4 h-4 fill-amber-500" />
+                  </div>
                   <span className="text-[11px] font-bold text-[#173e2a] block">Fast Quote</span>
                   <span className="text-[10px] text-gray-500 block">&lt; 24h Turnaround</span>
                 </div>
-                <div className="p-3 rounded-xl bg-white/80 border border-[#d9e4dc]">
-                  <span className="text-base block mb-0.5">🛡️</span>
+                <div className="p-3 rounded-xl bg-white/80 border border-[#d9e4dc] flex flex-col items-center">
+                  <div className="w-8 h-8 rounded-lg bg-emerald-50 text-[#005b32] flex items-center justify-center mb-1">
+                    <ShieldCheck className="w-4 h-4" />
+                  </div>
                   <span className="text-[11px] font-bold text-[#173e2a] block">Lab Certified</span>
                   <span className="text-[10px] text-gray-500 block">COA &amp; SGS Assured</span>
                 </div>
-                <div className="p-3 rounded-xl bg-white/80 border border-[#d9e4dc]">
-                  <span className="text-base block mb-0.5">🚢</span>
+                <div className="p-3 rounded-xl bg-white/80 border border-[#d9e4dc] flex flex-col items-center">
+                  <div className="w-8 h-8 rounded-lg bg-blue-50 text-blue-600 flex items-center justify-center mb-1">
+                    <Ship className="w-4 h-4" />
+                  </div>
                   <span className="text-[11px] font-bold text-[#173e2a] block">CIF / FOB</span>
                   <span className="text-[10px] text-gray-500 block">40+ Global Ports</span>
                 </div>
@@ -358,8 +368,8 @@ export default function Contact() {
                       className="w-full py-4 px-6 rounded-xl bg-gradient-to-r from-[#ffd000] via-[#ffc400] to-[#e6b800] hover:from-[#ffc400] hover:to-[#ffd000] text-[#173e2a] font-extrabold text-sm sm:text-base tracking-wide uppercase shadow-[0_8px_25px_rgba(255,208,0,0.35)] hover:shadow-[0_10px_30px_rgba(255,208,0,0.45)] hover:-translate-y-0.5 active:translate-y-0 transition-all duration-200 flex items-center justify-center gap-3 cursor-pointer group"
                     >
                       <span>Submit Trade Inquiry</span>
-                      <span className="w-7 h-7 rounded-lg bg-[#173e2a] text-white flex items-center justify-center text-xs group-hover:translate-x-1 transition-transform">
-                        →
+                      <span className="w-7 h-7 rounded-lg bg-[#173e2a] text-white flex items-center justify-center text-xs">
+                        <ArrowRight className="w-3.5 h-3.5 group-hover:translate-x-1 transition-transform" />
                       </span>
                     </button>
                   </div>
@@ -367,9 +377,7 @@ export default function Contact() {
                   {/* Trust Footer */}
                   <div className="pt-3 flex flex-col sm:flex-row items-center justify-between gap-2 text-xs text-[#5f6d65] border-t border-[#eef5f0]">
                     <div className="flex items-center gap-1.5">
-                      <svg className="w-4 h-4 text-[#005b32]" fill="currentColor" viewBox="0 0 20 20">
-                        <path fillRule="evenodd" d="M10 1.944A11.954 11.954 0 012.166 5C2.056 5.649 2 6.319 2 7c0 5.225 3.34 9.67 8 11.317C14.66 16.67 18 12.225 18 7c0-.682-.057-1.35-.166-2.001A11.954 11.954 0 0110 1.944zM11 14a1 1 0 11-2 0 1 1 0 012 0zm0-7a1 1 0 10-2 0v3a1 1 0 102 0V7z" clipRule="evenodd" />
-                      </svg>
+                      <Lock className="w-3.5 h-3.5 text-[#005b32]" />
                       <span>100% Confidential • Direct Factory Sourcing</span>
                     </div>
                     <span className="text-gray-400">Strict Quality &amp; COA Compliance</span>

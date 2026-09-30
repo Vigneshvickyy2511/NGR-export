@@ -5,6 +5,27 @@ import Link from "next/link";
 import Image from "next/image";
 import { Button } from "@mui/material";
 import Contact from "@/components/Contact";
+import {
+  FlaskConical,
+  UtensilsCrossed,
+  Pill,
+  Layers,
+  Scissors,
+  Sparkles,
+  Package,
+  Droplets,
+  Waves,
+  Factory,
+  ShieldCheck,
+  Truck,
+  CircleDollarSign,
+  Globe2,
+  ArrowRight,
+  ChevronDown,
+  CheckCircle2,
+  Network,
+  Handshake,
+} from "lucide-react";
 
 export default function HomeView() {
   // Hero mouse spotlight coordinates
@@ -89,7 +110,10 @@ export default function HomeView() {
                 transition: "all 0.2s ease-in-out",
               }}
             >
-              Explore Products →
+              <span className="flex items-center gap-2">
+                <span>Explore Products</span>
+                <ArrowRight className="w-4 h-4" />
+              </span>
             </Button>
 
             <Button
@@ -126,10 +150,10 @@ export default function HomeView() {
           <div>
             <a
               href="#about"
-              className="inline-flex w-12 h-12 rounded-full border-2 border-white/80 items-center justify-center text-xl text-white hover:bg-white hover:text-[#005b32] animate-float transition-colors shadow-lg"
+              className="inline-flex w-12 h-12 rounded-full border-2 border-white/80 items-center justify-center text-white hover:bg-white hover:text-[#005b32] animate-float transition-colors shadow-lg"
               aria-label="Scroll to About section"
             >
-              ⌄
+              <ChevronDown className="w-6 h-6 stroke-[2.2]" />
             </a>
           </div>
         </div>
@@ -183,7 +207,10 @@ export default function HomeView() {
                     transition: "all 0.2s",
                   }}
                 >
-                  View More →
+                  <span className="flex items-center gap-1.5">
+                    <span>View More</span>
+                    <ArrowRight className="w-3.5 h-3.5" />
+                  </span>
                 </Button>
               </div>
             </div>
@@ -367,10 +394,10 @@ export default function HomeView() {
                           <div>
                             <Link
                               href={item.href}
-                              className="inline-flex items-center gap-2 px-5 py-2.5 border border-white text-white text-xs sm:text-sm font-semibold tracking-wide hover:bg-white hover:text-[#173e2a] transition-all duration-200 shadow-sm"
+                              className="inline-flex items-center gap-2 px-5 py-2.5 border border-white text-white text-xs sm:text-sm font-semibold tracking-wide hover:bg-white hover:text-[#173e2a] transition-all duration-200 shadow-sm group/btn"
                             >
                               <span>Learn More</span>
-                              <span className="text-sm">→</span>
+                              <ArrowRight className="w-4 h-4 group-hover/btn:translate-x-1 transition-transform" />
                             </Link>
                           </div>
                         </div>
@@ -432,7 +459,7 @@ export default function HomeView() {
                                 className="inline-flex items-center gap-2 px-4 py-2 border border-white text-white text-xs font-semibold hover:bg-white hover:text-black transition-all"
                               >
                                 <span>Learn More</span>
-                                <span>→</span>
+                                <ArrowRight className="w-3.5 h-3.5" />
                               </Link>
                             </div>
                           </div>
@@ -470,29 +497,32 @@ export default function HomeView() {
 
           <div className="grid grid-cols-2 sm:grid-cols-3 md:grid-cols-5 gap-3.5 sm:gap-4">
             {[
-              { icon: "⚗", name: "Chloro Alkali & Chemical Synthesis" },
-              { icon: "♧", name: "Food & Beverages" },
-              { icon: "◇", name: "Pharmaceuticals" },
-              { icon: "⚛", name: "Polymers" },
-              { icon: "▥", name: "Textiles" },
-              { icon: "♙", name: "Cosmetics & Personal Care" },
-              { icon: "▣", name: "Flexible Packaging" },
-              { icon: "◌", name: "Soap & Detergent" },
-              { icon: "♢", name: "Water Treatment" },
-              { icon: "⚙", name: "Heavy Engineering" },
-            ].map((sector) => (
-              <div
-                key={sector.name}
-                className="group relative p-4 sm:p-5 rounded-lg border border-white/25 bg-white/5 backdrop-blur-sm text-center flex flex-col items-center justify-center min-h-[125px] hover:bg-white/15 hover:border-white/50 hover:-translate-y-1.5 transition-all duration-300 cursor-default overflow-hidden"
-              >
-                <span className="text-2xl sm:text-3xl text-[#ffd000] group-hover:scale-115 transition-transform duration-300 mb-2">
-                  {sector.icon}
-                </span>
-                <b className="text-xs font-bold text-white leading-tight">
-                  {sector.name}
-                </b>
-              </div>
-            ))}
+              { icon: FlaskConical, name: "Chloro Alkali & Chemical Synthesis" },
+              { icon: UtensilsCrossed, name: "Food & Beverages" },
+              { icon: Pill, name: "Pharmaceuticals" },
+              { icon: Layers, name: "Polymers" },
+              { icon: Scissors, name: "Textiles" },
+              { icon: Sparkles, name: "Cosmetics & Personal Care" },
+              { icon: Package, name: "Flexible Packaging" },
+              { icon: Droplets, name: "Soap & Detergent" },
+              { icon: Waves, name: "Water Treatment" },
+              { icon: Factory, name: "Heavy Engineering" },
+            ].map((sector) => {
+              const Icon = sector.icon;
+              return (
+                <div
+                  key={sector.name}
+                  className="group relative p-4 sm:p-5 rounded-xl border border-white/20 bg-white/5 backdrop-blur-md text-center flex flex-col items-center justify-center min-h-[135px] hover:bg-white/15 hover:border-[#ffd000]/60 hover:-translate-y-1.5 transition-all duration-300 cursor-default shadow-sm hover:shadow-lg overflow-hidden"
+                >
+                  <div className="w-12 h-12 rounded-xl bg-white/10 flex items-center justify-center mb-3 text-[#ffd000] group-hover:scale-110 group-hover:bg-[#ffd000] group-hover:text-[#004727] transition-all duration-300 shadow-inner">
+                    <Icon className="w-6 h-6 stroke-[1.8]" />
+                  </div>
+                  <b className="text-xs font-bold text-white leading-tight">
+                    {sector.name}
+                  </b>
+                </div>
+              );
+            })}
           </div>
         </div>
       </section>
@@ -513,41 +543,44 @@ export default function HomeView() {
           <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-6">
             {[
               {
-                icon: "♦",
+                icon: ShieldCheck,
                 title: "Premium Quality",
                 desc: "Sourced and supplied with rigorous international quality standards and lab verifications.",
               },
               {
-                icon: "◇",
+                icon: Truck,
                 title: "Reliable & Consistent Supply",
                 desc: "Dependable multi-modal logistics network ensuring prompt, scheduled deliveries.",
               },
               {
-                icon: "▤",
+                icon: CircleDollarSign,
                 title: "Competitive Pricing",
                 desc: "Transparent commercial structures maximizing bottom-line value for enduring client partnerships.",
               },
               {
-                icon: "♟",
+                icon: Globe2,
                 title: "Industry Expertise",
                 desc: "Deep trade intelligence, customs proficiency, and expansive cross-border supplier networks.",
               },
-            ].map((adv) => (
-              <div
-                key={adv.title}
-                className="p-6 rounded-xl bg-[#f6f9f6] border border-[#d9e4dc] text-center hover:bg-white hover:shadow-lg hover:border-[#a5c7b2] hover:-translate-y-2 transition-all duration-300"
-              >
-                <div className="w-12 h-12 mx-auto mb-4 rounded-full bg-emerald-100 flex items-center justify-center text-xl text-[#005b32] font-black">
-                  {adv.icon}
+            ].map((adv) => {
+              const Icon = adv.icon;
+              return (
+                <div
+                  key={adv.title}
+                  className="group p-6 rounded-2xl bg-[#f6f9f6] border border-[#d9e4dc] text-center hover:bg-white hover:shadow-xl hover:border-[#a5c7b2] hover:-translate-y-2 transition-all duration-300"
+                >
+                  <div className="w-14 h-14 mx-auto mb-5 rounded-2xl bg-emerald-100/70 border border-emerald-200/80 flex items-center justify-center text-[#005b32] group-hover:bg-[#005b32] group-hover:text-[#ffd000] group-hover:scale-110 transition-all duration-300 shadow-sm">
+                    <Icon className="w-7 h-7 stroke-[1.9]" />
+                  </div>
+                  <b className="block text-base font-extrabold text-[#173e2a] mb-2">
+                    {adv.title}
+                  </b>
+                  <p className="text-xs sm:text-sm text-[#5f6d65] leading-relaxed">
+                    {adv.desc}
+                  </p>
                 </div>
-                <b className="block text-base font-extrabold text-[#173e2a] mb-2">
-                  {adv.title}
-                </b>
-                <p className="text-xs sm:text-sm text-[#5f6d65] leading-relaxed">
-                  {adv.desc}
-                </p>
-              </div>
-            ))}
+              );
+            })}
           </div>
         </div>
       </section>
@@ -653,9 +686,14 @@ export default function HomeView() {
 
           <div className="grid grid-cols-1 md:grid-cols-3 gap-8 relative">
             {/* Step 1 */}
-            <div className="group relative bg-white/10 rounded-xl p-6 sm:p-8 backdrop-blur-sm border border-white/20 hover:bg-white/15 transition-all">
-              <div className="w-14 h-14 rounded-full bg-white text-[#005b32] font-black text-xl flex items-center justify-center border-4 border-emerald-200/50 mb-5 group-hover:scale-110 group-hover:rotate-6 transition-all duration-300 shadow-md">
-                01
+            <div className="group relative bg-white/10 rounded-2xl p-6 sm:p-8 backdrop-blur-md border border-white/20 hover:bg-white/15 transition-all">
+              <div className="flex items-center justify-between mb-5">
+                <div className="w-14 h-14 rounded-full bg-white text-[#005b32] font-black text-xl flex items-center justify-center border-4 border-emerald-200/50 group-hover:scale-110 group-hover:rotate-6 transition-all duration-300 shadow-md">
+                  01
+                </div>
+                <div className="w-10 h-10 rounded-xl bg-white/10 flex items-center justify-center text-[#ffd000]">
+                  <CheckCircle2 className="w-5 h-5 stroke-[2]" />
+                </div>
               </div>
               <b className="block text-base sm:text-lg font-bold text-white mb-2 leading-snug">
                 Adherence to high quality systems
@@ -666,9 +704,14 @@ export default function HomeView() {
             </div>
 
             {/* Step 2 */}
-            <div className="group relative bg-white/10 rounded-xl p-6 sm:p-8 backdrop-blur-sm border border-white/20 hover:bg-white/15 transition-all">
-              <div className="w-14 h-14 rounded-full bg-[#ffd000] text-[#143c28] font-black text-xl flex items-center justify-center border-4 border-yellow-200/50 mb-5 group-hover:scale-110 group-hover:-rotate-6 transition-all duration-300 shadow-md">
-                02
+            <div className="group relative bg-white/10 rounded-2xl p-6 sm:p-8 backdrop-blur-md border border-white/20 hover:bg-white/15 transition-all">
+              <div className="flex items-center justify-between mb-5">
+                <div className="w-14 h-14 rounded-full bg-[#ffd000] text-[#143c28] font-black text-xl flex items-center justify-center border-4 border-yellow-200/50 group-hover:scale-110 group-hover:-rotate-6 transition-all duration-300 shadow-md">
+                  02
+                </div>
+                <div className="w-10 h-10 rounded-xl bg-white/10 flex items-center justify-center text-[#ffd000]">
+                  <Network className="w-5 h-5 stroke-[2]" />
+                </div>
               </div>
               <b className="block text-base sm:text-lg font-bold text-white mb-2 leading-snug">
                 Well-functioning distribution networks &amp; contract sites
@@ -679,9 +722,14 @@ export default function HomeView() {
             </div>
 
             {/* Step 3 */}
-            <div className="group relative bg-white/10 rounded-xl p-6 sm:p-8 backdrop-blur-sm border border-white/20 hover:bg-white/15 transition-all">
-              <div className="w-14 h-14 rounded-full bg-white text-[#005b32] font-black text-xl flex items-center justify-center border-4 border-emerald-200/50 mb-5 group-hover:scale-110 group-hover:rotate-6 transition-all duration-300 shadow-md">
-                03
+            <div className="group relative bg-white/10 rounded-2xl p-6 sm:p-8 backdrop-blur-md border border-white/20 hover:bg-white/15 transition-all">
+              <div className="flex items-center justify-between mb-5">
+                <div className="w-14 h-14 rounded-full bg-white text-[#005b32] font-black text-xl flex items-center justify-center border-4 border-emerald-200/50 group-hover:scale-110 group-hover:rotate-6 transition-all duration-300 shadow-md">
+                  03
+                </div>
+                <div className="w-10 h-10 rounded-xl bg-white/10 flex items-center justify-center text-[#ffd000]">
+                  <Handshake className="w-5 h-5 stroke-[2]" />
+                </div>
               </div>
               <b className="block text-base sm:text-lg font-bold text-white mb-2 leading-snug">
                 Strategic relationships with raw material producers
@@ -737,7 +785,10 @@ export default function HomeView() {
                   transition: "all 0.2s",
                 }}
               >
-                Contact Us →
+                <span className="flex items-center gap-2">
+                  <span>Contact Us</span>
+                  <ArrowRight className="w-4 h-4" />
+                </span>
               </Button>
             </div>
           </div>

@@ -1,7 +1,6 @@
 "use client";
 
 import React, { useState, useRef, useEffect } from "react";
-import Link from "next/link";
 import Image from "next/image";
 import {
   Button,
@@ -13,10 +12,33 @@ import {
   DialogActions,
   IconButton,
 } from "@mui/material";
+import {
+  Sparkles,
+  ShieldCheck,
+  Globe2,
+  PackageCheck,
+  Truck,
+  BadgeCheck,
+  HeartPulse,
+  Sprout,
+  Award,
+  Ship,
+  SlidersHorizontal,
+  Leaf,
+  FileSpreadsheet,
+  Download,
+  ArrowRight,
+  X,
+  Crown,
+  Wheat,
+  Sun,
+  Boxes,
+} from "lucide-react";
 
 interface RiceVariety {
   name: string;
   category: string;
+  icon: React.ComponentType<{ className?: string }>;
   agl: string; // Average Grain Length
   moisture: string;
   broken: string;
@@ -79,6 +101,7 @@ export default function QualityRiceView() {
     {
       name: "1121 XXL Basmati Rice",
       category: "Extra Long Grain · Steam / Sella",
+      icon: Crown,
       agl: "8.35 mm – 8.40 mm Min",
       moisture: "12.5% Max",
       broken: "1.0% Max",
@@ -94,6 +117,7 @@ export default function QualityRiceView() {
     {
       name: "Sugandha & Pusa Basmati",
       category: "Aromatic Basmati Hybrid · Steam / Raw",
+      icon: Wheat,
       agl: "7.85 mm – 7.95 mm Min",
       moisture: "12.5% Max",
       broken: "1.5% Max",
@@ -109,6 +133,7 @@ export default function QualityRiceView() {
     {
       name: "Sona Masoori Rice",
       category: "Medium Grain · Lightweight & Aromatic",
+      icon: Sun,
       agl: "5.10 mm – 5.25 mm Min",
       moisture: "13.0% Max",
       broken: "2.0% Max",
@@ -124,6 +149,7 @@ export default function QualityRiceView() {
     {
       name: "PR 11 / IR 64 Non-Basmati",
       category: "Long & Medium Grain · Raw / Parboiled",
+      icon: Boxes,
       agl: "6.40 mm – 6.80 mm Min",
       moisture: "13.5% Max",
       broken: "5.0% / 25% Options",
@@ -140,52 +166,52 @@ export default function QualityRiceView() {
 
   const features = [
     {
-      icon: "♨",
+      icon: ShieldCheck,
       title: "Superior Quality",
       desc: "Carefully selected from the best harvests, processed and double-polished through Bühler sortex lines to ensure pristine grain clarity.",
     },
     {
-      icon: "◎",
+      icon: Globe2,
       title: "Global Reach",
       desc: "Our rice reaches trusted importers, supermarkets, and restaurant chains across Asia, the Middle East, Europe, and North America.",
     },
     {
-      icon: "♨",
+      icon: Sparkles,
       title: "Varieties and Uses",
       desc: "Comprehensive portfolio covering extra-long grain 1121 Basmati, aromatic Sugandha, lightweight Sona Masoori, and high-yield Non-Basmati.",
     },
     {
-      icon: "⬡",
+      icon: PackageCheck,
       title: "Packaging & Customization",
       desc: "Retail and bulk packaging with customizable options in 1kg/5kg/10kg/20kg/25kg/50kg BOPP bags, non-woven fabric bags, and master cartons.",
     },
   ];
 
   const qualityItems = [
-    { icon: "🚚", title: "Fast delivery", desc: "Express container dispatch from Indian ports" },
-    { icon: "◉", title: "Certified products", desc: "APEDA, FSSAI, ISO 22000, SGS inspected" },
-    { icon: "♧", title: "Only healthy", desc: "Pesticide & aflatoxin tested pure grains" },
-    { icon: "🌱", title: "Organic making", desc: "Grown with sustainable farm water stewardship" },
+    { icon: Truck, title: "Fast delivery", desc: "Express container dispatch from Indian ports" },
+    { icon: BadgeCheck, title: "Certified products", desc: "APEDA, FSSAI, ISO 22000, SGS inspected" },
+    { icon: HeartPulse, title: "Only healthy", desc: "Pesticide & aflatoxin tested pure grains" },
+    { icon: Sprout, title: "Organic making", desc: "Grown with sustainable farm water stewardship" },
   ];
 
   const chooseCards = [
     {
-      icon: "◇",
+      icon: Award,
       title: "Premium Quality",
       desc: "Sourced from fertile Indo-Gangetic and Godavari river basins, aged naturally for maximum culinary elongation and fluffiness.",
     },
     {
-      icon: "◎",
+      icon: Ship,
       title: "Global Supply Chain",
       desc: "Reliable logistics and strong vessel charter partnerships ensuring seamless port arrivals with moisture-barrier container lining.",
     },
     {
-      icon: "⚙",
+      icon: SlidersHorizontal,
       title: "Custom Solutions",
       desc: "Customizable broken percentages (1% to 25%), customized polishing grades, steam/sella/raw options, and complete OEM private labeling.",
     },
     {
-      icon: "♧",
+      icon: Leaf,
       title: "Sustainability",
       desc: "Direct contract farmer procurement promoting fair agricultural wages, water conservation, and environmentally sound hull disposal.",
     },
@@ -219,6 +245,10 @@ export default function QualityRiceView() {
         {/* Hero Content with Left Gold Border */}
         <div className="relative z-10 max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 w-full">
           <div className="max-w-xl pl-6 border-l-4 border-[#e7b622] hero-copy reveal left">
+            <div className="inline-flex items-center gap-1.5 px-3 py-1 mb-2.5 rounded-full bg-white/10 backdrop-blur-md border border-white/20 text-xs font-bold text-[#e7b622] tracking-widest uppercase">
+              <Sparkles className="w-3.5 h-3.5 text-[#e7b622]" />
+              Indo-Gangetic &amp; Godavari Basin Cultivated
+            </div>
             <p className="text-[#e7b622] text-sm sm:text-base font-bold tracking-wider mb-1">
               — &nbsp; The Best Quality
             </p>
@@ -247,6 +277,7 @@ export default function QualityRiceView() {
                   const el = document.getElementById("varieties");
                   if (el) el.scrollIntoView({ behavior: "smooth" });
                 }}
+                endIcon={<ArrowRight className="w-4 h-4 ml-1" />}
                 sx={{
                   bgcolor: "#e7b622",
                   color: "#17351f",
@@ -266,7 +297,7 @@ export default function QualityRiceView() {
                   transition: "all 0.35s ease",
                 }}
               >
-                Explore Rice Grades →
+                Explore Rice Grades
               </Button>
             </div>
           </div>
@@ -283,24 +314,27 @@ export default function QualityRiceView() {
               <div className="absolute left-[26px] top-6 bottom-6 w-0.5 bg-[#e7b622] hidden sm:block pointer-events-none" />
 
               <div className="space-y-8">
-                {features.map((f) => (
-                  <article key={f.title} className="relative flex items-start gap-5 feature reveal left">
-                    <span className="w-14 h-14 rounded-full bg-[#fbf7eb] text-[#e7b622] flex items-center justify-center text-2xl font-bold shrink-0 z-10 border border-[#e1dfd5] shadow-sm">
-                      {f.icon}
-                    </span>
-                    <div>
-                      <h3
-                        className="text-xl sm:text-2xl font-bold text-[#183327] mb-1.5"
-                        style={{ fontFamily: "Georgia, serif" }}
-                      >
-                        {f.title}
-                      </h3>
-                      <p className="text-xs sm:text-sm text-[#5b655f] leading-relaxed">
-                        {f.desc}
-                      </p>
-                    </div>
-                  </article>
-                ))}
+                {features.map((f) => {
+                  const FeatureIcon = f.icon;
+                  return (
+                    <article key={f.title} className="relative flex items-start gap-5 feature reveal left group">
+                      <span className="w-14 h-14 rounded-2xl bg-[#fbf7eb] text-[#00532f] flex items-center justify-center shrink-0 z-10 border border-[#e1dfd5] shadow-xs group-hover:bg-[#00532f] group-hover:text-[#e7b622] transition-colors duration-300">
+                        <FeatureIcon className="w-7 h-7 stroke-[1.8]" />
+                      </span>
+                      <div>
+                        <h3
+                          className="text-xl sm:text-2xl font-bold text-[#183327] mb-1.5 group-hover:text-[#00532f] transition-colors"
+                          style={{ fontFamily: "Georgia, serif" }}
+                        >
+                          {f.title}
+                        </h3>
+                        <p className="text-xs sm:text-sm text-[#5b655f] leading-relaxed">
+                          {f.desc}
+                        </p>
+                      </div>
+                    </article>
+                  );
+                })}
               </div>
             </div>
 
@@ -334,19 +368,22 @@ export default function QualityRiceView() {
           </div>
 
           <div className="grid grid-cols-2 sm:grid-cols-4 gap-6 quality-row">
-            {qualityItems.map((item) => (
-              <div key={item.title} className="text-center p-4 qitem reveal group">
-                <div className="w-16 h-16 sm:w-20 sm:h-20 rounded-full bg-[#fff8dd] text-[#00532f] flex items-center justify-center text-3xl mx-auto mb-3 shadow-sm border border-[#e7b622]/40 transition-all duration-400 group-hover:-translate-y-2 group-hover:rotate-6 group-hover:shadow-md icon">
-                  {item.icon}
+            {qualityItems.map((item) => {
+              const QualityIcon = item.icon;
+              return (
+                <div key={item.title} className="text-center p-4 qitem reveal group">
+                  <div className="w-16 h-16 sm:w-20 sm:h-20 rounded-2xl bg-[#fff8dd] text-[#00532f] flex items-center justify-center mx-auto mb-3 shadow-sm border border-[#e7b622]/40 transition-all duration-400 group-hover:-translate-y-2 group-hover:rotate-6 group-hover:shadow-md icon">
+                    <QualityIcon className="w-8 h-8 stroke-[1.8]" />
+                  </div>
+                  <h3 className="text-sm sm:text-base font-bold text-[#183327]">
+                    {item.title}
+                  </h3>
+                  <p className="text-xs text-[#5b655f] mt-1">
+                    {item.desc}
+                  </p>
                 </div>
-                <h3 className="text-sm sm:text-base font-bold text-[#183327]">
-                  {item.title}
-                </h3>
-                <p className="text-xs text-[#5b655f] mt-1">
-                  {item.desc}
-                </p>
-              </div>
-            ))}
+              );
+            })}
           </div>
         </div>
       </section>
@@ -368,69 +405,78 @@ export default function QualityRiceView() {
           </div>
 
           <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-6">
-            {varieties.map((v) => (
-              <article
-                key={v.name}
-                className="bg-[#fbf7eb] rounded-xl border border-[#e1dfd5] p-6 shadow-sm hover:shadow-xl hover:border-[#e7b622] hover:-translate-y-2 transition-all duration-400 flex flex-col justify-between reveal"
-              >
-                <div>
-                  <span className="text-[0.68rem] font-bold uppercase tracking-wider text-[#00532f] bg-[#00532f]/10 px-2.5 py-0.5 rounded-full inline-block mb-3">
-                    {v.category}
-                  </span>
-                  <h3
-                    className="text-xl font-bold text-[#183327] mb-2"
-                    style={{ fontFamily: "Georgia, serif" }}
-                  >
-                    {v.name}
-                  </h3>
-                  <div className="w-8 h-0.5 bg-[#e7b622] mb-3" />
+            {varieties.map((v) => {
+              const VarietyIcon = v.icon;
+              return (
+                <article
+                  key={v.name}
+                  className="group bg-[#fbf7eb] rounded-xl border border-[#e1dfd5] p-6 shadow-sm hover:shadow-xl hover:border-[#e7b622] hover:-translate-y-2 transition-all duration-400 flex flex-col justify-between reveal"
+                >
+                  <div>
+                    <div className="flex items-center justify-between mb-3">
+                      <span className="text-[0.68rem] font-bold uppercase tracking-wider text-[#00532f] bg-[#00532f]/10 px-2.5 py-0.5 rounded-full inline-block">
+                        {v.category}
+                      </span>
+                      <div className="w-7 h-7 rounded-lg bg-[#e7b622]/20 text-[#00532f] flex items-center justify-center shrink-0 group-hover:bg-[#00532f] group-hover:text-[#e7b622] transition-colors duration-300">
+                        <VarietyIcon className="w-4 h-4" />
+                      </div>
+                    </div>
+                    <h3
+                      className="text-xl font-bold text-[#183327] mb-2 group-hover:text-[#00532f] transition-colors"
+                      style={{ fontFamily: "Georgia, serif" }}
+                    >
+                      {v.name}
+                    </h3>
+                    <div className="w-8 h-0.5 bg-[#e7b622] mb-3" />
 
-                  <div className="space-y-1.5 text-xs text-[#5b655f] mb-4">
-                    <p>
-                      <strong className="text-[#183327]">Grain Length (AGL):</strong> {v.agl}
-                    </p>
-                    <p>
-                      <strong className="text-[#183327]">Moisture:</strong> {v.moisture}
-                    </p>
-                    <p>
-                      <strong className="text-[#183327]">Broken Ratio:</strong> {v.broken}
-                    </p>
-                    <p>
-                      <strong className="text-[#183327]">Purity:</strong> {v.purity}
+                    <div className="space-y-1.5 text-xs text-[#5b655f] mb-4">
+                      <p>
+                        <strong className="text-[#183327]">Grain Length (AGL):</strong> {v.agl}
+                      </p>
+                      <p>
+                        <strong className="text-[#183327]">Moisture:</strong> {v.moisture}
+                      </p>
+                      <p>
+                        <strong className="text-[#183327]">Broken Ratio:</strong> {v.broken}
+                      </p>
+                      <p>
+                        <strong className="text-[#183327]">Purity:</strong> {v.purity}
+                      </p>
+                    </div>
+
+                    <p className="text-xs text-[#5b655f] leading-relaxed">
+                      {v.description}
                     </p>
                   </div>
 
-                  <p className="text-xs text-[#5b655f] leading-relaxed">
-                    {v.description}
-                  </p>
-                </div>
-
-                <div className="pt-5 border-t border-[#e1dfd5]/60 mt-5">
-                  <Button
-                    fullWidth
-                    variant="outlined"
-                    className="btn-shine"
-                    onClick={() => setSelectedVariety(v)}
-                    sx={{
-                      borderColor: "#00532f",
-                      color: "#00532f",
-                      fontSize: "0.72rem",
-                      fontWeight: 800,
-                      py: 0.8,
-                      borderRadius: "999px",
-                      "&:hover": {
-                        borderColor: "#00371f",
-                        bgcolor: "#fff",
-                        transform: "translateY(-2px)",
-                      },
-                      transition: "all 0.3s ease",
-                    }}
-                  >
-                    View Grain Specs →
-                  </Button>
-                </div>
-              </article>
-            ))}
+                  <div className="pt-5 border-t border-[#e1dfd5]/60 mt-5">
+                    <Button
+                      fullWidth
+                      variant="outlined"
+                      className="btn-shine"
+                      onClick={() => setSelectedVariety(v)}
+                      endIcon={<ArrowRight className="w-3.5 h-3.5" />}
+                      sx={{
+                        borderColor: "#00532f",
+                        color: "#00532f",
+                        fontSize: "0.72rem",
+                        fontWeight: 800,
+                        py: 0.8,
+                        borderRadius: "999px",
+                        "&:hover": {
+                          borderColor: "#00371f",
+                          bgcolor: "#fff",
+                          transform: "translateY(-2px)",
+                        },
+                        transition: "all 0.3s ease",
+                      }}
+                    >
+                      View Grain Specs
+                    </Button>
+                  </div>
+                </article>
+              );
+            })}
           </div>
         </div>
       </section>
@@ -449,27 +495,30 @@ export default function QualityRiceView() {
           </div>
 
           <div className="grid grid-cols-1 md:grid-cols-2 gap-y-6 gap-x-14 choose-row">
-            {chooseCards.map((card) => (
-              <article
-                key={card.title}
-                className="flex items-start gap-5 py-5 border-b border-[#e1dfd5] choose reveal"
-              >
-                <div className="w-14 h-14 rounded-full bg-[#fbf7eb] text-[#00532f] flex items-center justify-center text-2xl font-bold shrink-0 border border-[#e1dfd5] icon">
-                  {card.icon}
-                </div>
-                <div>
-                  <h3
-                    className="text-lg font-bold text-[#183327] mb-1.5"
-                    style={{ fontFamily: "Georgia, serif" }}
-                  >
-                    {card.title}
-                  </h3>
-                  <p className="text-xs sm:text-sm text-[#5b655f] leading-relaxed">
-                    {card.desc}
-                  </p>
-                </div>
-              </article>
-            ))}
+            {chooseCards.map((card) => {
+              const ChooseIcon = card.icon;
+              return (
+                <article
+                  key={card.title}
+                  className="flex items-start gap-5 py-5 border-b border-[#e1dfd5] choose reveal group"
+                >
+                  <div className="w-14 h-14 rounded-2xl bg-[#fbf7eb] text-[#00532f] flex items-center justify-center shrink-0 border border-[#e1dfd5] shadow-xs group-hover:bg-[#00532f] group-hover:text-[#e7b622] transition-colors duration-300 icon">
+                    <ChooseIcon className="w-7 h-7 stroke-[1.8]" />
+                  </div>
+                  <div>
+                    <h3
+                      className="text-lg font-bold text-[#183327] mb-1.5 group-hover:text-[#00532f] transition-colors"
+                      style={{ fontFamily: "Georgia, serif" }}
+                    >
+                      {card.title}
+                    </h3>
+                    <p className="text-xs sm:text-sm text-[#5b655f] leading-relaxed">
+                      {card.desc}
+                    </p>
+                  </div>
+                </article>
+              );
+            })}
           </div>
         </div>
       </section>
@@ -484,12 +533,15 @@ export default function QualityRiceView() {
         <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
           <div className="max-w-xl bg-gradient-to-r from-[#00562f] to-[#003a22] text-white p-7 sm:p-8 rounded-xl flex flex-col sm:flex-row items-center justify-between gap-6 shadow-xl brochure-box reveal left">
             <div>
-              <h2
-                className="text-xl sm:text-2xl font-bold"
-                style={{ fontFamily: "Georgia, serif" }}
-              >
-                ▱ &nbsp; Download Product Brochure
-              </h2>
+              <div className="flex items-center gap-2 mb-1.5">
+                <FileSpreadsheet className="w-6 h-6 text-[#e7b622]" />
+                <h2
+                  className="text-xl sm:text-2xl font-bold"
+                  style={{ fontFamily: "Georgia, serif" }}
+                >
+                  Download Product Brochure
+                </h2>
+              </div>
               <p className="text-xs sm:text-sm text-emerald-100 mt-1.5">
                 Explore our rice varieties, milling specifications, and packaging options.
               </p>
@@ -502,7 +554,6 @@ export default function QualityRiceView() {
                 bgcolor: "#e7b622",
                 color: "#17351f",
                 fontWeight: 900,
-                fontSize: "1.1rem",
                 width: 48,
                 height: 48,
                 minWidth: 48,
@@ -512,7 +563,7 @@ export default function QualityRiceView() {
               }}
               aria-label="Download Rice Brochure"
             >
-              →
+              <Download className="w-5 h-5 text-[#17351f]" />
             </Button>
           </div>
         </div>
@@ -547,8 +598,8 @@ export default function QualityRiceView() {
                   {selectedVariety.name}
                 </span>
               </div>
-              <IconButton onClick={() => setSelectedVariety(null)} size="small">
-                ✕
+              <IconButton onClick={() => setSelectedVariety(null)} size="small" aria-label="Close dialog">
+                <X className="w-5 h-5 text-[#183327]" />
               </IconButton>
             </DialogTitle>
             <DialogContent dividers sx={{ py: 2 }}>
@@ -593,10 +644,29 @@ export default function QualityRiceView() {
                   setSelectedVariety(null);
                   handleDownloadSpecs();
                 }}
+                startIcon={<Download className="w-4 h-4" />}
                 className="btn-shine"
                 sx={{ color: "#00532f", fontWeight: 700, fontSize: "0.75rem" }}
               >
                 Download Data Sheet
+              </Button>
+              <Button
+                variant="contained"
+                onClick={() => {
+                  setSelectedVariety(null);
+                  const el = document.getElementById("contact");
+                  if (el) el.scrollIntoView({ behavior: "smooth" });
+                }}
+                endIcon={<ArrowRight className="w-4 h-4" />}
+                sx={{
+                  bgcolor: "#e7b622",
+                  color: "#183327",
+                  fontWeight: 800,
+                  fontSize: "0.75rem",
+                  "&:hover": { bgcolor: "#d4a415" },
+                }}
+              >
+                Inquire For This Rice
               </Button>
             </DialogActions>
           </>

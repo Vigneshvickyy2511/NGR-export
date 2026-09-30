@@ -1,7 +1,6 @@
 "use client";
 
 import React, { useState, useEffect, useRef } from "react";
-import Link from "next/link";
 import Image from "next/image";
 import {
   Button,
@@ -13,10 +12,27 @@ import {
   DialogActions,
   IconButton,
 } from "@mui/material";
+import {
+  Sparkles,
+  ShieldCheck,
+  Award,
+  FlaskConical,
+  BadgeCheck,
+  Wheat,
+  Sprout,
+  Leaf,
+  Ship,
+  SlidersHorizontal,
+  CheckCircle2,
+  Download,
+  ArrowRight,
+  X,
+} from "lucide-react";
 
 interface SilageCrop {
   name: string;
   category: string;
+  icon: React.ComponentType<{ className?: string }>;
   dryMatter: string;
   targetPh: string;
   proteinContent: string;
@@ -78,27 +94,27 @@ export default function SilageMakingView() {
 
   const strengths = [
     {
-      icon: "♢",
+      icon: ShieldCheck,
       title: "Unmatched Standards",
       desc: "Rigorous testing and global best practices.",
     },
     {
-      icon: "✓",
+      icon: Award,
       title: "Committed to Excellence",
       desc: "Innovation, reliability and customer success.",
     },
     {
-      icon: "⚗",
+      icon: FlaskConical,
       title: "Advanced Silage Solutions",
       desc: "Modern microbial technology for fermentation.",
     },
     {
-      icon: "●",
+      icon: BadgeCheck,
       title: "Consistent Quality",
       desc: "Uniform moisture, texture and nutrition.",
     },
     {
-      icon: "♧",
+      icon: Wheat,
       title: "Nutrient Rich Feed",
       desc: "Highly digestible feed for livestock growth.",
     },
@@ -108,6 +124,7 @@ export default function SilageMakingView() {
     {
       name: "Corn Silage (Maize)",
       category: "High Energy Cereal Forage",
+      icon: Wheat,
       dryMatter: "32% – 36%",
       targetPh: "3.7 – 4.0",
       proteinContent: "7.5% – 9.0% CP",
@@ -125,6 +142,7 @@ export default function SilageMakingView() {
     {
       name: "Kem LAC® HD Inoculant",
       category: "Multi-Strain Microbial Bio-Inoculant",
+      icon: FlaskConical,
       dryMatter: "Applicable for 28% – 45% DM crops",
       targetPh: "Drops pH to < 4.0 in 72 hours",
       proteinContent: "Protects true protein breakdown (Proteolysis inhibition)",
@@ -142,6 +160,7 @@ export default function SilageMakingView() {
     {
       name: "Alfalfa (Lucerne) Silage",
       category: "High Protein Legume Forage",
+      icon: Sprout,
       dryMatter: "35% – 42% (Wilted)",
       targetPh: "4.3 – 4.5",
       proteinContent: "18.0% – 22.0% CP",
@@ -159,6 +178,7 @@ export default function SilageMakingView() {
     {
       name: "Sorghum & Sudan Grass Silage",
       category: "Drought-Tolerant High-Fiber Forage",
+      icon: Leaf,
       dryMatter: "30% – 34%",
       targetPh: "3.8 – 4.2",
       proteinContent: "8.5% – 10.5% CP",
@@ -177,22 +197,22 @@ export default function SilageMakingView() {
 
   const whyChooseCards = [
     {
-      icon: "◇",
+      icon: Award,
       title: "Premium Quality",
       desc: "Carefully selected and processed products.",
     },
     {
-      icon: "◎",
+      icon: Ship,
       title: "Global Supply Chain",
       desc: "Reliable logistics and timely delivery.",
     },
     {
-      icon: "⬡",
+      icon: SlidersHorizontal,
       title: "Custom Solutions",
       desc: "Tailored packaging and product options.",
     },
     {
-      icon: "♧",
+      icon: Leaf,
       title: "Sustainability",
       desc: "Ethical, eco-friendly farming and sourcing.",
     },
@@ -226,6 +246,10 @@ export default function SilageMakingView() {
         {/* Hero Content with Left Gold Border */}
         <div className="relative z-10 max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 w-full">
           <div className="max-w-xl pl-6 border-l-4 border-[#ffca08] hero-copy reveal left">
+            <div className="inline-flex items-center gap-1.5 px-3 py-1 mb-2.5 rounded-full bg-white/10 backdrop-blur-md border border-white/20 text-xs font-bold text-[#ffca08] tracking-widest uppercase">
+              <Sparkles className="w-3.5 h-3.5 text-[#ffca08]" />
+              Microbial-Inoculated Dairy &amp; Livestock Forage
+            </div>
             <p className="text-[#ffca08] text-sm sm:text-base font-bold tracking-wider mb-1">
               — &nbsp; The Best Quality
             </p>
@@ -256,6 +280,7 @@ export default function SilageMakingView() {
                   const el = document.getElementById("crops-spec");
                   if (el) el.scrollIntoView({ behavior: "smooth" });
                 }}
+                endIcon={<ArrowRight className="w-4 h-4 ml-1" />}
                 sx={{
                   bgcolor: "#ffca08",
                   color: "#17351f",
@@ -275,7 +300,7 @@ export default function SilageMakingView() {
                   transition: "all 0.35s ease",
                 }}
               >
-                Explore Silage Crops →
+                Explore Silage Crops
               </Button>
             </div>
           </div>
@@ -303,22 +328,25 @@ export default function SilageMakingView() {
           </div>
 
           <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-5 gap-5">
-            {strengths.map((item) => (
-              <article
-                key={item.title}
-                className="border border-[#d8e5dc] rounded-lg p-5 bg-white silage-card reveal flex flex-col justify-between"
-              >
-                <div>
-                  <div className="w-12 h-12 rounded-full flex items-center justify-center text-xl font-bold text-white mb-4 bg-gradient-to-br from-[#16864a] to-[#00552f] shadow-sm">
-                    {item.icon}
+            {strengths.map((item) => {
+              const StrengthIcon = item.icon;
+              return (
+                <article
+                  key={item.title}
+                  className="group border border-[#d8e5dc] rounded-xl p-5 bg-white silage-card reveal flex flex-col justify-between hover:border-[#00613a] hover:shadow-md transition-all duration-300"
+                >
+                  <div>
+                    <div className="w-12 h-12 rounded-xl flex items-center justify-center text-white mb-4 bg-gradient-to-br from-[#16864a] to-[#00552f] shadow-sm group-hover:scale-105 transition-transform duration-300">
+                      <StrengthIcon className="w-6 h-6 stroke-[1.8]" />
+                    </div>
+                    <h3 className="text-sm font-bold text-[#143d29] mb-2 leading-snug group-hover:text-[#00613a] transition-colors">
+                      {item.title}
+                    </h3>
+                    <p className="text-xs text-[#5b6c62] leading-relaxed">{item.desc}</p>
                   </div>
-                  <h3 className="text-sm font-bold text-[#143d29] mb-2 leading-snug">
-                    {item.title}
-                  </h3>
-                  <p className="text-xs text-[#5b6c62] leading-relaxed">{item.desc}</p>
-                </div>
-              </article>
-            ))}
+                </article>
+              );
+            })}
           </div>
         </div>
       </section>
@@ -341,14 +369,19 @@ export default function SilageMakingView() {
                   fermentation, preservation and nutrient retention.
                 </p>
 
-                <div className="p-4 rounded-lg bg-white border border-[#d8e5dc] mb-6">
-                  <span className="text-sm font-extrabold text-[#00613a] block mb-1">
-                    Kem LAC® HD
-                  </span>
-                  <p className="text-xs text-[#5b6c62]">
-                    Three lactic acid-producing bacteria strains engineered for fast pH drops,
-                    suppressing mold, and retaining energy density.
-                  </p>
+                <div className="p-4 rounded-lg bg-white border border-[#d8e5dc] mb-6 flex items-start gap-3">
+                  <div className="w-9 h-9 rounded-lg bg-[#00613a]/10 text-[#00613a] flex items-center justify-center shrink-0 mt-0.5">
+                    <FlaskConical className="w-5 h-5 text-[#00613a]" />
+                  </div>
+                  <div>
+                    <span className="text-sm font-extrabold text-[#00613a] block mb-1">
+                      Kem LAC® HD
+                    </span>
+                    <p className="text-xs text-[#5b6c62]">
+                      Three lactic acid-producing bacteria strains engineered for fast pH drops,
+                      suppressing mold, and retaining energy density.
+                    </p>
+                  </div>
                 </div>
               </div>
 
@@ -387,11 +420,9 @@ export default function SilageMakingView() {
                   ].map((crop) => (
                     <li
                       key={crop}
-                      className="flex items-center gap-3 text-xs sm:text-sm font-bold text-[#143d29]"
+                      className="flex items-center gap-2.5 text-xs sm:text-sm font-bold text-[#143d29]"
                     >
-                      <span className="w-5 h-5 rounded-full bg-[#00613a] text-white flex items-center justify-center text-[0.65rem] shrink-0 font-black">
-                        ✓
-                      </span>
+                      <CheckCircle2 className="w-4 h-4 text-[#00613a] shrink-0" />
                       <span>{crop}</span>
                     </li>
                   ))}
@@ -405,6 +436,7 @@ export default function SilageMakingView() {
                   const el = document.getElementById("crops-spec");
                   if (el) el.scrollIntoView({ behavior: "smooth" });
                 }}
+                endIcon={<ArrowRight className="w-4 h-4 ml-1" />}
                 sx={{
                   bgcolor: "#00613a",
                   color: "#fff",
@@ -418,7 +450,7 @@ export default function SilageMakingView() {
                   transition: "all 0.35s ease",
                 }}
               >
-                Explore Our Solutions &nbsp; →
+                Explore Our Solutions
               </Button>
             </article>
           </div>
@@ -443,64 +475,75 @@ export default function SilageMakingView() {
           </div>
 
           <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-6">
-            {silageCrops.map((crop) => (
-              <article
-                key={crop.name}
-                className="bg-[#f1f8f2] rounded-xl border border-[#d8e5dc] p-6 shadow-sm hover:shadow-xl hover:border-[#00613a] hover:-translate-y-2 transition-all duration-400 flex flex-col justify-between reveal"
-              >
-                <div>
-                  <span className="text-[0.68rem] font-bold uppercase tracking-wider text-[#00613a] bg-[#00613a]/10 px-2.5 py-0.5 rounded-full inline-block mb-3">
-                    {crop.category}
-                  </span>
-                  <h3 className="text-xl font-bold text-[#143d29] mb-2">{crop.name}</h3>
-                  <div className="w-8 h-0.5 bg-[#ffca08] mb-3" />
+            {silageCrops.map((crop) => {
+              const CropIcon = crop.icon;
+              return (
+                <article
+                  key={crop.name}
+                  className="group bg-[#f1f8f2] rounded-xl border border-[#d8e5dc] p-6 shadow-sm hover:shadow-xl hover:border-[#00613a] hover:-translate-y-2 transition-all duration-400 flex flex-col justify-between reveal"
+                >
+                  <div>
+                    <div className="flex items-center justify-between mb-3">
+                      <span className="text-[0.68rem] font-bold uppercase tracking-wider text-[#00613a] bg-[#00613a]/10 px-2.5 py-0.5 rounded-full inline-block">
+                        {crop.category}
+                      </span>
+                      <div className="w-7 h-7 rounded-lg bg-[#00613a]/10 text-[#00613a] flex items-center justify-center shrink-0 group-hover:bg-[#00613a] group-hover:text-white transition-colors duration-300">
+                        <CropIcon className="w-4 h-4" />
+                      </div>
+                    </div>
+                    <h3 className="text-xl font-bold text-[#143d29] mb-2 group-hover:text-[#00613a] transition-colors">
+                      {crop.name}
+                    </h3>
+                    <div className="w-8 h-0.5 bg-[#ffca08] mb-3" />
 
-                  <div className="space-y-1.5 text-xs text-[#5b6c62] mb-4">
-                    <p>
-                      <strong className="text-[#143d29]">Dry Matter (DM):</strong> {crop.dryMatter}
-                    </p>
-                    <p>
-                      <strong className="text-[#143d29]">Target pH:</strong> {crop.targetPh}
-                    </p>
-                    <p>
-                      <strong className="text-[#143d29]">Protein / Efficacy:</strong>{" "}
-                      {crop.proteinContent}
-                    </p>
-                    <p>
-                      <strong className="text-[#143d29]">Shelf Life:</strong> {crop.shelfLife}
-                    </p>
+                    <div className="space-y-1.5 text-xs text-[#5b6c62] mb-4">
+                      <p>
+                        <strong className="text-[#143d29]">Dry Matter (DM):</strong> {crop.dryMatter}
+                      </p>
+                      <p>
+                        <strong className="text-[#143d29]">Target pH:</strong> {crop.targetPh}
+                      </p>
+                      <p>
+                        <strong className="text-[#143d29]">Protein / Efficacy:</strong>{" "}
+                        {crop.proteinContent}
+                      </p>
+                      <p>
+                        <strong className="text-[#143d29]">Shelf Life:</strong> {crop.shelfLife}
+                      </p>
+                    </div>
+
+                    <p className="text-xs text-[#5b6c62] leading-relaxed">{crop.description}</p>
                   </div>
 
-                  <p className="text-xs text-[#5b6c62] leading-relaxed">{crop.description}</p>
-                </div>
-
-                <div className="pt-5 border-t border-[#d8e5dc] mt-5">
-                  <Button
-                    fullWidth
-                    variant="outlined"
-                    className="btn-shine"
-                    onClick={() => setSelectedCrop(crop)}
-                    sx={{
-                      borderColor: "#00613a",
-                      color: "#00613a",
-                      fontSize: "0.72rem",
-                      fontWeight: 800,
-                      py: 0.8,
-                      borderRadius: "6px",
-                      textTransform: "none",
-                      "&:hover": {
-                        borderColor: "#004027",
-                        bgcolor: "#fff",
-                        transform: "translateY(-2px)",
-                      },
-                      transition: "all 0.3s ease",
-                    }}
-                  >
-                    View Technical Data →
-                  </Button>
-                </div>
-              </article>
-            ))}
+                  <div className="pt-5 border-t border-[#d8e5dc] mt-5">
+                    <Button
+                      fullWidth
+                      variant="outlined"
+                      className="btn-shine"
+                      onClick={() => setSelectedCrop(crop)}
+                      endIcon={<ArrowRight className="w-3.5 h-3.5" />}
+                      sx={{
+                        borderColor: "#00613a",
+                        color: "#00613a",
+                        fontSize: "0.72rem",
+                        fontWeight: 800,
+                        py: 0.8,
+                        borderRadius: "6px",
+                        textTransform: "none",
+                        "&:hover": {
+                          borderColor: "#004027",
+                          bgcolor: "#fff",
+                          transform: "translateY(-2px)",
+                        },
+                        transition: "all 0.3s ease",
+                      }}
+                    >
+                      View Technical Data
+                    </Button>
+                  </div>
+                </article>
+              );
+            })}
           </div>
         </div>
       </section>
@@ -518,20 +561,25 @@ export default function SilageMakingView() {
           </div>
 
           <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 border border-[#cfded3] rounded-xl bg-white overflow-hidden shadow-sm">
-            {whyChooseCards.map((card, idx) => (
-              <article
-                key={card.title}
-                className={`p-6 sm:p-8 flex flex-col justify-start reveal ${
-                  idx < 3 ? "lg:border-r border-[#cfded3]" : ""
-                } ${idx % 2 === 0 ? "sm:border-r border-[#cfded3]" : ""}`}
-              >
-                <div className="w-12 h-12 rounded-full flex items-center justify-center text-xl font-bold text-white mb-4 bg-gradient-to-br from-[#16864a] to-[#00552f]">
-                  {card.icon}
-                </div>
-                <h3 className="text-base font-bold text-[#143d29] mb-2">{card.title}</h3>
-                <p className="text-xs text-[#5b6c62] leading-relaxed">{card.desc}</p>
-              </article>
-            ))}
+            {whyChooseCards.map((card, idx) => {
+              const CardIcon = card.icon;
+              return (
+                <article
+                  key={card.title}
+                  className={`group p-6 sm:p-8 flex flex-col justify-start reveal hover:bg-[#fafdfb] transition-colors duration-300 ${
+                    idx < 3 ? "lg:border-r border-[#cfded3]" : ""
+                  } ${idx % 2 === 0 ? "sm:border-r border-[#cfded3]" : ""}`}
+                >
+                  <div className="w-12 h-12 rounded-xl flex items-center justify-center text-white mb-4 bg-gradient-to-br from-[#16864a] to-[#00552f] shadow-sm group-hover:scale-105 transition-transform duration-300">
+                    <CardIcon className="w-6 h-6 stroke-[1.8]" />
+                  </div>
+                  <h3 className="text-base font-bold text-[#143d29] mb-2 group-hover:text-[#00613a] transition-colors">
+                    {card.title}
+                  </h3>
+                  <p className="text-xs text-[#5b6c62] leading-relaxed">{card.desc}</p>
+                </article>
+              );
+            })}
           </div>
         </div>
       </section>
@@ -557,6 +605,7 @@ export default function SilageMakingView() {
                   variant="contained"
                   className="btn-shine"
                   onClick={handleCatalogueDownload}
+                  startIcon={<Download className="w-4 h-4" />}
                   sx={{
                     bgcolor: "#ffca08",
                     color: "#183723",
@@ -571,7 +620,7 @@ export default function SilageMakingView() {
                     transition: "all 0.35s ease",
                   }}
                 >
-                  ⇩ &nbsp; Download Now
+                  Download Now
                 </Button>
               </div>
             </article>
@@ -643,9 +692,10 @@ export default function SilageMakingView() {
                   const el = document.getElementById("contact");
                   if (el) el.scrollIntoView({ behavior: "smooth" });
                 }}
-                className="text-xs font-black text-[#00613a] hover:text-[#ffca08] transition-colors cursor-pointer"
+                className="inline-flex items-center gap-1.5 text-xs font-black text-[#00613a] hover:text-[#ffca08] transition-colors cursor-pointer group"
               >
-                Read More &nbsp; →
+                <span>Read More</span>
+                <ArrowRight className="w-3.5 h-3.5 group-hover:translate-x-1 transition-transform" />
               </button>
             </div>
           </div>
@@ -683,8 +733,8 @@ export default function SilageMakingView() {
                 </span>
                 <span className="text-2xl font-black text-[#143d29]">{selectedCrop.name}</span>
               </div>
-              <IconButton onClick={() => setSelectedCrop(null)} size="small">
-                ✕
+              <IconButton onClick={() => setSelectedCrop(null)} size="small" aria-label="Close dialog">
+                <X className="w-5 h-5 text-[#143d29]" />
               </IconButton>
             </DialogTitle>
             <DialogContent dividers sx={{ py: 2 }}>
@@ -734,10 +784,29 @@ export default function SilageMakingView() {
                   setSelectedCrop(null);
                   handleCatalogueDownload();
                 }}
+                startIcon={<Download className="w-4 h-4" />}
                 className="btn-shine"
                 sx={{ color: "#00613a", fontWeight: 700, fontSize: "0.75rem" }}
               >
                 Download Tech Sheet
+              </Button>
+              <Button
+                variant="contained"
+                onClick={() => {
+                  setSelectedCrop(null);
+                  const el = document.getElementById("contact");
+                  if (el) el.scrollIntoView({ behavior: "smooth" });
+                }}
+                endIcon={<ArrowRight className="w-4 h-4" />}
+                sx={{
+                  bgcolor: "#ffca08",
+                  color: "#183723",
+                  fontWeight: 800,
+                  fontSize: "0.75rem",
+                  "&:hover": { bgcolor: "#ebb500" },
+                }}
+              >
+                Inquire For This Feed
               </Button>
             </DialogActions>
           </>

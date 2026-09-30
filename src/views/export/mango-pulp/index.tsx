@@ -1,7 +1,6 @@
 "use client";
 
 import React, { useState, useRef, useEffect } from "react";
-import Link from "next/link";
 import Image from "next/image";
 import {
   Button,
@@ -13,10 +12,31 @@ import {
   DialogActions,
   IconButton,
 } from "@mui/material";
+import {
+  Sparkles,
+  ShieldCheck,
+  Globe2,
+  PackageCheck,
+  Truck,
+  BadgeCheck,
+  HeartPulse,
+  Sprout,
+  Award,
+  Ship,
+  SlidersHorizontal,
+  Leaf,
+  Download,
+  ArrowRight,
+  X,
+  Crown,
+  Sun,
+  Droplets,
+} from "lucide-react";
 
 interface MangoVariety {
   name: string;
   type: string;
+  icon: React.ComponentType<{ className?: string }>;
   brix: string;
   acidity: string;
   color: string;
@@ -80,6 +100,7 @@ export default function MangoPulpView() {
     {
       name: "Alphonso Mango Pulp",
       type: "The King of Mangoes · Ultra-Premium",
+      icon: Crown,
       brix: "16° – 18° Brix Min",
       acidity: "0.50% – 0.80% (as Citric Acid)",
       color: "Bright Golden Yellow to Deep Orange",
@@ -96,6 +117,7 @@ export default function MangoPulpView() {
     {
       name: "Totapuri Mango Pulp",
       type: "High-Yield Processing · Tangy-Sweet",
+      icon: Sparkles,
       brix: "14° Brix Min",
       acidity: "0.40% – 0.60% (as Citric Acid)",
       color: "Warm Golden Ochre to Canary Yellow",
@@ -112,6 +134,7 @@ export default function MangoPulpView() {
     {
       name: "Kesar Mango Pulp",
       type: "Queen of Fragrance · Saffron Hue",
+      icon: Sun,
       brix: "16° – 18° Brix Min",
       acidity: "0.45% – 0.65% (as Citric Acid)",
       color: "Intense Saffron Orange (Kesar)",
@@ -128,6 +151,7 @@ export default function MangoPulpView() {
     {
       name: "Raspuri Mango Pulp",
       type: "Juicy & Aromatic · Traditional Heritage",
+      icon: Droplets,
       brix: "15° Brix Min",
       acidity: "0.40% – 0.60% (as Citric Acid)",
       color: "Rich Reddish Yellow",
@@ -145,52 +169,56 @@ export default function MangoPulpView() {
 
   const benefits = [
     {
-      icon: "♧",
+      icon: ShieldCheck,
       title: "Quality Assurance",
       desc: "Rigorous laboratory testing and state-of-the-art aseptic thermal processing ensure consistent taste, color, Brix, and sterility.",
     },
     {
-      icon: "◎",
+      icon: Globe2,
       title: "Global Reach",
       desc: "Supplying containerized shipments of premium mango pulp to beverage brands, bakeries, and food distributors worldwide.",
     },
     {
-      icon: "♢",
+      icon: Sparkles,
       title: "Varieties and Uses",
       desc: "Comprehensive selection covering Alphonso, Totapuri, Kesar, and Raspuri for diverse culinary and industrial processing applications.",
     },
     {
-      icon: "⬡",
+      icon: PackageCheck,
       title: "Packaging & Customization",
       desc: "Sterile 215kg Aseptic bags in heavy-gauge steel drums, 20kg Bag-in-Box, and 3.1kg OTS food cans customized to your factory requirements.",
     },
   ];
 
   const qualityItems = [
-    { icon: "🚚", title: "Fast delivery", desc: "Global refrigerated & dry freight" },
-    { icon: "♢", title: "Certified products", desc: "FSSAI, ISO 22000, HACCP, Halal" },
-    { icon: "♧", title: "Only healthy", desc: "100% pure fruit, no preservatives" },
-    { icon: "🌱", title: "Organic making", desc: "Ethically cultivated orchards" },
+    { icon: Truck, title: "Fast delivery", desc: "Global refrigerated & dry freight" },
+    { icon: BadgeCheck, title: "Certified products", desc: "FSSAI, ISO 22000, HACCP, Halal" },
+    { icon: HeartPulse, title: "Only healthy", desc: "100% pure fruit, no preservatives" },
+    { icon: Sprout, title: "Organic making", desc: "Ethically cultivated orchards" },
   ];
 
   const chooseCards = [
     {
       title: "Premium Quality",
+      icon: Award,
       desc: "Made from the finest sun-ripened mangoes.",
       image: "https://images.unsplash.com/photo-1553279768-865429fa0078?auto=format&fit=crop&w=500&q=85",
     },
     {
       title: "Global Supply Chain",
+      icon: Ship,
       desc: "Reliable supply to international markets.",
       image: "https://images.unsplash.com/photo-1494412519320-aa613dfb7738?auto=format&fit=crop&w=500&q=85",
     },
     {
       title: "Custom Solutions",
+      icon: SlidersHorizontal,
       desc: "Tailored packaging and specifications.",
       image: "https://images.unsplash.com/photo-1601493700631-2b16ec4b4716?auto=format&fit=crop&w=500&q=85",
     },
     {
       title: "Sustainability",
+      icon: Leaf,
       desc: "Committed to a healthier planet.",
       image: "https://images.unsplash.com/photo-1416879595882-3373a0480b5b?auto=format&fit=crop&w=500&q=85",
     },
@@ -224,6 +252,10 @@ export default function MangoPulpView() {
         {/* Hero Content with Entrance Animation */}
         <div className="relative z-10 max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 w-full">
           <div className="max-w-2xl reveal left">
+            <div className="inline-flex items-center gap-2 px-3 py-1 mb-2.5 rounded-full bg-[#004b2b]/10 text-[#004b2b] text-xs font-bold uppercase tracking-wider font-sans">
+              <Sparkles className="w-3.5 h-3.5 text-[#ffbd09]" />
+              100% Pure Aseptic &amp; Canned Fruit Puree
+            </div>
             <p
               className="text-2xl sm:text-3xl text-[#004b2b] italic mb-1"
               style={{ fontFamily: "Georgia, serif" }}
@@ -257,6 +289,7 @@ export default function MangoPulpView() {
                   const el = document.getElementById("about");
                   if (el) el.scrollIntoView({ behavior: "smooth" });
                 }}
+                endIcon={<ArrowRight className="w-4 h-4 ml-1" />}
                 sx={{
                   bgcolor: "#ffbd09",
                   color: "#142e20",
@@ -277,7 +310,7 @@ export default function MangoPulpView() {
                   fontFamily: "Inter, Arial, sans-serif",
                 }}
               >
-                Explore Our Mango Pulp →
+                Explore Our Mango Pulp
               </Button>
             </div>
           </div>
@@ -351,18 +384,23 @@ export default function MangoPulpView() {
             {/* Column 3: Feature Highlights (reveal right) */}
             <div className="lg:col-span-3 p-7 sm:p-8 bg-[#fffaf0] border-t lg:border-t-0 lg:border-l border-[#e7ddc9] flex flex-col justify-center gap-5 reveal right">
               {[
-                "Quality Assurance",
-                "Global Reach",
-                "Varieties and Uses",
-                "Packaging & Customization",
-              ].map((item) => (
-                <div key={item} className="flex items-center gap-3">
-                  <span className="w-7 h-0.5 bg-[#ffbd09]" />
-                  <span className="text-sm font-bold text-[#102d20] font-sans">
-                    {item}
-                  </span>
-                </div>
-              ))}
+                { title: "Quality Assurance", icon: ShieldCheck },
+                { title: "Global Reach", icon: Globe2 },
+                { title: "Varieties and Uses", icon: Sparkles },
+                { title: "Packaging & Customization", icon: PackageCheck },
+              ].map((item) => {
+                const ItemIcon = item.icon;
+                return (
+                  <div key={item.title} className="flex items-center gap-3">
+                    <div className="w-7 h-7 rounded-lg bg-[#004b2b]/10 text-[#004b2b] flex items-center justify-center shrink-0">
+                      <ItemIcon className="w-4 h-4 text-[#004b2b]" />
+                    </div>
+                    <span className="text-sm font-bold text-[#102d20] font-sans">
+                      {item.title}
+                    </span>
+                  </div>
+                );
+              })}
             </div>
           </div>
         </div>
@@ -372,27 +410,30 @@ export default function MangoPulpView() {
       <section id="benefits" className="py-16 sm:py-20 bg-white">
         <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
           <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-8">
-            {benefits.map((b, idx) => (
-              <article
-                key={b.title}
-                className={`p-6 text-center reveal ${
-                  idx < benefits.length - 1 ? "lg:border-r lg:border-[#ffbd09]" : ""
-                }`}
-              >
-                <span className="w-14 h-14 rounded-full bg-[#fffaf0] text-[#004b2b] flex items-center justify-center text-2xl font-bold mx-auto mb-4 border border-[#e7ddc9]">
-                  {b.icon}
-                </span>
-                <h3
-                  className="text-lg font-bold text-[#102d20] mb-2"
-                  style={{ fontFamily: "Georgia, serif" }}
+            {benefits.map((b, idx) => {
+              const BenefitIcon = b.icon;
+              return (
+                <article
+                  key={b.title}
+                  className={`group p-6 text-center reveal ${
+                    idx < benefits.length - 1 ? "lg:border-r lg:border-[#ffbd09]/40" : ""
+                  }`}
                 >
-                  {b.title}
-                </h3>
-                <p className="text-xs text-[#526059] leading-relaxed font-sans">
-                  {b.desc}
-                </p>
-              </article>
-            ))}
+                  <span className="w-14 h-14 rounded-2xl bg-[#fffaf0] text-[#004b2b] flex items-center justify-center mx-auto mb-4 border border-[#e7ddc9] shadow-xs group-hover:bg-[#004b2b] group-hover:text-[#ffbd09] transition-colors duration-300">
+                    <BenefitIcon className="w-7 h-7 stroke-[1.8]" />
+                  </span>
+                  <h3
+                    className="text-lg font-bold text-[#102d20] mb-2 group-hover:text-[#004b2b] transition-colors"
+                    style={{ fontFamily: "Georgia, serif" }}
+                  >
+                    {b.title}
+                  </h3>
+                  <p className="text-xs text-[#526059] leading-relaxed font-sans">
+                    {b.desc}
+                  </p>
+                </article>
+              );
+            })}
           </div>
         </div>
       </section>
@@ -411,19 +452,24 @@ export default function MangoPulpView() {
             </div>
 
             <div className="md:col-span-8 grid grid-cols-1 sm:grid-cols-3 gap-6">
-              {qualityItems.slice(0, 3).map((item) => (
-                <div key={item.title} className="flex items-center gap-3 pl-4 border-l border-[#ffbd09]/60 reveal">
-                  <span className="text-2xl">{item.icon}</span>
-                  <div>
-                    <h3 className="text-sm font-bold text-white font-sans">
-                      {item.title}
-                    </h3>
-                    <p className="text-[0.72rem] text-emerald-100 font-sans">
-                      {item.desc}
-                    </p>
+              {qualityItems.slice(0, 3).map((item) => {
+                const QualityIcon = item.icon;
+                return (
+                  <div key={item.title} className="flex items-center gap-3 pl-4 border-l border-[#ffbd09]/60 reveal">
+                    <div className="w-10 h-10 rounded-xl bg-white/10 border border-white/20 text-[#ffbd09] flex items-center justify-center shrink-0">
+                      <QualityIcon className="w-5 h-5 stroke-[1.8]" />
+                    </div>
+                    <div>
+                      <h3 className="text-sm font-bold text-white font-sans">
+                        {item.title}
+                      </h3>
+                      <p className="text-[0.72rem] text-emerald-100 font-sans">
+                        {item.desc}
+                      </p>
+                    </div>
                   </div>
-                </div>
-              ))}
+                );
+              })}
             </div>
           </div>
         </div>
@@ -449,70 +495,79 @@ export default function MangoPulpView() {
           </div>
 
           <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-6">
-            {varieties.map((v) => (
-              <article
-                key={v.name}
-                className="bg-[#fffaf0] rounded-xl border border-[#e7ddc9] p-6 shadow-sm hover:shadow-xl hover:border-[#ffbd09] hover:-translate-y-2 transition-all duration-400 flex flex-col justify-between reveal"
-              >
-                <div>
-                  <span className="text-[0.68rem] font-bold uppercase tracking-wider text-[#004b2b] bg-[#004b2b]/10 px-2.5 py-0.5 rounded-full inline-block mb-3 font-sans">
-                    {v.type}
-                  </span>
-                  <h3
-                    className="text-xl font-bold text-[#102d20] mb-2"
-                    style={{ fontFamily: "Georgia, serif" }}
-                  >
-                    {v.name}
-                  </h3>
-                  <div className="w-8 h-0.5 bg-[#ffbd09] mb-3" />
+            {varieties.map((v) => {
+              const VarietyIcon = v.icon;
+              return (
+                <article
+                  key={v.name}
+                  className="group bg-[#fffaf0] rounded-xl border border-[#e7ddc9] p-6 shadow-sm hover:shadow-xl hover:border-[#ffbd09] hover:-translate-y-2 transition-all duration-400 flex flex-col justify-between reveal"
+                >
+                  <div>
+                    <div className="flex items-center justify-between mb-3">
+                      <span className="text-[0.68rem] font-bold uppercase tracking-wider text-[#004b2b] bg-[#004b2b]/10 px-2.5 py-0.5 rounded-full inline-block font-sans">
+                        {v.type}
+                      </span>
+                      <div className="w-7 h-7 rounded-lg bg-[#ffbd09]/20 text-[#004b2b] flex items-center justify-center shrink-0 group-hover:bg-[#004b2b] group-hover:text-[#ffbd09] transition-colors duration-300">
+                        <VarietyIcon className="w-4 h-4" />
+                      </div>
+                    </div>
+                    <h3
+                      className="text-xl font-bold text-[#102d20] mb-2 group-hover:text-[#004b2b] transition-colors"
+                      style={{ fontFamily: "Georgia, serif" }}
+                    >
+                      {v.name}
+                    </h3>
+                    <div className="w-8 h-0.5 bg-[#ffbd09] mb-3" />
 
-                  <div className="space-y-1.5 text-xs text-[#526059] mb-4 font-sans">
-                    <p>
-                      <strong className="text-[#102d20]">Soluble Solids:</strong> {v.brix}
-                    </p>
-                    <p>
-                      <strong className="text-[#102d20]">Acidity:</strong> {v.acidity}
-                    </p>
-                    <p>
-                      <strong className="text-[#102d20]">Color Profile:</strong> {v.color}
-                    </p>
-                    <p>
-                      <strong className="text-[#102d20]">Packing:</strong> {v.packing}
+                    <div className="space-y-1.5 text-xs text-[#526059] mb-4 font-sans">
+                      <p>
+                        <strong className="text-[#102d20]">Soluble Solids:</strong> {v.brix}
+                      </p>
+                      <p>
+                        <strong className="text-[#102d20]">Acidity:</strong> {v.acidity}
+                      </p>
+                      <p>
+                        <strong className="text-[#102d20]">Color Profile:</strong> {v.color}
+                      </p>
+                      <p>
+                        <strong className="text-[#102d20]">Packing:</strong> {v.packing}
+                      </p>
+                    </div>
+
+                    <p className="text-xs text-[#526059] leading-relaxed font-sans">
+                      {v.description}
                     </p>
                   </div>
 
-                  <p className="text-xs text-[#526059] leading-relaxed font-sans">
-                    {v.description}
-                  </p>
-                </div>
-
-                <div className="pt-5 border-t border-[#e7ddc9]/60 mt-5">
-                  <Button
-                    fullWidth
-                    variant="outlined"
-                    className="btn-shine"
-                    onClick={() => setSelectedVariety(v)}
-                    sx={{
-                      borderColor: "#004b2b",
-                      color: "#004b2b",
-                      fontSize: "0.72rem",
-                      fontWeight: 800,
-                      py: 0.8,
-                      borderRadius: "999px",
-                      "&:hover": {
-                        borderColor: "#00341e",
-                        bgcolor: "#fff",
-                        transform: "translateY(-2px)",
-                      },
-                      transition: "all 0.3s ease",
-                      fontFamily: "Inter, Arial, sans-serif",
-                    }}
-                  >
-                    View Technical Specs →
-                  </Button>
-                </div>
-              </article>
-            ))}
+                  <div className="pt-5 border-t border-[#e7ddc9]/60 mt-5">
+                    <Button
+                      fullWidth
+                      variant="outlined"
+                      className="btn-shine"
+                      onClick={() => setSelectedVariety(v)}
+                      endIcon={<ArrowRight className="w-3.5 h-3.5" />}
+                      sx={{
+                        borderColor: "#004b2b",
+                        color: "#004b2b",
+                        fontSize: "0.72rem",
+                        fontWeight: 800,
+                        py: 0.8,
+                        borderRadius: "999px",
+                        "&:hover": {
+                          borderColor: "#00341e",
+                          bgcolor: "#fff",
+                          transform: "translateY(-2px)",
+                        },
+                        transition: "all 0.3s ease",
+                        fontFamily: "Inter, Arial, sans-serif",
+                      }}
+                    >
+                      View Technical Specs
+                    </Button>
+                  </div>
+                </article>
+              );
+            })}
           </div>
         </div>
       </section>
@@ -540,54 +595,60 @@ export default function MangoPulpView() {
                     const el = document.getElementById("contact");
                     if (el) el.scrollIntoView({ behavior: "smooth" });
                   }}
-                  className="text-xs font-black uppercase tracking-wider text-[#004b2b] hover:text-[#ffbd09] transition-colors font-sans cursor-pointer flex items-center gap-1.5"
+                  className="text-xs font-black uppercase tracking-wider text-[#004b2b] hover:text-[#ffbd09] transition-colors font-sans cursor-pointer flex items-center gap-1.5 group"
                 >
                   <span>Connect With Trade Representative</span>
-                  <span>→</span>
+                  <ArrowRight className="w-3.5 h-3.5 group-hover:translate-x-1 transition-transform" />
                 </button>
               </div>
             </div>
 
             {/* Right 4 Photo Cards (cards reveal with zoom on hover) */}
             <div className="lg:col-span-8 grid grid-cols-1 sm:grid-cols-2 md:grid-cols-4 gap-4">
-              {chooseCards.map((card) => (
-                <article
-                  key={card.title}
-                  className="card reveal bg-white rounded-xl overflow-hidden shadow-sm hover:shadow-xl hover:-translate-y-2 transition-all duration-400 border border-[#e7ddc9]"
-                >
-                  <div className="relative w-full h-32 overflow-hidden">
-                    <Image
-                      src={card.image}
-                      alt={card.title}
-                      fill
-                      sizes="(max-width: 640px) 100vw, (max-width: 768px) 50vw, 25vw"
-                      className="object-cover transition-transform duration-700 hover:scale-108"
-                    />
-                  </div>
-                  <div className="p-4">
-                    <h3
-                      className="text-sm font-bold text-[#102d20] mb-1"
-                      style={{ fontFamily: "Georgia, serif" }}
-                    >
-                      {card.title}
-                    </h3>
-                    <p className="text-xs text-[#526059] leading-snug font-sans">
-                      {card.desc}
-                    </p>
-                  </div>
-                </article>
-              ))}
+              {chooseCards.map((card) => {
+                const CardIcon = card.icon;
+                return (
+                  <article
+                    key={card.title}
+                    className="card reveal bg-white rounded-xl overflow-hidden shadow-sm hover:shadow-xl hover:-translate-y-2 transition-all duration-400 border border-[#e7ddc9] group"
+                  >
+                    <div className="relative w-full h-32 overflow-hidden">
+                      <Image
+                        src={card.image}
+                        alt={card.title}
+                        fill
+                        sizes="(max-width: 640px) 100vw, (max-width: 768px) 50vw, 25vw"
+                        className="object-cover transition-transform duration-700 hover:scale-108"
+                      />
+                      <div className="absolute top-2.5 right-2.5 w-7 h-7 rounded-lg bg-white/95 backdrop-blur-md text-[#004b2b] flex items-center justify-center shadow-xs">
+                        <CardIcon className="w-4 h-4 text-[#004b2b]" />
+                      </div>
+                    </div>
+                    <div className="p-4">
+                      <h3
+                        className="text-sm font-bold text-[#102d20] mb-1 group-hover:text-[#004b2b] transition-colors"
+                        style={{ fontFamily: "Georgia, serif" }}
+                      >
+                        {card.title}
+                      </h3>
+                      <p className="text-xs text-[#526059] leading-snug font-sans">
+                        {card.desc}
+                      </p>
+                    </div>
+                  </article>
+                );
+              })}
             </div>
           </div>
         </div>
       </section>
 
-      {/* 8. RESOURCES & NEWS CARDS */}
+      {/* 8. RESOURCES SECTION */}
       <section className="py-14 sm:py-20 bg-white border-b border-[#e7ddc9]">
         <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
           <div className="grid grid-cols-1 md:grid-cols-12 gap-8 items-stretch">
             {/* Download Resource (reveal left) */}
-            <article className="md:col-span-6 bg-[#fffaf0] p-7 sm:p-8 rounded-2xl border border-[#e7ddc9] flex flex-col sm:flex-row items-center gap-6 shadow-sm reveal left">
+            <article className="md:col-span-12 lg:col-span-8 lg:col-start-3 bg-[#fffaf0] p-7 sm:p-8 rounded-2xl border border-[#e7ddc9] flex flex-col sm:flex-row items-center gap-6 shadow-sm reveal left">
               <div className="relative w-full sm:w-40 h-32 shrink-0 rounded-xl overflow-hidden border border-[#e7ddc9]">
                 <Image
                   src="https://images.unsplash.com/photo-1553279768-865429fa0078?auto=format&fit=crop&w=500&q=85"
@@ -612,6 +673,7 @@ export default function MangoPulpView() {
                   variant="contained"
                   className="btn-shine"
                   onClick={handleDownloadSpecs}
+                  startIcon={<Download className="w-4 h-4" />}
                   sx={{
                     bgcolor: "#ffbd09",
                     color: "#142e20",
@@ -631,44 +693,10 @@ export default function MangoPulpView() {
                     fontFamily: "Inter, Arial, sans-serif",
                   }}
                 >
-                  ⇩ &nbsp; Download Product Details
+                  Download Product Details
                 </Button>
               </div>
             </article>
-
-            {/* News Resource (reveal right) */}
-            {/* <article className="md:col-span-6 bg-[#fffaf0] p-7 sm:p-8 rounded-2xl border border-[#e7ddc9] flex flex-col sm:flex-row items-center gap-6 shadow-sm reveal right">
-              <div className="relative w-full sm:w-40 h-32 shrink-0 rounded-xl overflow-hidden border border-[#e7ddc9]">
-                <Image
-                  src="https://images.unsplash.com/photo-1591073113125-e46713c829ed?auto=format&fit=crop&w=500&q=85"
-                  alt="Mango harvest news"
-                  fill
-                  sizes="(max-width: 640px) 100vw, 160px"
-                  className="object-cover"
-                />
-              </div>
-              <div className="flex-1 text-center sm:text-left">
-                <h3
-                  className="text-xl font-bold text-[#102d20] mb-2"
-                  style={{ fontFamily: "Georgia, serif" }}
-                >
-                  Latest News
-                </h3>
-                <p className="text-xs text-[#526059] font-sans mb-4">
-                  Insights, updates and stories from our world of mangoes.
-                </p>
-                <button
-                  type="button"
-                  onClick={() => {
-                    const el = document.getElementById("contact");
-                    if (el) el.scrollIntoView({ behavior: "smooth" });
-                  }}
-                  className="btn-shine inline-block px-4 py-2 bg-white border border-[#ffbd09] rounded-full text-xs font-bold text-[#004b2b] hover:bg-[#fff9e6] transition-all cursor-pointer font-sans"
-                >
-                  View All News &nbsp; →
-                </button>
-              </div>
-            </article> */}
           </div>
         </div>
       </section>
@@ -702,8 +730,8 @@ export default function MangoPulpView() {
                   {selectedVariety.name}
                 </span>
               </div>
-              <IconButton onClick={() => setSelectedVariety(null)} size="small">
-                ✕
+              <IconButton onClick={() => setSelectedVariety(null)} size="small" aria-label="Close dialog">
+                <X className="w-5 h-5 text-[#102d20]" />
               </IconButton>
             </DialogTitle>
             <DialogContent dividers sx={{ py: 2 }}>
@@ -753,10 +781,30 @@ export default function MangoPulpView() {
                   setSelectedVariety(null);
                   handleDownloadSpecs();
                 }}
+                startIcon={<Download className="w-4 h-4" />}
                 className="btn-shine"
                 sx={{ color: "#004b2b", fontWeight: 700, fontSize: "0.75rem", fontFamily: "Inter, Arial, sans-serif" }}
               >
                 Download Data Sheet
+              </Button>
+              <Button
+                variant="contained"
+                onClick={() => {
+                  setSelectedVariety(null);
+                  const el = document.getElementById("contact");
+                  if (el) el.scrollIntoView({ behavior: "smooth" });
+                }}
+                endIcon={<ArrowRight className="w-4 h-4" />}
+                sx={{
+                  bgcolor: "#ffbd09",
+                  color: "#142e20",
+                  fontWeight: 800,
+                  fontSize: "0.75rem",
+                  "&:hover": { bgcolor: "#e5a700" },
+                  fontFamily: "Inter, Arial, sans-serif",
+                }}
+              >
+                Inquire For This Pulp
               </Button>
             </DialogActions>
           </>

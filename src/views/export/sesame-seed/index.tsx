@@ -1,7 +1,6 @@
 "use client";
 
 import React, { useState, useRef, useEffect } from "react";
-import Link from "next/link";
 import {
   Button,
   Snackbar,
@@ -12,10 +11,32 @@ import {
   DialogActions,
   IconButton,
 } from "@mui/material";
+import {
+  Sparkles,
+  ShieldCheck,
+  Globe2,
+  PackageCheck,
+  Truck,
+  BadgeCheck,
+  HeartPulse,
+  Sprout,
+  Award,
+  Ship,
+  SlidersHorizontal,
+  Leaf,
+  Download,
+  ArrowRight,
+  X,
+  Wheat,
+  Sun,
+  Flame,
+  CircleDot,
+} from "lucide-react";
 
 interface SesameVariety {
   name: string;
   grade: string;
+  icon: React.ComponentType<{ className?: string }>;
   purity: string;
   oilContent: string;
   moisture: string;
@@ -78,6 +99,7 @@ export default function SesameSeedView() {
     {
       name: "Hulled White Sesame Seeds",
       grade: "Premium Bakery Grade (Auto-Sortex)",
+      icon: Wheat,
       purity: "99.95% / 99.99% Min",
       oilContent: "48% – 51% Min",
       moisture: "5.0% Max",
@@ -93,6 +115,7 @@ export default function SesameSeedView() {
     {
       name: "Natural White Sesame Seeds",
       grade: "Export Machine Cleaned & Sortex",
+      icon: Sun,
       purity: "99/1 & 99.5% Min",
       oilContent: "48% – 52% Min",
       moisture: "6.0% Max",
@@ -108,6 +131,7 @@ export default function SesameSeedView() {
     {
       name: "Natural Black Sesame Seeds",
       grade: "Deep Jet Black Sortex Cleaned",
+      icon: CircleDot,
       purity: "99.0% / 99.5% Min",
       oilContent: "45% – 48% Min",
       moisture: "5.5% Max",
@@ -123,6 +147,7 @@ export default function SesameSeedView() {
     {
       name: "Roasted / Toasted Sesame Seeds",
       grade: "Evenly Toasted Golden Aroma",
+      icon: Flame,
       purity: "99.90% Min",
       oilContent: "48% Min",
       moisture: "2.5% Max",
@@ -139,52 +164,52 @@ export default function SesameSeedView() {
 
   const features = [
     {
-      icon: "♢",
+      icon: ShieldCheck,
       title: "Quality Assurance",
       desc: "Stringent quality control at every stage to ensure purity, low moisture, and consistent microbiological safety.",
     },
     {
-      icon: "◎",
+      icon: Globe2,
       title: "Global Reach",
       desc: "Supplying premium sesame seeds to leading food processors, bakeries, and oil millers across 30+ countries worldwide.",
     },
     {
-      icon: "♧",
+      icon: Sparkles,
       title: "Varieties and Uses",
       desc: "Wide range of sesame varieties covering Natural White, Hulled 99.95%, Black, and Roasted for diverse culinary applications.",
     },
     {
-      icon: "⬡",
+      icon: PackageCheck,
       title: "Packaging & Customization",
       desc: "Flexible packaging solutions tailored to your requirements, including 25kg multi-wall paper bags, PP bags, and 1 MT bulk jumbo bags.",
     },
   ];
 
   const qualityItems = [
-    { icon: "🚚", title: "Fast delivery", desc: "Reliable port container dispatch" },
-    { icon: "▣", title: "Certified products", desc: "FSSAI, APEDA, ISO 22000, Halal" },
-    { icon: "♧", title: "Only healthy", desc: "Zero chemical adulteration" },
-    { icon: "🌱", title: "Organic making", desc: "Ethical sustainable crop sourcing" },
+    { icon: Truck, title: "Fast delivery", desc: "Reliable port container dispatch" },
+    { icon: BadgeCheck, title: "Certified products", desc: "FSSAI, APEDA, ISO 22000, Halal" },
+    { icon: HeartPulse, title: "Only healthy", desc: "Zero chemical adulteration" },
+    { icon: Sprout, title: "Organic making", desc: "Ethical sustainable crop sourcing" },
   ];
 
   const chooseCards = [
     {
-      icon: "◇",
+      icon: Award,
       title: "Premium Quality",
       desc: "Carefully sourced from certified farms and laser-sortex processed for consistent purity, seed size, and nutty taste.",
     },
     {
-      icon: "◎",
+      icon: Ship,
       title: "Global Supply Chain",
       desc: "Reliable freight logistics, moisture-barrier container lining, and timely delivery to worldwide destination ports.",
     },
     {
-      icon: "⚙",
+      icon: SlidersHorizontal,
       title: "Custom Solutions",
       desc: "Flexible options in varieties, specific oil content, custom roasting levels, private labeling, and bulk jumbo bags.",
     },
     {
-      icon: "♧",
+      icon: Leaf,
       title: "Sustainability",
       desc: "Responsible crop sourcing and environmentally sound post-harvest processing for a greener, healthier tomorrow.",
     },
@@ -218,6 +243,10 @@ export default function SesameSeedView() {
         {/* Hero Content with Left Gold Border */}
         <div className="relative z-10 max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 w-full">
           <div className="max-w-xl pl-6 border-l-4 border-[#e7b600] hero-copy reveal left">
+            <div className="inline-flex items-center gap-1.5 px-3 py-1 mb-2.5 rounded-full bg-white/10 backdrop-blur-md border border-white/20 text-xs font-bold text-[#e7b600] tracking-widest uppercase">
+              <Sparkles className="w-3.5 h-3.5 text-[#e7b600]" />
+              Export-Grade 99.95% Auto-Sortex Sesame
+            </div>
             <p className="text-[#e7b600] text-sm sm:text-base font-bold tracking-wider mb-1">
               — &nbsp; The Best Quality
             </p>
@@ -246,6 +275,7 @@ export default function SesameSeedView() {
                   const el = document.getElementById("varieties");
                   if (el) el.scrollIntoView({ behavior: "smooth" });
                 }}
+                endIcon={<ArrowRight className="w-4 h-4 ml-1" />}
                 sx={{
                   bgcolor: "#e7b600",
                   color: "#17351f",
@@ -265,7 +295,7 @@ export default function SesameSeedView() {
                   transition: "all 0.35s ease",
                 }}
               >
-                Explore Sesame Seeds →
+                Explore Sesame Seeds
               </Button>
             </div>
           </div>
@@ -289,24 +319,27 @@ export default function SesameSeedView() {
           </div>
 
           <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-8 features">
-            {features.map((f, idx) => (
-              <article
-                key={f.title}
-                className={`p-6 text-center feature reveal ${
-                  idx < features.length - 1 ? "lg:border-r lg:border-[#dddcd3]" : ""
-                }`}
-              >
-                <span className="w-14 h-14 rounded-full bg-[#fbf8ef] text-[#075b31] flex items-center justify-center text-3xl font-bold mx-auto mb-4 border border-[#dddcd3]">
-                  {f.icon}
-                </span>
-                <h3 className="text-lg font-bold text-[#183427] mb-2">
-                  {f.title}
-                </h3>
-                <p className="text-xs text-[#606a64] leading-relaxed">
-                  {f.desc}
-                </p>
-              </article>
-            ))}
+            {features.map((f, idx) => {
+              const FeatureIcon = f.icon;
+              return (
+                <article
+                  key={f.title}
+                  className={`group p-6 text-center feature reveal ${
+                    idx < features.length - 1 ? "lg:border-r lg:border-[#dddcd3]" : ""
+                  }`}
+                >
+                  <span className="w-14 h-14 rounded-2xl bg-[#fbf8ef] text-[#075b31] flex items-center justify-center mx-auto mb-4 border border-[#dddcd3] shadow-xs group-hover:bg-[#075b31] group-hover:text-[#e7b600] transition-colors duration-300">
+                    <FeatureIcon className="w-7 h-7 stroke-[1.8]" />
+                  </span>
+                  <h3 className="text-lg font-bold text-[#183427] mb-2 group-hover:text-[#075b31] transition-colors">
+                    {f.title}
+                  </h3>
+                  <p className="text-xs text-[#606a64] leading-relaxed">
+                    {f.desc}
+                  </p>
+                </article>
+              );
+            })}
           </div>
         </div>
       </section>
@@ -349,22 +382,27 @@ export default function SesameSeedView() {
           </p>
 
           <div className="grid grid-cols-2 md:grid-cols-4 gap-6 quality-row">
-            {qualityItems.map((item, idx) => (
-              <div
-                key={item.title}
-                className={`p-4 text-center qitem reveal ${
-                  idx < qualityItems.length - 1 ? "md:border-r md:border-[#d9d2bf]" : ""
-                }`}
-              >
-                <div className="text-3xl sm:text-4xl text-[#075b31] mb-2">{item.icon}</div>
-                <h3 className="text-base font-extrabold text-[#183427]">
-                  {item.title}
-                </h3>
-                <p className="text-xs text-[#606a64] mt-0.5">
-                  {item.desc}
-                </p>
-              </div>
-            ))}
+            {qualityItems.map((item, idx) => {
+              const QualityIcon = item.icon;
+              return (
+                <div
+                  key={item.title}
+                  className={`p-4 text-center qitem reveal ${
+                    idx < qualityItems.length - 1 ? "md:border-r md:border-[#d9d2bf]" : ""
+                  }`}
+                >
+                  <div className="w-14 h-14 rounded-2xl bg-white border border-[#dddcd3] text-[#075b31] flex items-center justify-center mx-auto mb-3 shadow-xs">
+                    <QualityIcon className="w-7 h-7 stroke-[1.8]" />
+                  </div>
+                  <h3 className="text-base font-extrabold text-[#183427]">
+                    {item.title}
+                  </h3>
+                  <p className="text-xs text-[#606a64] mt-0.5">
+                    {item.desc}
+                  </p>
+                </div>
+              );
+            })}
           </div>
         </div>
       </section>
@@ -386,66 +424,75 @@ export default function SesameSeedView() {
           </div>
 
           <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-6">
-            {varieties.map((v) => (
-              <article
-                key={v.name}
-                className="bg-[#fbf8ef] rounded-xl border border-[#dddcd3] p-6 shadow-sm hover:shadow-xl hover:border-[#e7b600] hover:-translate-y-2 transition-all duration-400 flex flex-col justify-between reveal"
-              >
-                <div>
-                  <span className="text-[0.68rem] font-bold uppercase tracking-wider text-[#075b31] bg-[#075b31]/10 px-2.5 py-0.5 rounded-full inline-block mb-3">
-                    {v.grade}
-                  </span>
-                  <h3 className="text-xl font-bold text-[#183427] mb-2">
-                    {v.name}
-                  </h3>
-                  <div className="w-8 h-0.5 bg-[#e7b600] mb-3" />
+            {varieties.map((v) => {
+              const VarietyIcon = v.icon;
+              return (
+                <article
+                  key={v.name}
+                  className="group bg-[#fbf8ef] rounded-xl border border-[#dddcd3] p-6 shadow-sm hover:shadow-xl hover:border-[#e7b600] hover:-translate-y-2 transition-all duration-400 flex flex-col justify-between reveal"
+                >
+                  <div>
+                    <div className="flex items-center justify-between mb-3">
+                      <span className="text-[0.68rem] font-bold uppercase tracking-wider text-[#075b31] bg-[#075b31]/10 px-2.5 py-0.5 rounded-full inline-block">
+                        {v.grade}
+                      </span>
+                      <div className="w-7 h-7 rounded-lg bg-[#e7b600]/20 text-[#075b31] flex items-center justify-center shrink-0 group-hover:bg-[#075b31] group-hover:text-[#e7b600] transition-colors duration-300">
+                        <VarietyIcon className="w-4 h-4" />
+                      </div>
+                    </div>
+                    <h3 className="text-xl font-bold text-[#183427] mb-2 group-hover:text-[#075b31] transition-colors">
+                      {v.name}
+                    </h3>
+                    <div className="w-8 h-0.5 bg-[#e7b600] mb-3" />
 
-                  <div className="space-y-1.5 text-xs text-[#606a64] mb-4">
-                    <p>
-                      <strong className="text-[#183427]">Purity:</strong> {v.purity}
-                    </p>
-                    <p>
-                      <strong className="text-[#183427]">Oil Content:</strong> {v.oilContent}
-                    </p>
-                    <p>
-                      <strong className="text-[#183427]">Moisture:</strong> {v.moisture}
-                    </p>
-                    <p>
-                      <strong className="text-[#183427]">Free Fatty Acids:</strong> {v.ffa}
+                    <div className="space-y-1.5 text-xs text-[#606a64] mb-4">
+                      <p>
+                        <strong className="text-[#183427]">Purity:</strong> {v.purity}
+                      </p>
+                      <p>
+                        <strong className="text-[#183427]">Oil Content:</strong> {v.oilContent}
+                      </p>
+                      <p>
+                        <strong className="text-[#183427]">Moisture:</strong> {v.moisture}
+                      </p>
+                      <p>
+                        <strong className="text-[#183427]">Free Fatty Acids:</strong> {v.ffa}
+                      </p>
+                    </div>
+
+                    <p className="text-xs text-[#606a64] leading-relaxed">
+                      {v.description}
                     </p>
                   </div>
 
-                  <p className="text-xs text-[#606a64] leading-relaxed">
-                    {v.description}
-                  </p>
-                </div>
-
-                <div className="pt-5 border-t border-[#dddcd3]/60 mt-5">
-                  <Button
-                    fullWidth
-                    variant="outlined"
-                    className="btn-shine"
-                    onClick={() => setSelectedVariety(v)}
-                    sx={{
-                      borderColor: "#075b31",
-                      color: "#075b31",
-                      fontSize: "0.72rem",
-                      fontWeight: 800,
-                      py: 0.8,
-                      borderRadius: "999px",
-                      "&:hover": {
-                        borderColor: "#003b23",
-                        bgcolor: "#fff",
-                        transform: "translateY(-2px)",
-                      },
-                      transition: "all 0.3s ease",
-                    }}
-                  >
-                    View Technical Specs →
-                  </Button>
-                </div>
-              </article>
-            ))}
+                  <div className="pt-5 border-t border-[#dddcd3]/60 mt-5">
+                    <Button
+                      fullWidth
+                      variant="outlined"
+                      className="btn-shine"
+                      onClick={() => setSelectedVariety(v)}
+                      endIcon={<ArrowRight className="w-3.5 h-3.5" />}
+                      sx={{
+                        borderColor: "#075b31",
+                        color: "#075b31",
+                        fontSize: "0.72rem",
+                        fontWeight: 800,
+                        py: 0.8,
+                        borderRadius: "999px",
+                        "&:hover": {
+                          borderColor: "#003b23",
+                          bgcolor: "#fff",
+                          transform: "translateY(-2px)",
+                        },
+                        transition: "all 0.3s ease",
+                      }}
+                    >
+                      View Technical Specs
+                    </Button>
+                  </div>
+                </article>
+              );
+            })}
           </div>
         </div>
       </section>
@@ -464,24 +511,27 @@ export default function SesameSeedView() {
           </div>
 
           <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-8 my-8 choose-row">
-            {chooseCards.map((card, idx) => (
-              <article
-                key={card.title}
-                className={`p-6 text-center choose-card reveal hover:-translate-y-2 transition-transform duration-400 ${
-                  idx < chooseCards.length - 1 ? "lg:border-r lg:border-[#dddcd3]" : ""
-                }`}
-              >
-                <span className="w-14 h-14 rounded-full bg-[#fbf8ef] text-[#075b31] flex items-center justify-center text-3xl font-bold mx-auto mb-4 border border-[#dddcd3]">
-                  {card.icon}
-                </span>
-                <h3 className="text-lg font-bold text-[#183427] mb-2">
-                  {card.title}
-                </h3>
-                <p className="text-xs text-[#606a64] leading-relaxed">
-                  {card.desc}
-                </p>
-              </article>
-            ))}
+            {chooseCards.map((card, idx) => {
+              const ChooseIcon = card.icon;
+              return (
+                <article
+                  key={card.title}
+                  className={`group p-6 text-center choose-card reveal hover:-translate-y-2 transition-transform duration-400 ${
+                    idx < chooseCards.length - 1 ? "lg:border-r lg:border-[#dddcd3]" : ""
+                  }`}
+                >
+                  <span className="w-14 h-14 rounded-2xl bg-[#fbf8ef] text-[#075b31] flex items-center justify-center mx-auto mb-4 border border-[#dddcd3] shadow-xs group-hover:bg-[#075b31] group-hover:text-[#e7b600] transition-colors duration-300">
+                    <ChooseIcon className="w-7 h-7 stroke-[1.8]" />
+                  </span>
+                  <h3 className="text-lg font-bold text-[#183427] mb-2 group-hover:text-[#075b31] transition-colors">
+                    {card.title}
+                  </h3>
+                  <p className="text-xs text-[#606a64] leading-relaxed">
+                    {card.desc}
+                  </p>
+                </article>
+              );
+            })}
           </div>
 
           {/* Download Product Brochure Bar */}
@@ -490,6 +540,7 @@ export default function SesameSeedView() {
               variant="contained"
               className="btn-shine"
               onClick={handleDownloadSpecs}
+              startIcon={<Download className="w-4 h-4" />}
               sx={{
                 bgcolor: "#075b31",
                 color: "#ffffff",
@@ -509,7 +560,7 @@ export default function SesameSeedView() {
                 transition: "all 0.35s ease",
               }}
             >
-              ⇩ &nbsp; Download Product Brochure
+              Download Product Brochure
             </Button>
           </div>
         </div>
@@ -538,10 +589,10 @@ export default function SesameSeedView() {
                 const el = document.getElementById("contact");
                 if (el) el.scrollIntoView({ behavior: "smooth" });
               }}
-              className="btn-shine inline-flex items-center gap-2 text-xs font-bold text-[#075b31] hover:text-[#e7b600] transition-colors cursor-pointer"
+              className="btn-shine inline-flex items-center gap-2 text-xs font-bold text-[#075b31] hover:text-[#e7b600] transition-colors cursor-pointer group"
             >
               <span>Connect With Trade Desk</span>
-              <span>→</span>
+              <ArrowRight className="w-3.5 h-3.5 group-hover:translate-x-1 transition-transform" />
             </button>
           </div>
         </div>
@@ -573,8 +624,8 @@ export default function SesameSeedView() {
                   {selectedVariety.name}
                 </span>
               </div>
-              <IconButton onClick={() => setSelectedVariety(null)} size="small">
-                ✕
+              <IconButton onClick={() => setSelectedVariety(null)} size="small" aria-label="Close dialog">
+                <X className="w-5 h-5 text-[#183427]" />
               </IconButton>
             </DialogTitle>
             <DialogContent dividers sx={{ py: 2 }}>
@@ -624,10 +675,29 @@ export default function SesameSeedView() {
                   setSelectedVariety(null);
                   handleDownloadSpecs();
                 }}
+                startIcon={<Download className="w-4 h-4" />}
                 className="btn-shine"
                 sx={{ color: "#075b31", fontWeight: 700, fontSize: "0.75rem" }}
               >
                 Download Data Sheet
+              </Button>
+              <Button
+                variant="contained"
+                onClick={() => {
+                  setSelectedVariety(null);
+                  const el = document.getElementById("contact");
+                  if (el) el.scrollIntoView({ behavior: "smooth" });
+                }}
+                endIcon={<ArrowRight className="w-4 h-4" />}
+                sx={{
+                  bgcolor: "#e7b600",
+                  color: "#183427",
+                  fontWeight: 800,
+                  fontSize: "0.75rem",
+                  "&:hover": { bgcolor: "#d6a700" },
+                }}
+              >
+                Inquire For This Variety
               </Button>
             </DialogActions>
           </>

@@ -1,20 +1,31 @@
 "use client";
 
 import React, { useState, useRef } from "react";
-import Link from "next/link";
 import Image from "next/image";
 import {
   Button,
-  Snackbar,
-  Alert,
   Dialog,
   DialogTitle,
   DialogContent,
   DialogActions,
   IconButton,
+  Snackbar,
+  Alert,
 } from "@mui/material";
+import {
+  Sparkles,
+  Atom,
+  FlaskConical,
+  Droplets,
+  ChevronRight,
+  ArrowRight,
+  Download,
+  X,
+  ShieldCheck,
+  Ship,
+} from "lucide-react";
 
-interface AcidDetail {
+interface AcidItem {
   title: string;
   formula: string;
   purity: string;
@@ -26,10 +37,8 @@ interface AcidDetail {
 
 export default function AcidsView() {
   const heroRef = useRef<HTMLDivElement>(null);
-  const [spotlight, setSpotlight] = useState({ x: 72, y: 40 });
-
-  // Dialog state for viewing acid specifications
-  const [selectedAcid, setSelectedAcid] = useState<AcidDetail | null>(null);
+  const [spotlight, setSpotlight] = useState({ x: 70, y: 40 });
+  const [selectedAcid, setSelectedAcid] = useState<AcidItem | null>(null);
 
   // Toast notification state
   const [toastOpen, setToastOpen] = useState(false);
@@ -48,34 +57,17 @@ export default function AcidsView() {
 
   const handleDownloadSpecs = () => {
     setToastSeverity("info");
-    setToastMessage(
-      "Industrial Acids Technical Datasheet & Certificate of Analysis (COA) downloaded.",
-    );
+    setToastMessage("Acid technical specifications sheet downloaded.");
     setToastOpen(true);
   };
 
-  const featuredAcids: AcidDetail[] = [
-    {
-      title: "Sulfuric Acid",
-      formula: "H₂SO₄",
-      purity: "98% Technical & Commercial Grade",
-      casNo: "7664-93-9",
-      desc: "A highly versatile mineral acid indispensable in fertilizer synthesis, battery manufacturing, ore extraction, and organic chemical processing.",
-      applications: [
-        "Phosphate fertilizer manufacturing",
-        "Lead-acid storage battery electrolyte",
-        "Titanium dioxide pigment production",
-        "Petroleum refining & alkylation catalysts",
-      ],
-      image:
-        "https://images.unsplash.com/photo-1532187863486-abf9dbad1b69?auto=format&fit=crop&w=800&q=86",
-    },
+  const featuredAcids: AcidItem[] = [
     {
       title: "Hydrochloric Acid",
       formula: "HCl",
-      purity: "33% - 37% Concentrated Aqueous",
+      purity: "33% - 37% Technical Grade",
       casNo: "7647-01-0",
-      desc: "Essential strong inorganic acid for steel pickling, industrial chemical synthesis, water treatment neutralization, and food additive processing.",
+      desc: "Clear, colorless aqueous solution of hydrogen chloride. Highly corrosive strong mineral acid widely imported for large-scale steel pickling, industrial water demineralization, and ore processing.",
       applications: [
         "Steel pickling & scale removal",
         "PVC and polyurethane precursors",
@@ -120,7 +112,7 @@ export default function AcidsView() {
   const productGroups = [
     {
       title: "Carbonates",
-      symbol: "⚛",
+      icon: Atom,
       items: [
         "Ammonium Bicarbonate",
         "Calcium Carbonate",
@@ -131,12 +123,12 @@ export default function AcidsView() {
     },
     {
       title: "Buffering Agents",
-      symbol: "⚗",
+      icon: FlaskConical,
       items: ["Calcium Citrate", "Potassium Citrate", "Sodium Citrate"],
     },
     {
       title: "Acidulants",
-      symbol: "♙",
+      icon: Droplets,
       items: [
         "Acetic Acid",
         "Ascorbic Acid",
@@ -181,10 +173,10 @@ export default function AcidsView() {
 
         {/* Hero Content */}
         <div className="relative z-10 max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 w-full py-16 animate-hero-enter">
-          <p className="text-xs font-black uppercase tracking-[0.18em] text-white/90 mb-1 leading-snug">
-            Chemical Solutions <br />
-            for a Better Tomorrow
-          </p>
+          <div className="inline-flex items-center gap-2 px-3 py-1 mb-3 rounded-full bg-white/10 backdrop-blur-md border border-white/20 text-xs font-bold text-[#ffca05] tracking-widest uppercase">
+            <Sparkles className="w-3.5 h-3.5 text-[#ffca05]" />
+            High-Purity Industrial &amp; Analytical Acids
+          </div>
           <div className="w-14 h-1 bg-[#ffca05] rounded-full my-3" />
           <h1 className="text-4xl sm:text-6xl lg:text-7xl font-black tracking-tight text-white mb-3 leading-none drop-shadow-md">
             Industrial <span className="text-[#ffca05]">Acids</span>
@@ -226,6 +218,39 @@ export default function AcidsView() {
                 UN hazardous materials compliance, and customs clearance
                 support.
               </p>
+
+              {/* Quality & Assurance Badges */}
+              <div className="pt-2 grid grid-cols-1 sm:grid-cols-3 gap-3">
+                <div className="flex items-center gap-3 p-3 rounded-xl bg-[#f5faf6] border border-[#dce8df]">
+                  <div className="w-9 h-9 rounded-lg bg-[#00562f]/10 text-[#00562f] flex items-center justify-center shrink-0">
+                    <FlaskConical className="w-4.5 h-4.5 text-[#00562f]" />
+                  </div>
+                  <div>
+                    <span className="block text-xs font-bold text-[#153726]">Assay Purity</span>
+                    <span className="block text-[11px] text-[#5c665f]">Guaranteed Grade</span>
+                  </div>
+                </div>
+
+                <div className="flex items-center gap-3 p-3 rounded-xl bg-[#f5faf6] border border-[#dce8df]">
+                  <div className="w-9 h-9 rounded-lg bg-[#00562f]/10 text-[#00562f] flex items-center justify-center shrink-0">
+                    <ShieldCheck className="w-4.5 h-4.5 text-[#00562f]" />
+                  </div>
+                  <div>
+                    <span className="block text-xs font-bold text-[#153726]">UN / SDS</span>
+                    <span className="block text-[11px] text-[#5c665f]">Safety Compliant</span>
+                  </div>
+                </div>
+
+                <div className="flex items-center gap-3 p-3 rounded-xl bg-[#f5faf6] border border-[#dce8df]">
+                  <div className="w-9 h-9 rounded-lg bg-[#00562f]/10 text-[#00562f] flex items-center justify-center shrink-0">
+                    <Ship className="w-4.5 h-4.5 text-[#00562f]" />
+                  </div>
+                  <div>
+                    <span className="block text-xs font-bold text-[#153726]">ISO Tanks</span>
+                    <span className="block text-[11px] text-[#5c665f]">Bulk Port Import</span>
+                  </div>
+                </div>
+              </div>
             </div>
 
             {/* Right Image */}
@@ -300,9 +325,7 @@ export default function AcidsView() {
                       className="text-xs font-bold text-[#00562f] hover:text-[#003b22] flex items-center gap-1.5 transition-colors cursor-pointer group/btn"
                     >
                       <span>View Specifications</span>
-                      <span className="group-hover/btn:translate-x-1 transition-transform">
-                        →
-                      </span>
+                      <ArrowRight className="w-3.5 h-3.5 group-hover/btn:translate-x-1 transition-transform" />
                     </button>
                   </div>
                 </div>
@@ -345,40 +368,43 @@ export default function AcidsView() {
           </div>
 
           <div className="space-y-6">
-            {productGroups.map((group) => (
-              <article
-                key={group.title}
-                className="bg-white rounded-xl overflow-hidden border border-[#dae6de] shadow-sm hover:shadow-md transition-shadow grid grid-cols-1 md:grid-cols-12"
-              >
-                {/* Group Title Badge */}
-                <div className="md:col-span-3 bg-gradient-to-br from-[#00713d] to-[#004a2b] text-white p-6 sm:p-8 flex flex-col items-center justify-center text-center">
-                  <span className="text-3xl mb-1">{group.symbol}</span>
-                  <h3 className="text-xl font-extrabold tracking-tight">
-                    {group.title}
-                  </h3>
-                  <span className="text-[0.7rem] uppercase tracking-widest text-[#ffca05] mt-1 font-semibold">
-                    {group.items.length} Products
-                  </span>
-                </div>
+            {productGroups.map((group) => {
+              const GroupIcon = group.icon;
+              return (
+                <article
+                  key={group.title}
+                  className="bg-white rounded-xl overflow-hidden border border-[#dae6de] shadow-sm hover:shadow-md transition-shadow grid grid-cols-1 md:grid-cols-12"
+                >
+                  {/* Group Title Badge */}
+                  <div className="md:col-span-3 bg-gradient-to-br from-[#00713d] to-[#004a2b] text-white p-6 sm:p-8 flex flex-col items-center justify-center text-center">
+                    <div className="w-14 h-14 rounded-2xl bg-white/10 border border-white/20 flex items-center justify-center mb-2 shadow-xs">
+                      <GroupIcon className="w-7 h-7 text-[#ffca05] stroke-[1.8]" />
+                    </div>
+                    <h3 className="text-xl font-extrabold tracking-tight">
+                      {group.title}
+                    </h3>
+                    <span className="text-[0.7rem] uppercase tracking-widest text-[#ffca05] mt-1 font-semibold">
+                      {group.items.length} Products
+                    </span>
+                  </div>
 
-                {/* Group Item List */}
-                <div className="md:col-span-9 p-6 sm:p-8 flex items-center">
-                  <ul className="w-full grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-y-3 gap-x-6 list-none m-0 p-0 text-sm">
-                    {group.items.map((item) => (
-                      <li
-                        key={item}
-                        className="flex items-center gap-3 text-[#153726] font-semibold hover:text-[#00562f] transition-colors"
-                      >
-                        <span className="text-[#ffca05] text-base leading-none">
-                          →
-                        </span>
-                        <span>{item}</span>
-                      </li>
-                    ))}
-                  </ul>
-                </div>
-              </article>
-            ))}
+                  {/* Group Item List */}
+                  <div className="md:col-span-9 p-6 sm:p-8 flex items-center">
+                    <ul className="w-full grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-y-3 gap-x-6 list-none m-0 p-0 text-sm">
+                      {group.items.map((item) => (
+                        <li
+                          key={item}
+                          className="group/item flex items-center gap-2 text-[#153726] font-semibold hover:text-[#00562f] transition-colors"
+                        >
+                          <ChevronRight className="w-4 h-4 text-[#ffca05] group-hover/item:translate-x-0.5 transition-transform shrink-0" />
+                          <span>{item}</span>
+                        </li>
+                      ))}
+                    </ul>
+                  </div>
+                </article>
+              );
+            })}
           </div>
         </div>
       </section>
@@ -388,9 +414,9 @@ export default function AcidsView() {
         <button
           type="button"
           onClick={handleDownloadSpecs}
-          className="inline-flex items-center gap-2 text-xs sm:text-sm font-black uppercase tracking-wider text-[#00562f] hover:text-[#003b22] transition-colors cursor-pointer"
+          className="group inline-flex items-center gap-2 text-xs sm:text-sm font-black uppercase tracking-wider text-[#00562f] hover:text-[#ffca05] transition-colors cursor-pointer"
         >
-          <span className="text-base text-[#ffca05]">▣</span>
+          <Download className="w-4.5 h-4.5 text-[#ffca05] group-hover:translate-y-0.5 transition-transform" />
           <span>
             Download Acid Specifications Sheet &amp; Handling Guidelines
           </span>
@@ -430,8 +456,8 @@ export default function AcidsView() {
                   {selectedAcid.title} ({selectedAcid.formula})
                 </span>
               </div>
-              <IconButton onClick={() => setSelectedAcid(null)} size="small">
-                ✕
+              <IconButton onClick={() => setSelectedAcid(null)} size="small" aria-label="Close dialog">
+                <X className="w-5 h-5 text-[#153726]" />
               </IconButton>
             </DialogTitle>
             <DialogContent dividers sx={{ py: 2 }}>
@@ -476,6 +502,7 @@ export default function AcidsView() {
                   setSelectedAcid(null);
                   handleDownloadSpecs();
                 }}
+                startIcon={<Download className="w-4 h-4" />}
                 sx={{ color: "#00562f", fontWeight: 700, fontSize: "0.75rem" }}
               >
                 Download COA
@@ -487,6 +514,7 @@ export default function AcidsView() {
                   const el = document.getElementById("contact");
                   if (el) el.scrollIntoView({ behavior: "smooth" });
                 }}
+                endIcon={<ArrowRight className="w-4 h-4" />}
                 sx={{
                   bgcolor: "#ffca05",
                   color: "#16381f",
@@ -495,7 +523,7 @@ export default function AcidsView() {
                   "&:hover": { bgcolor: "#e5b500" },
                 }}
               >
-                Inquire For This Acid →
+                Inquire For This Acid
               </Button>
             </DialogActions>
           </>
