@@ -3,36 +3,13 @@
 import React, { useState, useRef } from "react";
 import Link from "next/link";
 import Image from "next/image";
-import {
-  Button,
-  TextField,
-  FormControl,
-  InputLabel,
-  Select,
-  MenuItem,
-  Snackbar,
-  Alert,
-} from "@mui/material";
+import { Button } from "@mui/material";
+import Contact from "@/components/Contact";
 
 export default function HomeView() {
   // Hero mouse spotlight coordinates
   const heroRef = useRef<HTMLDivElement>(null);
   const [spotlight, setSpotlight] = useState({ x: 50, y: 50 });
-
-  // Form state
-  const [formData, setFormData] = useState({
-    name: "",
-    email: "",
-    company: "",
-    phone: "",
-    inquiryType: "",
-    message: "",
-  });
-
-  // Toast notification state
-  const [toastOpen, setToastOpen] = useState(false);
-  const [toastMessage, setToastMessage] = useState("");
-  const [toastSeverity, setToastSeverity] = useState<"success" | "info">("success");
 
   // Import products expanding accordion state
   const [hoveredImportIndex, setHoveredImportIndex] = useState<number | null>(null);
@@ -43,32 +20,6 @@ export default function HomeView() {
     const x = ((e.clientX - rect.left) / rect.width) * 100;
     const y = ((e.clientY - rect.top) / rect.height) * 100;
     setSpotlight({ x, y });
-  };
-
-  const handleFormChange = (field: string, value: string) => {
-    setFormData((prev) => ({ ...prev, [field]: value }));
-  };
-
-  const handleSubmitInquiry = (e: React.FormEvent) => {
-    e.preventDefault();
-    if (!formData.name || !formData.email || !formData.message) {
-      setToastSeverity("info");
-      setToastMessage("Please fill in all required fields.");
-      setToastOpen(true);
-      return;
-    }
-
-    setToastSeverity("success");
-    setToastMessage("Thank you! Your inquiry has been successfully sent to NGR Impex.");
-    setToastOpen(true);
-    setFormData({
-      name: "",
-      email: "",
-      company: "",
-      phone: "",
-      inquiryType: "",
-      message: "",
-    });
   };
 
   return (
@@ -794,207 +745,7 @@ export default function HomeView() {
       </section>
 
       {/* 9. CONTACT SECTION */}
-      <section id="contact" className="py-16 sm:py-24 bg-[#fbfcfb]">
-        <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
-          <div className="grid grid-cols-1 lg:grid-cols-12 gap-12 lg:gap-16">
-            {/* Contact Details (Left) */}
-            <div className="lg:col-span-5 space-y-6">
-              <div>
-                <p className="text-xs font-black uppercase tracking-[0.15em] text-[#005b32] mb-1">
-                  Get in Touch
-                </p>
-                <h2 className="text-2xl sm:text-4xl font-extrabold text-[#173e2a]">
-                  Let’s Grow Together
-                </h2>
-                <div className="w-12 h-1 bg-[#ffd000] rounded-full mt-3 animate-pulse-dash" />
-              </div>
-
-              <p className="text-sm sm:text-base text-[#5f6d65] leading-relaxed">
-                We are here to answer your trade queries and explore new supply opportunities. Reach out to us for product quotes, custom sourcing, or strategic partnerships.
-              </p>
-
-              <div className="space-y-4 pt-2">
-                <div className="flex items-start gap-3.5 p-3.5 rounded-lg bg-white border border-[#d9e4dc] shadow-sm">
-                  <span className="text-xl text-[#005b32]">📍</span>
-                  <div>
-                    <b className="block text-xs font-bold text-[#173e2a] uppercase tracking-wide">
-                      Head Office
-                    </b>
-                    <span className="text-xs text-[#5f6d65]">
-                      7/66 Krishnagiri Main Road, Kandili, Tirupathur, Tamil Nadu, India
-                    </span>
-                  </div>
-                </div>
-
-                <div className="flex items-start gap-3.5 p-3.5 rounded-lg bg-white border border-[#d9e4dc] shadow-sm">
-                  <span className="text-xl text-[#005b32]">☎</span>
-                  <div>
-                    <b className="block text-xs font-bold text-[#173e2a] uppercase tracking-wide">
-                      Direct Phone
-                    </b>
-                    <a
-                      href="tel:+916382584350"
-                      className="text-xs text-[#5f6d65] hover:text-[#005b32] font-semibold"
-                    >
-                      +91 63825 84350
-                    </a>
-                  </div>
-                </div>
-
-                <div className="flex items-start gap-3.5 p-3.5 rounded-lg bg-white border border-[#d9e4dc] shadow-sm">
-                  <span className="text-xl text-[#005b32]">✉</span>
-                  <div>
-                    <b className="block text-xs font-bold text-[#173e2a] uppercase tracking-wide">
-                      Official Email
-                    </b>
-                    <a
-                      href="mailto:exim@ngrimpex.in"
-                      className="text-xs text-[#5f6d65] hover:text-[#005b32] font-semibold"
-                    >
-                      exim@ngrimpex.in
-                    </a>
-                  </div>
-                </div>
-
-                <div className="flex items-start gap-3.5 p-3.5 rounded-lg bg-white border border-[#d9e4dc] shadow-sm">
-                  <span className="text-xl text-[#005b32]">⏱</span>
-                  <div>
-                    <b className="block text-xs font-bold text-[#173e2a] uppercase tracking-wide">
-                      Business Hours
-                    </b>
-                    <span className="text-xs text-[#5f6d65]">
-                      Monday – Saturday: 9:00 AM – 6:00 PM (IST)
-                    </span>
-                  </div>
-                </div>
-              </div>
-            </div>
-
-            {/* Inquiry Form (Right) */}
-            <div className="lg:col-span-7">
-              <form
-                onSubmit={handleSubmitInquiry}
-                className="bg-white p-6 sm:p-8 rounded-xl border border-[#d9e4dc] shadow-[0_7px_25px_rgba(0,58,33,0.08)] space-y-4"
-              >
-                <div className="grid grid-cols-1 sm:grid-cols-2 gap-4">
-                  <TextField
-                    fullWidth
-                    label="Your Name *"
-                    variant="outlined"
-                    size="small"
-                    value={formData.name}
-                    onChange={(e) => handleFormChange("name", e.target.value)}
-                    required
-                  />
-
-                  <TextField
-                    fullWidth
-                    label="Your Email *"
-                    type="email"
-                    variant="outlined"
-                    size="small"
-                    value={formData.email}
-                    onChange={(e) => handleFormChange("email", e.target.value)}
-                    required
-                  />
-
-                  <TextField
-                    fullWidth
-                    label="Company Name"
-                    variant="outlined"
-                    size="small"
-                    value={formData.company}
-                    onChange={(e) => handleFormChange("company", e.target.value)}
-                  />
-
-                  <TextField
-                    fullWidth
-                    label="Phone Number"
-                    type="tel"
-                    variant="outlined"
-                    size="small"
-                    value={formData.phone}
-                    onChange={(e) => handleFormChange("phone", e.target.value)}
-                  />
-                </div>
-
-                <FormControl fullWidth size="small">
-                  <InputLabel id="inquiry-type-label">Select Inquiry Type *</InputLabel>
-                  <Select
-                    labelId="inquiry-type-label"
-                    value={formData.inquiryType}
-                    label="Select Inquiry Type *"
-                    onChange={(e) => handleFormChange("inquiryType", e.target.value)}
-                  >
-                    <MenuItem value="Export products">Export Products</MenuItem>
-                    <MenuItem value="Import products">Import Products</MenuItem>
-                    <MenuItem value="Partnership">Partnership &amp; Distribution</MenuItem>
-                    <MenuItem value="General Inquiry">General Trade Inquiry</MenuItem>
-                  </Select>
-                </FormControl>
-
-                <TextField
-                  fullWidth
-                  label="Your Message *"
-                  multiline
-                  rows={4}
-                  variant="outlined"
-                  value={formData.message}
-                  onChange={(e) => handleFormChange("message", e.target.value)}
-                  required
-                  placeholder="Tell us about the products, quantities, destination port, or requirements..."
-                />
-
-                <Button
-                  type="submit"
-                  fullWidth
-                  variant="contained"
-                  sx={{
-                    bgcolor: "#ffd000",
-                    color: "#143c28",
-                    fontWeight: 800,
-                    fontSize: "0.85rem",
-                    py: 1.4,
-                    borderRadius: "6px",
-                    textTransform: "uppercase",
-                    letterSpacing: "0.05em",
-                    boxShadow: "0 4px 14px rgba(255, 208, 0, 0.4)",
-                    "&:hover": {
-                      bgcolor: "#e6bc00",
-                      transform: "translateY(-1px)",
-                      boxShadow: "0 8px 20px rgba(0, 59, 35, 0.2)",
-                    },
-                    transition: "all 0.2s",
-                  }}
-                >
-                  Send Inquiry →
-                </Button>
-              </form>
-            </div>
-          </div>
-        </div>
-      </section>
-
-      {/* Form Submission Toast Notification */}
-      <Snackbar
-        open={toastOpen}
-        autoHideDuration={5000}
-        onClose={() => setToastOpen(false)}
-        anchorOrigin={{ vertical: "bottom", horizontal: "right" }}
-      >
-        <Alert
-          onClose={() => setToastOpen(false)}
-          severity={toastSeverity}
-          sx={{
-            width: "100%",
-            bgcolor: toastSeverity === "success" ? "#063f28" : "#173e2a",
-            color: "#fff",
-            boxShadow: "0 10px 30px rgba(0,0,0,0.3)",
-          }}
-        >
-          {toastMessage}
-        </Alert>
-      </Snackbar>
+      <Contact />
     </div>
   );
 }

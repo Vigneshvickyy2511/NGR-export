@@ -328,13 +328,13 @@ export default function Header() {
               Certifications
             </Link>
 
-            {/* News & Blog */}
+            {/* Blogs */}
             <Link
               href="/#focus"
               onClick={(e) => handleNavClick(e, "/#focus")}
               className="text-[0.84rem] font-bold text-[#173e2a] hover:text-[#005b32] py-2 relative border-b-2 border-transparent hover:border-[#005b32] transition-all"
             >
-              News &amp; Blog
+               Blogs
             </Link>
           </nav>
 
@@ -541,7 +541,7 @@ export default function Header() {
             </ListItemButton>
           </ListItem>
 
-          {/* News & Blog */}
+          {/* Blogs */}
           <ListItem disablePadding>
             <ListItemButton
               component={Link}
@@ -549,7 +549,7 @@ export default function Header() {
               onClick={(e) => handleNavClick(e, "/#focus")}
               sx={{ py: 1.2, borderRadius: "6px" }}
             >
-              <span className="font-bold text-[0.92rem] text-[#173e2a]">News &amp; Blog</span>
+              <span className="font-bold text-[0.92rem] text-[#173e2a]">Blogs</span>
             </ListItemButton>
           </ListItem>
         </List>
