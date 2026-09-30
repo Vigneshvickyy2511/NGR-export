@@ -196,18 +196,6 @@ export default function RedChilliView() {
             <p className="text-base sm:text-lg font-bold text-[#00552e] mb-4">
               A Spice with Global Appeal
             </p>
-
-            <nav className="text-xs text-[#536159] font-medium flex items-center gap-2 pt-2 border-t border-[#dce6dd]">
-              <Link href="/" className="hover:text-[#00552e] transition-colors">
-                Home
-              </Link>
-              <span>/</span>
-              <Link href="/#products" className="hover:text-[#00552e] transition-colors">
-                Export
-              </Link>
-              <span>/</span>
-              <span className="text-[#b71d16] font-bold">Dried Red Chilli</span>
-            </nav>
           </div>
         </div>
       </section>
@@ -239,36 +227,6 @@ export default function RedChilliView() {
               <p className="text-sm sm:text-base text-[#536159] leading-relaxed">
                 Whether you require high-pungency Teja S17 for spicy snacks and hot sauces or color-rich Byadgi pods for natural oleoresin extraction, our stringent quality assurance guarantees consistent moisture levels (&lt;11%), nil aflatoxin risk, and export-grade purity.
               </p>
-
-              <div className="pt-2">
-                <Button
-                  variant="contained"
-                  onClick={() => {
-                    const el = document.getElementById("contact");
-                    if (el) el.scrollIntoView({ behavior: "smooth" });
-                  }}
-                  sx={{
-                    bgcolor: "#ffc400",
-                    color: "#17351f",
-                    fontWeight: 900,
-                    fontSize: "0.78rem",
-                    px: 3.8,
-                    py: 1.3,
-                    borderRadius: "6px",
-                    textTransform: "uppercase",
-                    letterSpacing: "0.05em",
-                    boxShadow: "0 8px 22px rgba(255, 196, 0, 0.35)",
-                    "&:hover": {
-                      bgcolor: "#e5b000",
-                      transform: "translateY(-2px)",
-                      boxShadow: "0 12px 28px rgba(0, 58, 32, 0.25)",
-                    },
-                    transition: "all 0.2s ease-in-out",
-                  }}
-                >
-                  Contact Us &nbsp; →
-                </Button>
-              </div>
             </div>
 
             {/* Right Photo */}

@@ -1,6 +1,6 @@
 "use client";
 
-import React, { useState, useEffect } from "react";
+import React, { useState, useEffect, useRef } from "react";
 import Link from "next/link";
 import Image from "next/image";
 import {
@@ -27,6 +27,17 @@ interface SilageCrop {
 }
 
 export default function SilageMakingView() {
+  const heroRef = useRef<HTMLDivElement>(null);
+  const [spotlight, setSpotlight] = useState({ x: 50, y: 50 });
+
+  const handleHeroMouseMove = (e: React.MouseEvent<HTMLDivElement>) => {
+    if (!heroRef.current) return;
+    const rect = heroRef.current.getBoundingClientRect();
+    const x = ((e.clientX - rect.left) / rect.width) * 100;
+    const y = ((e.clientY - rect.top) / rect.height) * 100;
+    setSpotlight({ x, y });
+  };
+
   // Modal state for product / crop specifications
   const [selectedCrop, setSelectedCrop] = useState<SilageCrop | null>(null);
 
@@ -191,115 +202,81 @@ export default function SilageMakingView() {
     <div className="w-full overflow-hidden text-[#143d29] bg-white">
       {/* 1. HERO SECTION */}
       <section
-        id="home"
-        className="relative py-14 sm:py-20 bg-gradient-to-r from-[#f0f8f1] to-white overflow-hidden border-b border-[#d8e5dc]"
+        id="silage-hero"
+        ref={heroRef}
+        onMouseMove={handleHeroMouseMove}
+        className="relative min-h-[500px] sm:min-h-[540px] flex items-center justify-start text-white overflow-hidden py-16"
       >
-        <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
-          <div className="grid grid-cols-1 lg:grid-cols-12 gap-12 lg:gap-16 items-center">
-            {/* Left Content */}
-            <div className="lg:col-span-6 reveal left">
-              <p className="text-xs sm:text-sm font-black uppercase tracking-[0.1em] text-[#00613a] mb-2">
-                Silage Making
-              </p>
-              <h1
-                className="text-4xl sm:text-5xl lg:text-6xl font-black leading-[0.96] tracking-tight mb-3"
-                style={{
-                  background: "linear-gradient(90deg, #00613a, #43a63b)",
-                  WebkitBackgroundClip: "text",
-                  WebkitTextFillColor: "transparent",
+        {/* Animated Background Image with Drift */}
+        <div
+          className="absolute -inset-4 z-0 bg-cover bg-center animate-hero-drift pointer-events-none"
+          style={{
+            backgroundImage: `linear-gradient(90deg, rgba(0, 67, 39, 0.98) 0%, rgba(0, 67, 39, 0.88) 44%, rgba(0, 67, 39, 0.5) 60%, transparent 100%), url('https://images.unsplash.com/photo-1500076656116-558758c991c1?auto=format&fit=crop&w=1800&q=90')`,
+          }}
+        />
+
+        {/* Dynamic Spotlight Radial Glow */}
+        <div
+          className="absolute inset-0 pointer-events-none z-[1]"
+          style={{
+            background: `radial-gradient(circle at ${spotlight.x}% ${spotlight.y}%, rgba(247, 204, 52, 0.24) 0%, transparent 28%)`,
+          }}
+        />
+
+        {/* Hero Content with Left Gold Border */}
+        <div className="relative z-10 max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 w-full">
+          <div className="max-w-xl pl-6 border-l-4 border-[#ffca08] hero-copy reveal left">
+            <p className="text-[#ffca08] text-sm sm:text-base font-bold tracking-wider mb-1">
+              — &nbsp; The Best Quality
+            </p>
+            <h1
+              className="text-4xl sm:text-6xl lg:text-7xl font-bold tracking-tight text-white leading-[0.92] my-2"
+              style={{ fontFamily: "Georgia, serif" }}
+            >
+              Silage <span className="text-[#ffca08]">Making</span>
+            </h1>
+            <h2
+              className="text-xl sm:text-2xl text-emerald-100 font-normal mb-4"
+              style={{ fontFamily: "Georgia, serif" }}
+            >
+              Advanced Feed Solutions
+            </h2>
+
+            <p className="text-sm sm:text-base text-gray-200 leading-relaxed mb-6">
+              At NGR Impex, we offer high-quality silage-making products designed to optimize the
+              preservation and nutritional value of your livestock feed. Our solutions ensure that
+              your silage maintains its quality, supporting animal health and productivity.
+            </p>
+
+            <div className="flex flex-wrap items-center gap-4">
+              <Button
+                variant="contained"
+                className="btn-shine"
+                onClick={() => {
+                  const el = document.getElementById("crops-spec");
+                  if (el) el.scrollIntoView({ behavior: "smooth" });
+                }}
+                sx={{
+                  bgcolor: "#ffca08",
+                  color: "#17351f",
+                  fontWeight: 900,
+                  fontSize: "0.78rem",
+                  px: 4,
+                  py: 1.4,
+                  borderRadius: "999px",
+                  textTransform: "uppercase",
+                  letterSpacing: "0.05em",
+                  boxShadow: "0 8px 24px rgba(255, 202, 8, 0.35)",
+                  "&:hover": {
+                    bgcolor: "#ebb500",
+                    transform: "translateY(-3px)",
+                    boxShadow: "0 14px 30px rgba(0, 55, 31, 0.3)",
+                  },
+                  transition: "all 0.35s ease",
                 }}
               >
-                The Best Quality
-                <br />
-                Silage Making
-              </h1>
-              <h2 className="text-xl sm:text-2xl font-bold text-[#00613a] mb-4">
-                Advanced Feed Solutions
-              </h2>
-              <p className="text-sm sm:text-base text-[#5b6c62] leading-relaxed max-w-xl mb-6">
-                At NGR Impex, we offer high-quality silage-making products designed to optimize the
-                preservation and nutritional value of your livestock feed. Our solutions ensure that
-                your silage maintains its quality, supporting animal health and productivity.
-              </p>
-
-              <div className="flex flex-wrap items-center gap-4">
-                <Button
-                  variant="contained"
-                  className="btn-shine"
-                  onClick={handleCatalogueDownload}
-                  sx={{
-                    bgcolor: "#00613a",
-                    color: "#fff",
-                    fontWeight: 900,
-                    fontSize: "0.78rem",
-                    px: 3.5,
-                    py: 1.4,
-                    borderRadius: "6px",
-                    textTransform: "none",
-                    boxShadow: "0 10px 24px rgba(0, 97, 58, 0.25)",
-                    "&:hover": {
-                      bgcolor: "#004027",
-                      transform: "translateY(-3px)",
-                    },
-                    transition: "all 0.35s ease",
-                  }}
-                >
-                  ⇩ &nbsp; Download Catalogue
-                </Button>
-
-                <Button
-                  variant="outlined"
-                  className="btn-shine"
-                  onClick={() => {
-                    const el = document.getElementById("contact");
-                    if (el) el.scrollIntoView({ behavior: "smooth" });
-                  }}
-                  sx={{
-                    borderColor: "#00613a",
-                    color: "#00613a",
-                    fontWeight: 900,
-                    fontSize: "0.78rem",
-                    px: 3.5,
-                    py: 1.4,
-                    borderRadius: "6px",
-                    textTransform: "none",
-                    "&:hover": {
-                      bgcolor: "rgba(0, 97, 58, 0.05)",
-                      borderColor: "#004027",
-                      transform: "translateY(-3px)",
-                    },
-                    transition: "all 0.35s ease",
-                  }}
-                >
-                  Talk to Our Team &nbsp; →
-                </Button>
-              </div>
-
-              {/* Breadcrumb Links */}
-              <nav className="text-xs text-gray-500 font-medium flex items-center gap-2 mt-6">
-                <Link href="/" className="hover:text-[#00613a] transition-colors">
-                  Home
-                </Link>
-                <span>/</span>
-                <Link href="/#products" className="hover:text-[#00613a] transition-colors">
-                  Export
-                </Link>
-                <span>/</span>
-                <span className="text-[#00613a] font-bold">Silage Making</span>
-              </nav>
-            </div>
-
-            {/* Right Hero Photo with Solid Offset Shadow & Scale Lift */}
-            <div className="lg:col-span-6 reveal right">
-              <div className="relative mx-auto max-w-lg h-[320px] sm:h-[380px] rounded-[10px] overflow-hidden hero-photo">
-                <Image
-                  src="https://images.unsplash.com/photo-1500076656116-558758c991c1?auto=format&fit=crop&w=1100&q=88"
-                  alt="Silage production and harvest on an agricultural farm"
-                  fill
-                  sizes="(max-width: 1024px) 100vw, 50vw"
-                  className="object-cover rounded-[10px]"
-                />
-              </div>
+                Explore Silage Crops →
+              </Button>
             </div>
           </div>
         </div>

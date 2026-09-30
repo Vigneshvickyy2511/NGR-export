@@ -279,18 +279,6 @@ export default function MangoPulpView() {
               >
                 Explore Our Mango Pulp →
               </Button>
-
-              <nav className="text-xs text-[#526059] font-medium flex items-center gap-2 font-sans pl-2">
-                <Link href="/" className="hover:text-[#004b2b] transition-colors">
-                  Home
-                </Link>
-                <span>/</span>
-                <Link href="/#products" className="hover:text-[#004b2b] transition-colors">
-                  Export
-                </Link>
-                <span>/</span>
-                <span className="text-[#004b2b] font-bold">Mango Pulp</span>
-              </nav>
             </div>
           </div>
         </div>
@@ -649,7 +637,7 @@ export default function MangoPulpView() {
             </article>
 
             {/* News Resource (reveal right) */}
-            <article className="md:col-span-6 bg-[#fffaf0] p-7 sm:p-8 rounded-2xl border border-[#e7ddc9] flex flex-col sm:flex-row items-center gap-6 shadow-sm reveal right">
+            {/* <article className="md:col-span-6 bg-[#fffaf0] p-7 sm:p-8 rounded-2xl border border-[#e7ddc9] flex flex-col sm:flex-row items-center gap-6 shadow-sm reveal right">
               <div className="relative w-full sm:w-40 h-32 shrink-0 rounded-xl overflow-hidden border border-[#e7ddc9]">
                 <Image
                   src="https://images.unsplash.com/photo-1591073113125-e46713c829ed?auto=format&fit=crop&w=500&q=85"
@@ -680,7 +668,7 @@ export default function MangoPulpView() {
                   View All News &nbsp; →
                 </button>
               </div>
-            </article>
+            </article> */}
           </div>
         </div>
       </section>

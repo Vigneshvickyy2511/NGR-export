@@ -197,13 +197,13 @@ export default function SesameSeedView() {
         id="sesame-hero"
         ref={heroRef}
         onMouseMove={handleHeroMouseMove}
-        className="relative min-h-[500px] sm:min-h-[540px] flex items-center justify-start overflow-hidden py-16"
+        className="relative min-h-[500px] sm:min-h-[540px] flex items-center justify-start text-white overflow-hidden py-16"
       >
         {/* Animated Background Image with Drift */}
         <div
           className="absolute -inset-4 z-0 bg-cover bg-center animate-hero-drift pointer-events-none"
           style={{
-            backgroundImage: `linear-gradient(90deg, rgba(255, 253, 248, 0.98) 0%, rgba(255, 253, 248, 0.92) 42%, rgba(255, 253, 248, 0.6) 58%, transparent 100%), url('https://images.unsplash.com/photo-1596040033229-a9821ebd058d?auto=format&fit=crop&w=1800&q=88')`,
+            backgroundImage: `linear-gradient(90deg, rgba(0, 67, 39, 0.98) 0%, rgba(0, 67, 39, 0.88) 44%, rgba(0, 67, 39, 0.5) 60%, transparent 100%), url('https://images.unsplash.com/photo-1596040033229-a9821ebd058d?auto=format&fit=crop&w=1800&q=90')`,
           }}
         />
 
@@ -211,32 +211,31 @@ export default function SesameSeedView() {
         <div
           className="absolute inset-0 pointer-events-none z-[1]"
           style={{
-            background: `radial-gradient(circle at ${spotlight.x}% ${spotlight.y}%, rgba(247, 207, 77, 0.22) 0%, transparent 29%)`,
+            background: `radial-gradient(circle at ${spotlight.x}% ${spotlight.y}%, rgba(247, 204, 52, 0.24) 0%, transparent 28%)`,
           }}
         />
 
-        {/* Hero Content with Reveal Animation */}
+        {/* Hero Content with Left Gold Border */}
         <div className="relative z-10 max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 w-full">
-          <div className="max-w-xl hero-copy reveal left">
-            <p className="eyebrow text-xs font-black uppercase tracking-[0.28em] text-[#075b31] mb-1">
-              The Best Quality
+          <div className="max-w-xl pl-6 border-l-4 border-[#e7b600] hero-copy reveal left">
+            <p className="text-[#e7b600] text-sm sm:text-base font-bold tracking-wider mb-1">
+              — &nbsp; The Best Quality
             </p>
-            <h1 className="text-4xl sm:text-6xl lg:text-7xl font-black text-[#075b31] tracking-tight leading-[0.95] my-2">
-              Sesame Seeds
+            <h1
+              className="text-4xl sm:text-6xl lg:text-7xl font-bold tracking-tight text-white leading-[0.92] my-2"
+              style={{ fontFamily: "Georgia, serif" }}
+            >
+              Sesame <span className="text-[#e7b600]">Seeds</span>
             </h1>
-            <h2 className="text-xl sm:text-2xl font-bold text-[#075b31] mb-3">
+            <h2
+              className="text-xl sm:text-2xl text-emerald-100 font-normal mb-4"
+              style={{ fontFamily: "Georgia, serif" }}
+            >
               A Versatile Ingredient
             </h2>
 
-            <p className="text-sm sm:text-base text-[#606a64] leading-relaxed mb-4">
+            <p className="text-sm sm:text-base text-gray-200 leading-relaxed mb-6">
               Our premium farm-sourced sesame seeds offer rich flavor, a nutty aroma and excellent nutritional profile, making them a valuable ingredient for a wide range of culinary uses around the world.
-            </p>
-
-            <div className="w-14 h-1 bg-[#e7b600] rounded-full my-4" />
-
-            <p className="eyebrow text-xs font-black uppercase tracking-[0.2em] text-[#075b31] leading-relaxed mb-6">
-              Natural goodness <br />
-              for a brighter tomorrow
             </p>
 
             <div className="flex flex-wrap items-center gap-4">
@@ -249,7 +248,7 @@ export default function SesameSeedView() {
                 }}
                 sx={{
                   bgcolor: "#e7b600",
-                  color: "#183427",
+                  color: "#17351f",
                   fontWeight: 900,
                   fontSize: "0.78rem",
                   px: 4,
@@ -261,25 +260,13 @@ export default function SesameSeedView() {
                   "&:hover": {
                     bgcolor: "#d6a700",
                     transform: "translateY(-3px)",
-                    boxShadow: "0 14px 30px rgba(0, 59, 35, 0.25)",
+                    boxShadow: "0 14px 30px rgba(0, 55, 31, 0.3)",
                   },
                   transition: "all 0.35s ease",
                 }}
               >
                 Explore Sesame Seeds →
               </Button>
-
-              <nav className="text-xs text-[#606a64] font-medium flex items-center gap-2 pl-2">
-                <Link href="/" className="hover:text-[#075b31] transition-colors">
-                  Home
-                </Link>
-                <span>/</span>
-                <Link href="/#products" className="hover:text-[#075b31] transition-colors">
-                  Export
-                </Link>
-                <span>/</span>
-                <span className="text-[#075b31] font-bold">Sesame Seeds</span>
-              </nav>
             </div>
           </div>
         </div>

@@ -34,7 +34,9 @@ export default function AcidsView() {
   // Toast notification state
   const [toastOpen, setToastOpen] = useState(false);
   const [toastMessage, setToastMessage] = useState("");
-  const [toastSeverity, setToastSeverity] = useState<"success" | "info">("success");
+  const [toastSeverity, setToastSeverity] = useState<"success" | "info">(
+    "success",
+  );
 
   const handleHeroMouseMove = (e: React.MouseEvent<HTMLDivElement>) => {
     if (!heroRef.current) return;
@@ -46,7 +48,9 @@ export default function AcidsView() {
 
   const handleDownloadSpecs = () => {
     setToastSeverity("info");
-    setToastMessage("Industrial Acids Technical Datasheet & Certificate of Analysis (COA) downloaded.");
+    setToastMessage(
+      "Industrial Acids Technical Datasheet & Certificate of Analysis (COA) downloaded.",
+    );
     setToastOpen(true);
   };
 
@@ -63,7 +67,8 @@ export default function AcidsView() {
         "Titanium dioxide pigment production",
         "Petroleum refining & alkylation catalysts",
       ],
-      image: "https://images.unsplash.com/photo-1532187863486-abf9dbad1b69?auto=format&fit=crop&w=800&q=86",
+      image:
+        "https://images.unsplash.com/photo-1532187863486-abf9dbad1b69?auto=format&fit=crop&w=800&q=86",
     },
     {
       title: "Hydrochloric Acid",
@@ -77,7 +82,8 @@ export default function AcidsView() {
         "Industrial water demineralization & pH balancing",
         "Gelatin and food additive production",
       ],
-      image: "https://images.unsplash.com/photo-1581091226033-d5c48150dbaa?auto=format&fit=crop&w=800&q=86",
+      image:
+        "https://images.unsplash.com/photo-1581091226033-d5c48150dbaa?auto=format&fit=crop&w=800&q=86",
     },
     {
       title: "Nitric Acid",
@@ -91,7 +97,8 @@ export default function AcidsView() {
         "Nylon intermediates & adipic acid synthesis",
         "Semiconductor surface cleaning & etching",
       ],
-      image: "https://images.unsplash.com/photo-1532187863486-abf9dbad1b69?auto=format&fit=crop&w=800&q=86",
+      image:
+        "https://images.unsplash.com/photo-1532187863486-abf9dbad1b69?auto=format&fit=crop&w=800&q=86",
     },
     {
       title: "Phosphoric Acid",
@@ -105,7 +112,8 @@ export default function AcidsView() {
         "Metal rust conversion and anti-corrosive primer",
         "Dental cements and pharmaceutical synthesis",
       ],
-      image: "https://images.unsplash.com/photo-1576086213369-97a306d36557?auto=format&fit=crop&w=800&q=86",
+      image:
+        "https://images.unsplash.com/photo-1576086213369-97a306d36557?auto=format&fit=crop&w=800&q=86",
     },
   ];
 
@@ -124,11 +132,7 @@ export default function AcidsView() {
     {
       title: "Buffering Agents",
       symbol: "⚗",
-      items: [
-        "Calcium Citrate",
-        "Potassium Citrate",
-        "Sodium Citrate",
-      ],
+      items: ["Calcium Citrate", "Potassium Citrate", "Sodium Citrate"],
     },
     {
       title: "Acidulants",
@@ -185,17 +189,6 @@ export default function AcidsView() {
           <h1 className="text-4xl sm:text-6xl lg:text-7xl font-black tracking-tight text-white mb-3 leading-none drop-shadow-md">
             Industrial <span className="text-[#ffca05]">Acids</span>
           </h1>
-          <nav className="text-xs sm:text-sm text-emerald-100 font-medium flex items-center gap-2">
-            <Link href="/" className="hover:text-[#ffca05] transition-colors">
-              Home
-            </Link>
-            <span>/</span>
-            <Link href="/#products" className="hover:text-[#ffca05] transition-colors">
-              Import
-            </Link>
-            <span>/</span>
-            <span className="text-[#ffca05] font-bold">Acids</span>
-          </nav>
         </div>
       </section>
 
@@ -220,42 +213,19 @@ export default function AcidsView() {
               </div>
 
               <p className="text-sm sm:text-base text-[#5c665f] leading-relaxed">
-                We import high-grade chemical products and mineral acids from trusted global manufacturers, ensuring consistent purity assay, strict batch-to-batch repeatability, and reliable delivery for chemical processing, water treatment, agriculture, and manufacturing plants.
+                We import high-grade chemical products and mineral acids from
+                trusted global manufacturers, ensuring consistent purity assay,
+                strict batch-to-batch repeatability, and reliable delivery for
+                chemical processing, water treatment, agriculture, and
+                manufacturing plants.
               </p>
 
               <p className="text-sm sm:text-base text-[#5c665f] leading-relaxed">
-                All acid shipments are handled strictly in certified ISO-tanks, IBC totes, and dedicated drums with complete SDS documentation, UN hazardous materials compliance, and customs clearance support.
+                All acid shipments are handled strictly in certified ISO-tanks,
+                IBC totes, and dedicated drums with complete SDS documentation,
+                UN hazardous materials compliance, and customs clearance
+                support.
               </p>
-
-              <div className="pt-2">
-                <Button
-                  variant="contained"
-                  onClick={() => {
-                    const el = document.getElementById("contact");
-                    if (el) el.scrollIntoView({ behavior: "smooth" });
-                  }}
-                  sx={{
-                    bgcolor: "#ffca05",
-                    color: "#16381f",
-                    fontWeight: 900,
-                    fontSize: "0.78rem",
-                    px: 3.5,
-                    py: 1.3,
-                    borderRadius: "6px",
-                    textTransform: "uppercase",
-                    letterSpacing: "0.05em",
-                    boxShadow: "0 8px 22px rgba(255, 202, 5, 0.35)",
-                    "&:hover": {
-                      bgcolor: "#e5b500",
-                      transform: "translateY(-2px)",
-                      boxShadow: "0 12px 28px rgba(0, 59, 34, 0.25)",
-                    },
-                    transition: "all 0.2s ease-in-out",
-                  }}
-                >
-                  Contact Us →
-                </Button>
-              </div>
             </div>
 
             {/* Right Image */}
@@ -275,7 +245,10 @@ export default function AcidsView() {
       </section>
 
       {/* 3. FEATURED ACIDS SECTION */}
-      <section id="acids" className="py-16 sm:py-24 bg-[#eff7f2] border-y border-[#dae6de]">
+      <section
+        id="acids"
+        className="py-16 sm:py-24 bg-[#eff7f2] border-y border-[#dae6de]"
+      >
         <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
           <div className="text-center mb-14">
             <p className="text-xs font-black uppercase tracking-[0.18em] text-[#00562f] mb-1">
@@ -286,7 +259,9 @@ export default function AcidsView() {
             </h2>
             <div className="w-14 h-1 bg-[#ffca05] rounded-full mx-auto mt-3 animate-pulse-dash" />
             <p className="text-xs sm:text-sm text-[#5c665f] mt-3 max-w-2xl mx-auto">
-              Consistent quality and reliable supply for various industries, supporting sustainability and responsible industrial operations worldwide.
+              Consistent quality and reliable supply for various industries,
+              supporting sustainability and responsible industrial operations
+              worldwide.
             </p>
           </div>
 
@@ -325,23 +300,10 @@ export default function AcidsView() {
                       className="text-xs font-bold text-[#00562f] hover:text-[#003b22] flex items-center gap-1.5 transition-colors cursor-pointer group/btn"
                     >
                       <span>View Specifications</span>
-                      <span className="group-hover/btn:translate-x-1 transition-transform">→</span>
+                      <span className="group-hover/btn:translate-x-1 transition-transform">
+                        →
+                      </span>
                     </button>
-
-                    <IconButton
-                      onClick={() => setSelectedAcid(acid)}
-                      sx={{
-                        width: 38,
-                        height: 38,
-                        bgcolor: "#00562f",
-                        color: "#fff",
-                        "&:hover": { bgcolor: "#003b22" },
-                      }}
-                      size="small"
-                      aria-label={`View ${acid.title} details`}
-                    >
-                      <span className="text-sm">→</span>
-                    </IconButton>
                   </div>
                 </div>
 
@@ -363,7 +325,10 @@ export default function AcidsView() {
       </section>
 
       {/* 4. PRODUCT GROUPS (CARBONATES, BUFFERING AGENTS, ACIDULANTS) */}
-      <section id="products" className="py-16 sm:py-24 bg-gradient-to-br from-white via-[#f7fbf8] to-[#eff7f2]">
+      <section
+        id="products"
+        className="py-16 sm:py-24 bg-gradient-to-br from-white via-[#f7fbf8] to-[#eff7f2]"
+      >
         <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
           <div className="text-center mb-14">
             <p className="text-xs font-black uppercase tracking-[0.18em] text-[#00562f] mb-1">
@@ -374,7 +339,8 @@ export default function AcidsView() {
             </h2>
             <div className="w-14 h-1 bg-[#ffca05] rounded-full mx-auto mt-3 animate-pulse-dash" />
             <p className="text-xs sm:text-sm text-[#5c665f] mt-3">
-              Full portfolio of imported industrial carbonates, pH buffering chemicals, and high-purity acidulants.
+              Full portfolio of imported industrial carbonates, pH buffering
+              chemicals, and high-purity acidulants.
             </p>
           </div>
 
@@ -403,7 +369,9 @@ export default function AcidsView() {
                         key={item}
                         className="flex items-center gap-3 text-[#153726] font-semibold hover:text-[#00562f] transition-colors"
                       >
-                        <span className="text-[#ffca05] text-base leading-none">→</span>
+                        <span className="text-[#ffca05] text-base leading-none">
+                          →
+                        </span>
                         <span>{item}</span>
                       </li>
                     ))}
@@ -423,50 +391,11 @@ export default function AcidsView() {
           className="inline-flex items-center gap-2 text-xs sm:text-sm font-black uppercase tracking-wider text-[#00562f] hover:text-[#003b22] transition-colors cursor-pointer"
         >
           <span className="text-base text-[#ffca05]">▣</span>
-          <span>Download Acid Specifications Sheet &amp; Handling Guidelines</span>
+          <span>
+            Download Acid Specifications Sheet &amp; Handling Guidelines
+          </span>
         </button>
       </div>
-
-      {/* 6. CALLOUT BANNER */}
-      <section
-        className="py-12 sm:py-16 relative overflow-hidden"
-        style={{
-          backgroundImage: `linear-gradient(90deg, rgba(239, 247, 242, 0.95) 0%, rgba(239, 247, 242, 0.85) 60%, rgba(239, 247, 242, 0.6) 100%), url('https://images.unsplash.com/photo-1581091226033-d5c48150dbaa?auto=format&fit=crop&w=1500&q=85')`,
-          backgroundPosition: "right center",
-          backgroundSize: "cover",
-        }}
-      >
-        <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 text-center sm:text-left flex flex-col sm:flex-row items-center justify-between gap-6">
-          <div>
-            <h2 className="text-2xl sm:text-3xl font-extrabold text-[#153726]">
-              NGR Impex — Industrial Chemical Division
-            </h2>
-            <p className="text-xs sm:text-sm font-semibold text-[#5c665f] mt-1">
-              ☎ +91 63825 84350 &nbsp; · &nbsp; ✉ exim@ngrimpex.in &nbsp; · &nbsp; Mon–Sat: 9 AM–6 PM
-            </p>
-          </div>
-          <Button
-            variant="contained"
-            onClick={() => {
-              const el = document.getElementById("contact");
-              if (el) el.scrollIntoView({ behavior: "smooth" });
-            }}
-            sx={{
-              bgcolor: "#00562f",
-              color: "#ffffff",
-              fontWeight: 800,
-              fontSize: "0.8rem",
-              px: 3.5,
-              py: 1.2,
-              borderRadius: "6px",
-              textTransform: "uppercase",
-              "&:hover": { bgcolor: "#003b22" },
-            }}
-          >
-            Inquire Now →
-          </Button>
-        </div>
-      </section>
 
       {/* Specification Detail Modal Dialog */}
       <Dialog
@@ -485,7 +414,14 @@ export default function AcidsView() {
       >
         {selectedAcid && (
           <>
-            <DialogTitle sx={{ pb: 1, display: "flex", justifyContent: "space-between", alignItems: "center" }}>
+            <DialogTitle
+              sx={{
+                pb: 1,
+                display: "flex",
+                justifyContent: "space-between",
+                alignItems: "center",
+              }}
+            >
               <div>
                 <span className="text-xs font-black uppercase text-[#00562f] tracking-wider block">
                   Technical Specifications
@@ -502,22 +438,30 @@ export default function AcidsView() {
               <div className="space-y-4 text-xs sm:text-sm text-[#5c665f]">
                 <div className="grid grid-cols-2 gap-3 p-3 bg-[#eff7f2] rounded-lg">
                   <div>
-                    <span className="font-bold text-[#153726] block">Standard Purity:</span>
+                    <span className="font-bold text-[#153726] block">
+                      Standard Purity:
+                    </span>
                     <span>{selectedAcid.purity}</span>
                   </div>
                   <div>
-                    <span className="font-bold text-[#153726] block">CAS Number:</span>
+                    <span className="font-bold text-[#153726] block">
+                      CAS Number:
+                    </span>
                     <span>{selectedAcid.casNo}</span>
                   </div>
                 </div>
 
                 <div>
-                  <span className="font-bold text-[#153726] block mb-1">Product Description:</span>
+                  <span className="font-bold text-[#153726] block mb-1">
+                    Product Description:
+                  </span>
                   <p className="leading-relaxed">{selectedAcid.desc}</p>
                 </div>
 
                 <div>
-                  <span className="font-bold text-[#153726] block mb-2">Key Industrial Applications:</span>
+                  <span className="font-bold text-[#153726] block mb-2">
+                    Key Industrial Applications:
+                  </span>
                   <ul className="space-y-1 list-disc pl-5">
                     {selectedAcid.applications.map((app) => (
                       <li key={app}>{app}</li>
@@ -565,7 +509,11 @@ export default function AcidsView() {
         onClose={() => setToastOpen(false)}
         anchorOrigin={{ vertical: "bottom", horizontal: "right" }}
       >
-        <Alert onClose={() => setToastOpen(false)} severity={toastSeverity} sx={{ bgcolor: "#003b22", color: "#fff" }}>
+        <Alert
+          onClose={() => setToastOpen(false)}
+          severity={toastSeverity}
+          sx={{ bgcolor: "#003b22", color: "#fff" }}
+        >
           {toastMessage}
         </Alert>
       </Snackbar>

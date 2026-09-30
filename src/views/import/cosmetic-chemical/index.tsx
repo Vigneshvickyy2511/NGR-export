@@ -132,17 +132,6 @@ export default function CosmeticChemicalView() {
             Cosmetic <br />
             <span className="text-[#f8c400]">Chemical</span>
           </h1>
-          <nav className="text-xs sm:text-sm text-emerald-100 font-medium flex items-center gap-2">
-            <Link href="/" className="hover:text-[#f8c400] transition-colors">
-              Home
-            </Link>
-            <span>/</span>
-            <Link href="/#products" className="hover:text-[#f8c400] transition-colors">
-              Import
-            </Link>
-            <span>/</span>
-            <span className="text-[#f8c400] font-bold">Cosmetic Chemical</span>
-          </nav>
         </div>
       </section>
 
@@ -167,36 +156,6 @@ export default function CosmeticChemicalView() {
           <p className="text-sm sm:text-base text-[#5d6661] mt-5 leading-relaxed">
             Empower your formulations with our world-class range of cosmetic chemicals, meticulously sourced from leading global manufacturers. From high-performance surfactants and specialty emulsifiers to potent active ingredients, we provide the essential building blocks for innovative skincare, haircare, and personal care products. We prioritize rigorous quality control, full regulatory compliance, and consistent supply chains to help your brand achieve excellence.
           </p>
-
-          <div className="pt-6">
-            <Button
-              variant="contained"
-              onClick={() => {
-                const el = document.getElementById("contact");
-                if (el) el.scrollIntoView({ behavior: "smooth" });
-              }}
-              sx={{
-                bgcolor: "#f8c400",
-                color: "#17351f",
-                fontWeight: 900,
-                fontSize: "0.78rem",
-                px: 4,
-                py: 1.4,
-                borderRadius: "6px",
-                textTransform: "uppercase",
-                letterSpacing: "0.05em",
-                boxShadow: "0 8px 22px rgba(248, 196, 0, 0.35)",
-                "&:hover": {
-                  bgcolor: "#e0b000",
-                  transform: "translateY(-2px)",
-                  boxShadow: "0 12px 28px rgba(0, 53, 31, 0.25)",
-                },
-                transition: "all 0.2s ease-in-out",
-              }}
-            >
-              Contact Us &nbsp; →
-            </Button>
-          </div>
         </div>
       </section>
 

@@ -268,18 +268,6 @@ export default function QualityRiceView() {
               >
                 Explore Rice Grades →
               </Button>
-
-              <nav className="text-xs text-gray-300 font-medium flex items-center gap-2 pl-2">
-                <Link href="/" className="hover:text-[#e7b622] transition-colors">
-                  Home
-                </Link>
-                <span>/</span>
-                <Link href="/#products" className="hover:text-[#e7b622] transition-colors">
-                  Export
-                </Link>
-                <span>/</span>
-                <span className="text-[#e7b622] font-bold">Quality Rice</span>
-              </nav>
             </div>
           </div>
         </div>
@@ -526,52 +514,6 @@ export default function QualityRiceView() {
             >
               →
             </Button>
-          </div>
-        </div>
-      </section>
-
-      {/* 7. LATEST NEWS */}
-      <section className="py-14 sm:py-20 bg-white border-t border-[#e1dfd5]" id="news">
-        <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
-          <h2
-            className="text-2xl sm:text-3xl font-bold text-[#183327]"
-            style={{ fontFamily: "Georgia, serif" }}
-          >
-            Latest News
-          </h2>
-          <div className="w-14 h-1 bg-[#e7b622] rounded-full my-3" />
-
-          <div className="grid grid-cols-1 md:grid-cols-12 gap-8 items-center bg-[#fbf7eb] p-6 sm:p-8 rounded-2xl border border-[#e1dfd5] news reveal">
-            <div className="relative md:col-span-4 h-44 w-full rounded-xl overflow-hidden border border-[#e1dfd5]">
-              <Image
-                src="https://images.unsplash.com/photo-1500382017468-9049fed747ef?auto=format&fit=crop&w=800&q=85"
-                alt="Fertile paddy rice fields"
-                fill
-                sizes="(max-width: 768px) 100vw, 33vw"
-                className="object-cover"
-              />
-            </div>
-            <div className="md:col-span-8">
-              <h3
-                className="text-lg sm:text-xl font-bold text-[#183327] mb-2"
-                style={{ fontFamily: "Georgia, serif" }}
-              >
-                Why NGR Impex is Your Trusted Partner for High-Quality Food Products
-              </h3>
-              <p className="text-xs sm:text-sm text-[#5b655f] leading-relaxed mb-4">
-                Discover how our commitment to quality, reliable supply chain, and customer-centric approach makes us a preferred partner in global grain trade.
-              </p>
-              <button
-                type="button"
-                onClick={() => {
-                  const el = document.getElementById("contact");
-                  if (el) el.scrollIntoView({ behavior: "smooth" });
-                }}
-                className="text-xs font-bold text-[#00532f] hover:text-[#e7b622] transition-colors cursor-pointer"
-              >
-                Contact Grain Export Desk &nbsp; →
-              </button>
-            </div>
           </div>
         </div>
       </section>

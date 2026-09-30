@@ -3,7 +3,7 @@
 import React, { useState, useRef } from "react";
 import Image from "next/image";
 import { useRouter } from "next/navigation";
-import { Button, Snackbar, Alert } from "@mui/material";
+import { Snackbar, Alert } from "@mui/material";
 import { motion, type Variants } from "motion/react";
 
 const fadeInUp: Variants = {
@@ -55,10 +55,6 @@ export default function AboutView() {
     const x = ((e.clientX - rect.left) / rect.width) * 100;
     const y = ((e.clientY - rect.top) / rect.height) * 100;
     setSpotlight({ x, y });
-  };
-
-  const handleContactClick = () => {
-    router.push("/#contact");
   };
 
   return (
@@ -172,35 +168,6 @@ export default function AboutView() {
               <p className="text-sm sm:text-base text-[#5f6963] leading-relaxed">
                 NGR Impex has emerged as one of the leading importers of food ingredients and chemicals in India. Our strategically located warehouses can fulfill all your requirements on a timely basis across India.
               </p>
-
-              <div className="pt-2">
-                <motion.div whileHover={{ scale: 1.04 }} whileTap={{ scale: 0.98 }} className="inline-block">
-                  <Button
-                    variant="contained"
-                    onClick={handleContactClick}
-                    sx={{
-                      bgcolor: "#ffd000",
-                      color: "#17351f",
-                      fontWeight: 900,
-                      fontSize: "0.8rem",
-                      px: 3.5,
-                      py: 1.3,
-                      borderRadius: "6px",
-                      textTransform: "uppercase",
-                      letterSpacing: "0.05em",
-                      boxShadow: "0 8px 22px rgba(216, 168, 0, 0.25)",
-                      "&:hover": {
-                        bgcolor: "#e6bc00",
-                        transform: "translateY(-2px)",
-                        boxShadow: "0 14px 28px rgba(216, 168, 0, 0.4)",
-                      },
-                      transition: "all 0.2s ease-in-out",
-                    }}
-                  >
-                    Contact Us →
-                  </Button>
-                </motion.div>
-              </div>
             </motion.div>
 
             {/* Right Collage Column */}
