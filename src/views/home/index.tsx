@@ -34,6 +34,9 @@ export default function HomeView() {
   const [toastMessage, setToastMessage] = useState("");
   const [toastSeverity, setToastSeverity] = useState<"success" | "info">("success");
 
+  // Import products expanding accordion state
+  const [hoveredImportIndex, setHoveredImportIndex] = useState<number | null>(null);
+
   const handleHeroMouseMove = (e: React.MouseEvent<HTMLDivElement>) => {
     if (!heroRef.current) return;
     const rect = heroRef.current.getBoundingClientRect();
@@ -261,12 +264,12 @@ export default function HomeView() {
         </div>
       </section>
 
-      {/* 3. PRODUCTS SECTION */}
+      {/* 3. IMPORT PRODUCTS SECTION (INTERACTIVE EXPANDING ACCORDION) */}
       <section id="products" className="py-16 sm:py-24 bg-[#f6faf7] border-y border-[#d9e4dc]">
         <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
           <div className="text-center mb-12">
             <p className="text-xs font-black uppercase tracking-[0.15em] text-[#005b32] mb-1">
-              Our Products
+              Import Division
             </p>
             <h2 className="text-2xl sm:text-4xl font-extrabold text-[#173e2a]">
               Global Products for a Better Tomorrow
@@ -274,241 +277,222 @@ export default function HomeView() {
             <div className="w-12 h-1 bg-[#ffd000] rounded-full mx-auto mt-3 animate-pulse-dash" />
           </div>
 
-          <div className="grid grid-cols-1 lg:grid-cols-2 gap-10 lg:gap-12">
-            {/* Export Products Group */}
-            <div className="bg-white p-6 sm:p-8 rounded-xl border border-[#d9e4dc] shadow-sm lg:border-r lg:border-dashed lg:border-emerald-300">
-              <div className="inline-block px-6 py-2 bg-[#005b32] text-white text-xs font-extrabold tracking-wider uppercase rounded-md shadow-sm mb-6 text-center w-full sm:w-auto">
-                Export Products
-              </div>
+          {/* Desktop & Tablet: Horizontal Expanding Accordion (Matching Uploaded UI) */}
+          {(() => {
+            const importItems = [
+              {
+                title: "Metal Scrap",
+                heading: "METAL SCRAP",
+                description:
+                  "Direct importers of premium certified ferrous and non-ferrous scrap metals, including Heavy Melting Steel (HMS 1 & 2), copper cathode, aluminium talk, and brass scrap supplying steel mills, remelting plants, and foundries worldwide.",
+                href: "/import/metal-scrap",
+                image:
+                  "https://images.unsplash.com/photo-1530587191325-3db32d826c18?auto=format&fit=crop&w=1200&q=85",
+              },
+              {
+                title: "Acids",
+                heading: "ACIDS",
+                description:
+                  "Supplying bulk high-purity industrial mineral acids—including Sulfuric Acid (98%), Nitric Acid (68%), Hydrochloric Acid (33%), and Phosphoric Acid (85%)—engineered for chemical synthesis, battery manufacturing, water treatment, and metallurgical pickling.",
+                href: "/import/acids",
+                image:
+                  "https://images.unsplash.com/photo-1581091226033-d5c48150dbaa?auto=format&fit=crop&w=1200&q=85",
+              },
+              {
+                title: "Cosmetic Chemical",
+                heading: "COSMETIC CHEMICAL",
+                description:
+                  "Delivering USP 99.7% pure vegetable glycerin, triple-pressed stearic acid, cosmetic packaging polymers, and specialty buffering agents trusted by personal care formulators for advanced skincare, haircare, and beauty formulations.",
+                href: "/import/cosmetic-chemical",
+                image:
+                  "https://images.unsplash.com/photo-1556228720-195a672e8a03?auto=format&fit=crop&w=1200&q=85",
+              },
+              {
+                title: "Plastic Chemical",
+                heading: "PLASTIC CHEMICAL",
+                description:
+                  "Importing premium virgin polymer resins, PVC stabilizers, plasticizers, industrial masterbatches, and chemical additives engineered for high-durability polymer compounds, extrusion profiles, surface coatings, and elastomeric systems.",
+                href: "/import/plastic-chemical",
+                image:
+                  "https://images.unsplash.com/photo-1562259949-e8e7689d7828?auto=format&fit=crop&w=1200&q=85",
+              },
+              {
+                title: "Cassia Cinnamon",
+                heading: "CASSIA CINNAMON",
+                description:
+                  "Sourcing authentic premium whole and split cassia cinnamon rich in essential aromatic oils and natural cinnamaldehyde, directly selected for commercial spice blending, oleoresin extraction, and food processing.",
+                href: "/import/cassia-cinnamon",
+                image:
+                  "https://images.unsplash.com/photo-1509358271058-acd22cc93898?auto=format&fit=crop&w=1200&q=85",
+              },
+              {
+                title: "Star Anise",
+                heading: "STAR ANISE",
+                description:
+                  "Importing hand-selected, whole eight-point autumn star anise pods packed with anethole, providing intense sweet-licorice aroma and superior aesthetic grading for gourmet culinary processors, teas, and botanical extracts.",
+                href: "/import/star-anise",
+                image:
+                  "https://images.unsplash.com/photo-1596040033229-a9821ebd058d?auto=format&fit=crop&w=1200&q=85",
+              },
+            ];
 
-              <div className="grid grid-cols-1 sm:grid-cols-2 gap-4">
-                {/* Red Chilli */}
-                <article className="group bg-white rounded-lg border border-[#d9e4dc] overflow-hidden shadow-sm hover:shadow-lg hover:border-[#a5c7b2] hover:-translate-y-1.5 transition-all duration-300">
-                  <Link href="/export/red-chilli" className="block">
-                    <div className="relative h-36 overflow-hidden">
-                      <Image
-                        src="https://images.unsplash.com/photo-1588252303782-cb80119abd6d?auto=format&fit=crop&w=500&q=80"
-                        alt="Red chilli"
-                        fill
-                        sizes="(max-width: 640px) 100vw, (max-width: 1024px) 50vw, 25vw"
-                        className="object-cover transition-transform duration-500 group-hover:scale-110"
-                      />
-                      <div className="absolute inset-0 bg-gradient-to-t from-black/40 via-transparent to-transparent opacity-0 group-hover:opacity-100 transition-opacity" />
-                    </div>
-                    <div className="p-3.5 flex items-center justify-between">
-                      <div>
-                        <b className="block text-xs sm:text-sm font-bold text-[#173e2a] group-hover:text-[#005b32] transition-colors truncate">
-                          Red Chilli
-                        </b>
-                        <span className="text-[0.68rem] text-[#5f6d65] font-medium">Export Grade Teja &amp; Sanam</span>
+            return (
+              <>
+                <div
+                  className="hidden md:flex h-[520px] lg:h-[580px] gap-2.5 sm:gap-3.5 w-full"
+                  onMouseLeave={() => setHoveredImportIndex(null)}
+                >
+                  {importItems.map((item, index) => {
+                    const isHovered = hoveredImportIndex === index;
+                    const isAnyHovered = hoveredImportIndex !== null;
+
+                    return (
+                      <div
+                        key={item.title}
+                        onMouseEnter={() => setHoveredImportIndex(index)}
+                        className={`relative rounded-xl overflow-hidden cursor-pointer select-none transition-all duration-500 ease-[cubic-bezier(0.25,1,0.5,1)] shadow-md ${
+                          isHovered
+                            ? "flex-[3.8] shadow-2xl"
+                            : isAnyHovered
+                            ? "flex-[0.65] brightness-75"
+                            : "flex-1 hover:brightness-105"
+                        }`}
+                      >
+                        {/* Background Image */}
+                        <Image
+                          src={item.image}
+                          alt={item.title}
+                          fill
+                          sizes="(max-width: 768px) 100vw, 800px"
+                          className={`object-cover transition-transform duration-700 ease-out ${
+                            isHovered ? "scale-105" : "scale-100"
+                          }`}
+                        />
+
+                        {/* Dark Overlays */}
+                        <div
+                          className={`absolute inset-0 transition-opacity duration-500 ${
+                            isHovered
+                              ? "bg-gradient-to-t from-black/90 via-black/45 to-black/25 opacity-100"
+                              : "bg-black/40 hover:bg-black/30"
+                          }`}
+                        />
+
+                        {/* Collapsed State: Vertical Text (Visible when NOT hovered) */}
+                        <div
+                          className={`absolute inset-0 flex items-center justify-center p-3 transition-all duration-300 ${
+                            isHovered ? "opacity-0 pointer-events-none scale-95" : "opacity-100 scale-100"
+                          }`}
+                        >
+                          <span
+                            className="text-white text-sm sm:text-base lg:text-lg font-bold tracking-wider whitespace-nowrap drop-shadow-[0_2px_4px_rgba(0,0,0,0.8)]"
+                            style={{
+                              writingMode: "vertical-rl",
+                              transform: "rotate(180deg)",
+                            }}
+                          >
+                            {item.title}
+                          </span>
+                        </div>
+
+                        {/* Expanded State: Bottom Left Content (Visible when hovered) */}
+                        <div
+                          className={`absolute inset-x-0 bottom-0 p-6 sm:p-8 flex flex-col justify-end transition-all duration-500 ${
+                            isHovered
+                              ? "opacity-100 translate-y-0 pointer-events-auto delay-100"
+                              : "opacity-0 translate-y-4 pointer-events-none"
+                          }`}
+                        >
+                          <h3 className="text-xl sm:text-2xl lg:text-3xl font-extrabold uppercase text-white tracking-tight leading-tight mb-2 drop-shadow-md">
+                            {item.heading}
+                          </h3>
+
+                          <div className="w-14 h-1 bg-[#ff7a00] rounded-full mb-3.5" />
+
+                          <p className="text-xs sm:text-sm text-gray-100 font-normal leading-relaxed max-w-lg mb-6 drop-shadow">
+                            {item.description}
+                          </p>
+
+                          <div>
+                            <Link
+                              href={item.href}
+                              className="inline-flex items-center gap-2 px-5 py-2.5 border border-white text-white text-xs sm:text-sm font-semibold tracking-wide hover:bg-white hover:text-[#173e2a] transition-all duration-200 shadow-sm"
+                            >
+                              <span>Learn More</span>
+                              <span className="text-sm">→</span>
+                            </Link>
+                          </div>
+                        </div>
                       </div>
-                      <span className="text-xs font-bold text-[#005b32] opacity-0 group-hover:opacity-100 group-hover:translate-x-1 transition-all">
-                        →
-                      </span>
-                    </div>
-                  </Link>
-                </article>
+                    );
+                  })}
+                </div>
 
-                {/* Mango Pulp */}
-                <article className="group bg-white rounded-lg border border-[#d9e4dc] overflow-hidden shadow-sm hover:shadow-lg hover:border-[#a5c7b2] hover:-translate-y-1.5 transition-all duration-300">
-                  <Link href="/export/mango-pulp" className="block">
-                    <div className="relative h-36 overflow-hidden">
-                      <Image
-                        src="https://images.unsplash.com/photo-1601493700631-2b16ec4b4716?auto=format&fit=crop&w=500&q=80"
-                        alt="Mangoes & Pulp"
-                        fill
-                        sizes="(max-width: 640px) 100vw, (max-width: 1024px) 50vw, 25vw"
-                        className="object-cover transition-transform duration-500 group-hover:scale-110"
-                      />
-                      <div className="absolute inset-0 bg-gradient-to-t from-black/40 via-transparent to-transparent opacity-0 group-hover:opacity-100 transition-opacity" />
-                    </div>
-                    <div className="p-3.5 flex items-center justify-between">
-                      <div>
-                        <b className="block text-xs sm:text-sm font-bold text-[#173e2a] group-hover:text-[#005b32] transition-colors truncate">
-                          Mango Pulp
-                        </b>
-                        <span className="text-[0.68rem] text-[#5f6d65] font-medium">Totapuri &amp; Alphonso Aseptic</span>
+                {/* Mobile Layout: Touch-Friendly Accordion */}
+                <div className="flex md:hidden flex-col gap-3 w-full">
+                  {importItems.map((item, index) => {
+                    const isExpanded = hoveredImportIndex === index;
+                    return (
+                      <div
+                        key={item.title}
+                        onClick={() => setHoveredImportIndex(isExpanded ? null : index)}
+                        className={`relative rounded-xl overflow-hidden cursor-pointer select-none transition-all duration-500 shadow-md ${
+                          isExpanded ? "h-[360px]" : "h-24"
+                        }`}
+                      >
+                        <Image
+                          src={item.image}
+                          alt={item.title}
+                          fill
+                          sizes="100vw"
+                          className="object-cover"
+                        />
+                        <div
+                          className={`absolute inset-0 transition-opacity duration-300 ${
+                            isExpanded
+                              ? "bg-gradient-to-t from-black/90 via-black/50 to-black/30"
+                              : "bg-black/50"
+                          }`}
+                        />
+
+                        {!isExpanded && (
+                          <div className="absolute inset-0 flex items-center justify-between px-5">
+                            <span className="text-white text-sm font-bold tracking-wide drop-shadow">
+                              {item.title}
+                            </span>
+                            <span className="text-white text-xs px-2.5 py-1 rounded bg-white/20 border border-white/30">
+                              Tap to view ▾
+                            </span>
+                          </div>
+                        )}
+
+                        {isExpanded && (
+                          <div className="absolute inset-x-0 bottom-0 p-5 flex flex-col justify-end">
+                            <h3 className="text-lg font-black uppercase text-white mb-1.5">
+                              {item.heading}
+                            </h3>
+                            <div className="w-10 h-0.5 bg-[#ff7a00] rounded-full mb-2.5" />
+                            <p className="text-xs text-gray-200 leading-relaxed mb-4">
+                              {item.description}
+                            </p>
+                            <div>
+                              <Link
+                                href={item.href}
+                                className="inline-flex items-center gap-2 px-4 py-2 border border-white text-white text-xs font-semibold hover:bg-white hover:text-black transition-all"
+                              >
+                                <span>Learn More</span>
+                                <span>→</span>
+                              </Link>
+                            </div>
+                          </div>
+                        )}
                       </div>
-                      <span className="text-xs font-bold text-[#005b32] opacity-0 group-hover:opacity-100 group-hover:translate-x-1 transition-all">
-                        →
-                      </span>
-                    </div>
-                  </Link>
-                </article>
-
-                {/* Sesame Seeds */}
-                <article className="group bg-white rounded-lg border border-[#d9e4dc] overflow-hidden shadow-sm hover:shadow-lg hover:border-[#a5c7b2] hover:-translate-y-1.5 transition-all duration-300">
-                  <Link href="/export/sesame-seed" className="block">
-                    <div className="relative h-36 overflow-hidden">
-                      <Image
-                        src="https://images.unsplash.com/photo-1596040033229-a9821ebd058d?auto=format&fit=crop&w=500&q=80"
-                        alt="Sesame seeds"
-                        fill
-                        sizes="(max-width: 640px) 100vw, (max-width: 1024px) 50vw, 25vw"
-                        className="object-cover transition-transform duration-500 group-hover:scale-110"
-                      />
-                      <div className="absolute inset-0 bg-gradient-to-t from-black/40 via-transparent to-transparent opacity-0 group-hover:opacity-100 transition-opacity" />
-                    </div>
-                    <div className="p-3.5 flex items-center justify-between">
-                      <div>
-                        <b className="block text-xs sm:text-sm font-bold text-[#173e2a] group-hover:text-[#005b32] transition-colors truncate">
-                          Sesame Seeds
-                        </b>
-                        <span className="text-[0.68rem] text-[#5f6d65] font-medium">Natural &amp; Hulled Sortex</span>
-                      </div>
-                      <span className="text-xs font-bold text-[#005b32] opacity-0 group-hover:opacity-100 group-hover:translate-x-1 transition-all">
-                        →
-                      </span>
-                    </div>
-                  </Link>
-                </article>
-
-                {/* Quality Rice */}
-                <article className="group bg-white rounded-lg border border-[#d9e4dc] overflow-hidden shadow-sm hover:shadow-lg hover:border-[#a5c7b2] hover:-translate-y-1.5 transition-all duration-300">
-                  <Link href="/export/quality-rice" className="block">
-                    <div className="relative h-36 overflow-hidden">
-                      <Image
-                        src="https://images.unsplash.com/photo-1586201375761-83865001e31c?auto=format&fit=crop&w=500&q=80"
-                        alt="Quality Rice"
-                        fill
-                        sizes="(max-width: 640px) 100vw, (max-width: 1024px) 50vw, 25vw"
-                        className="object-cover transition-transform duration-500 group-hover:scale-110"
-                      />
-                      <div className="absolute inset-0 bg-gradient-to-t from-black/40 via-transparent to-transparent opacity-0 group-hover:opacity-100 transition-opacity" />
-                    </div>
-                    <div className="p-3.5 flex items-center justify-between">
-                      <div>
-                        <b className="block text-xs sm:text-sm font-bold text-[#173e2a] group-hover:text-[#005b32] transition-colors truncate">
-                          Quality Rice
-                        </b>
-                        <span className="text-[0.68rem] text-[#5f6d65] font-medium">Basmati &amp; Non-Basmati</span>
-                      </div>
-                      <span className="text-xs font-bold text-[#005b32] opacity-0 group-hover:opacity-100 group-hover:translate-x-1 transition-all">
-                        →
-                      </span>
-                    </div>
-                  </Link>
-                </article>
-              </div>
-            </div>
-
-            {/* Import Products Group */}
-            <div className="bg-white p-6 sm:p-8 rounded-xl border border-[#d9e4dc] shadow-sm">
-              <div className="inline-block px-6 py-2 bg-[#8ea900] text-white text-xs font-extrabold tracking-wider uppercase rounded-md shadow-sm mb-6 text-center w-full sm:w-auto">
-                Import Products
-              </div>
-
-              <div className="grid grid-cols-1 sm:grid-cols-2 gap-4">
-                {/* Metal Scrap */}
-                <article className="group bg-white rounded-lg border border-[#d9e4dc] overflow-hidden shadow-sm hover:shadow-lg hover:border-[#a5c7b2] hover:-translate-y-1.5 transition-all duration-300">
-                  <Link href="/import/metal-scrap" className="block">
-                    <div className="relative h-36 overflow-hidden">
-                      <Image
-                        src="https://images.unsplash.com/photo-1611288875785-24b9062e2bcb?auto=format&fit=crop&w=500&q=80"
-                        alt="Metal scrap"
-                        fill
-                        sizes="(max-width: 640px) 100vw, (max-width: 1024px) 50vw, 25vw"
-                        className="object-cover transition-transform duration-500 group-hover:scale-110"
-                      />
-                      <div className="absolute inset-0 bg-gradient-to-t from-black/40 via-transparent to-transparent opacity-0 group-hover:opacity-100 transition-opacity" />
-                    </div>
-                    <div className="p-3.5 flex items-center justify-between">
-                      <div>
-                        <b className="block text-xs sm:text-sm font-bold text-[#173e2a] group-hover:text-[#005b32] transition-colors truncate">
-                          Metal Scrap
-                        </b>
-                        <span className="text-[0.68rem] text-[#5f6d65] font-medium">Ferrous &amp; Non-Ferrous HMS</span>
-                      </div>
-                      <span className="text-xs font-bold text-[#005b32] opacity-0 group-hover:opacity-100 group-hover:translate-x-1 transition-all">
-                        →
-                      </span>
-                    </div>
-                  </Link>
-                </article>
-
-                {/* Acids */}
-                <article className="group bg-white rounded-lg border border-[#d9e4dc] overflow-hidden shadow-sm hover:shadow-lg hover:border-[#a5c7b2] hover:-translate-y-1.5 transition-all duration-300">
-                  <Link href="/import/acids" className="block">
-                    <div className="relative h-36 overflow-hidden">
-                      <Image
-                        src="https://images.unsplash.com/photo-1532187863486-abf9dbad1b69?auto=format&fit=crop&w=500&q=80"
-                        alt="Laboratory acids"
-                        fill
-                        sizes="(max-width: 640px) 100vw, (max-width: 1024px) 50vw, 25vw"
-                        className="object-cover transition-transform duration-500 group-hover:scale-110"
-                      />
-                      <div className="absolute inset-0 bg-gradient-to-t from-black/40 via-transparent to-transparent opacity-0 group-hover:opacity-100 transition-opacity" />
-                    </div>
-                    <div className="p-3.5 flex items-center justify-between">
-                      <div>
-                        <b className="block text-xs sm:text-sm font-bold text-[#173e2a] group-hover:text-[#005b32] transition-colors truncate">
-                          Acids
-                        </b>
-                        <span className="text-[0.68rem] text-[#5f6d65] font-medium">Industrial &amp; Tech Grade</span>
-                      </div>
-                      <span className="text-xs font-bold text-[#005b32] opacity-0 group-hover:opacity-100 group-hover:translate-x-1 transition-all">
-                        →
-                      </span>
-                    </div>
-                  </Link>
-                </article>
-
-                {/* Cosmetic Chemical */}
-                <article className="group bg-white rounded-lg border border-[#d9e4dc] overflow-hidden shadow-sm hover:shadow-lg hover:border-[#a5c7b2] hover:-translate-y-1.5 transition-all duration-300">
-                  <Link href="/import/cosmetic-chemical" className="block">
-                    <div className="relative h-36 overflow-hidden">
-                      <Image
-                        src="https://images.unsplash.com/photo-1532187863486-abf9dbad1b69?auto=format&fit=crop&w=500&q=80"
-                        alt="Cosmetic Chemical"
-                        fill
-                        sizes="(max-width: 640px) 100vw, (max-width: 1024px) 50vw, 25vw"
-                        className="object-cover transition-transform duration-500 group-hover:scale-110"
-                      />
-                      <div className="absolute inset-0 bg-gradient-to-t from-black/40 via-transparent to-transparent opacity-0 group-hover:opacity-100 transition-opacity" />
-                    </div>
-                    <div className="p-3.5 flex items-center justify-between">
-                      <div>
-                        <b className="block text-xs sm:text-sm font-bold text-[#173e2a] group-hover:text-[#005b32] transition-colors truncate">
-                          Cosmetic Chemical
-                        </b>
-                        <span className="text-[0.68rem] text-[#5f6d65] font-medium">Personal Care &amp; Beauty</span>
-                      </div>
-                      <span className="text-xs font-bold text-[#005b32] opacity-0 group-hover:opacity-100 group-hover:translate-x-1 transition-all">
-                        →
-                      </span>
-                    </div>
-                  </Link>
-                </article>
-
-                {/* Plastic Chemical */}
-                <article className="group bg-white rounded-lg border border-[#d9e4dc] overflow-hidden shadow-sm hover:shadow-lg hover:border-[#a5c7b2] hover:-translate-y-1.5 transition-all duration-300">
-                  <Link href="/#contact" className="block">
-                    <div className="relative h-36 overflow-hidden">
-                      <Image
-                        src="https://images.unsplash.com/photo-1582408921715-18e7806365c1?auto=format&fit=crop&w=500&q=80"
-                        alt="Plastic granules"
-                        fill
-                        sizes="(max-width: 640px) 100vw, (max-width: 1024px) 50vw, 25vw"
-                        className="object-cover transition-transform duration-500 group-hover:scale-110"
-                      />
-                      <div className="absolute inset-0 bg-gradient-to-t from-black/40 via-transparent to-transparent opacity-0 group-hover:opacity-100 transition-opacity" />
-                    </div>
-                    <div className="p-3.5 flex items-center justify-between">
-                      <div>
-                        <b className="block text-xs sm:text-sm font-bold text-[#173e2a] group-hover:text-[#005b32] transition-colors truncate">
-                          Plastic Chemical
-                        </b>
-                        <span className="text-[0.68rem] text-[#5f6d65] font-medium">Polymers &amp; Resins</span>
-                      </div>
-                      <span className="text-xs font-bold text-[#005b32] opacity-0 group-hover:opacity-100 group-hover:translate-x-1 transition-all">
-                        →
-                      </span>
-                    </div>
-                  </Link>
-                </article>
-              </div>
-            </div>
-          </div>
+                    );
+                  })}
+                </div>
+              </>
+            );
+          })()}
         </div>
       </section>
 

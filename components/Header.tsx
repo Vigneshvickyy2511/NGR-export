@@ -43,7 +43,9 @@ export default function Header() {
     { label: "Metal Scrap", href: "/import/metal-scrap" },
     { label: "Acids", href: "/import/acids" },
     { label: "Cosmetic Chemical", href: "/import/cosmetic-chemical" },
-    { label: "Plastic Chemical", href: "/#products" },
+    { label: "Plastic Chemical", href: "/import/plastic-chemical" },
+    { label: "Cassia Cinnamon", href: "/import/cassia-cinnamon" },
+    { label: "Star Anise", href: "/import/star-anise" },
   ];
 
   const exportItems = [
@@ -51,7 +53,7 @@ export default function Header() {
     { label: "Mango Pulp", href: "/export/mango-pulp" },
     { label: "Sesame Seeds", href: "/export/sesame-seed" },
     { label: "Quality Rice", href: "/export/quality-rice" },
-    { label: "Rice DDGS", href: "/#products" },
+    { label: "Rice DDGS", href: "/export/rice-ddgs" },
     { label: "Silage Making", href: "/export/silage-making" },
   ];
 

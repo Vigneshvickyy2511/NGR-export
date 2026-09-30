@@ -18,13 +18,11 @@ const nextConfig: NextConfig = {
       { source: "/sesame-seed", destination: "/export/sesame-seed", permanent: true },
       { source: "/sesame-seeds", destination: "/export/sesame-seed", permanent: true },
       { source: "/silage-making", destination: "/export/silage-making", permanent: true },
-      { source: "/export/rice-ddgs", destination: "/#products", permanent: false },
 
       // Direct alias redirects to /import routes
       { source: "/metal-scrap", destination: "/import/metal-scrap", permanent: true },
       { source: "/acids", destination: "/import/acids", permanent: true },
       { source: "/cosmetic-chemical", destination: "/import/cosmetic-chemical", permanent: true },
-      { source: "/import/plastic-chemical", destination: "/#products", permanent: false },
     ];
   },
 };
