@@ -33,7 +33,9 @@ import {
   Wheat,
   Sun,
   Boxes,
+  BookOpen,
 } from "lucide-react";
+import RiceBrochureViewer from "./RiceBrochureViewer";
 
 interface RiceVariety {
   name: string;
@@ -523,51 +525,9 @@ export default function QualityRiceView() {
         </div>
       </section>
 
-      {/* 6. BROCHURE SECTION */}
-      <section
-        className="py-12 relative overflow-hidden bg-cover bg-right"
-        style={{
-          backgroundImage: `linear-gradient(90deg, #ffffff 0%, #ffffff 45%, transparent 100%), url('https://images.unsplash.com/photo-1500382017468-9049fed747ef?auto=format&fit=crop&w=1600&q=85')`,
-        }}
-      >
-        <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
-          <div className="max-w-xl bg-gradient-to-r from-[#00562f] to-[#003a22] text-white p-7 sm:p-8 rounded-xl flex flex-col sm:flex-row items-center justify-between gap-6 shadow-xl brochure-box reveal left">
-            <div>
-              <div className="flex items-center gap-2 mb-1.5">
-                <FileSpreadsheet className="w-6 h-6 text-[#e7b622]" />
-                <h2
-                  className="text-xl sm:text-2xl font-bold"
-                  style={{ fontFamily: "Georgia, serif" }}
-                >
-                  Download Product Brochure
-                </h2>
-              </div>
-              <p className="text-xs sm:text-sm text-emerald-100 mt-1.5">
-                Explore our rice varieties, milling specifications, and packaging options.
-              </p>
-            </div>
-            <Button
-              variant="contained"
-              className="btn-shine"
-              onClick={handleDownloadSpecs}
-              sx={{
-                bgcolor: "#e7b622",
-                color: "#17351f",
-                fontWeight: 900,
-                width: 48,
-                height: 48,
-                minWidth: 48,
-                borderRadius: "50%",
-                boxShadow: "0 8px 24px rgba(231, 182, 34, 0.4)",
-                "&:hover": { bgcolor: "#d4a415", transform: "scale(1.08)" },
-              }}
-              aria-label="Download Rice Brochure"
-            >
-              <Download className="w-5 h-5 text-[#17351f]" />
-            </Button>
-          </div>
-        </div>
-      </section>
+
+      {/* 7. INTERACTIVE PRODUCT DETAILS PDF / BROCHURE VIEWER */}
+      <RiceBrochureViewer onDownloadPdf={handleDownloadSpecs} />
 
       {/* Specifications Dialog Modal */}
       <Dialog

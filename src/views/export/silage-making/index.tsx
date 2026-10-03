@@ -27,7 +27,9 @@ import {
   Download,
   ArrowRight,
   X,
+  BookOpen,
 } from "lucide-react";
+import SilageBrochureViewer from "./SilageBrochureViewer";
 
 interface SilageCrop {
   name: string;
@@ -588,43 +590,6 @@ export default function SilageMakingView() {
       <section className="py-16 sm:py-24 bg-white" id="quality">
         <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
           <div className="grid grid-cols-1 lg:grid-cols-12 gap-8 items-stretch">
-            {/* Download Product Catalogue Panel */}
-            <article className="lg:col-span-7 p-8 sm:p-10 rounded-xl bg-gradient-to-br from-[#005a35] to-[#003d25] text-white flex flex-col justify-between shadow-lg reveal left">
-              <div>
-                <h2 className="text-2xl sm:text-3xl font-black mb-3">
-                  Download Product Catalogue
-                </h2>
-                <p className="text-xs sm:text-sm text-emerald-100 leading-relaxed mb-6">
-                  Get detailed insights into our products. Download the brochure to explore our
-                  offerings and quality standards.
-                </p>
-              </div>
-
-              <div>
-                <Button
-                  variant="contained"
-                  className="btn-shine"
-                  onClick={handleCatalogueDownload}
-                  startIcon={<Download className="w-4 h-4" />}
-                  sx={{
-                    bgcolor: "#ffca08",
-                    color: "#183723",
-                    fontWeight: 900,
-                    fontSize: "0.8rem",
-                    px: 3.5,
-                    py: 1.3,
-                    borderRadius: "6px",
-                    textTransform: "none",
-                    boxShadow: "0 8px 24px rgba(255, 202, 8, 0.35)",
-                    "&:hover": { bgcolor: "#ebb500", transform: "translateY(-3px)" },
-                    transition: "all 0.35s ease",
-                  }}
-                >
-                  Download Now
-                </Button>
-              </div>
-            </article>
-
             {/* Certifications Panel */}
             <article className="lg:col-span-5 p-8 sm:p-10 rounded-xl border border-[#d8e5dc] bg-[#f8fbf9] flex flex-col justify-between shadow-sm reveal right">
               <div>
@@ -654,6 +619,9 @@ export default function SilageMakingView() {
           </div>
         </div>
       </section>
+
+      {/* 7. INTERACTIVE PRODUCT DETAILS PDF / BROCHURE VIEWER */}
+      <SilageBrochureViewer onDownloadPdf={handleCatalogueDownload} />
 
       {/* 7. BLOG / NEWS SECTION */}
       <section className="py-14 sm:py-20 bg-[#f1f8f2] border-t border-[#d8e5dc]" id="blog">

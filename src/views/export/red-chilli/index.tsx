@@ -35,6 +35,7 @@ import {
   Palette,
   Sun,
 } from "lucide-react";
+import ChilliBrochureViewer from "./ChilliBrochureViewer";
 
 interface ChilliVariety {
   name: string;
@@ -541,97 +542,8 @@ export default function RedChilliView() {
         </div>
       </section>
 
-      {/* 7. BOTTOM DOWNLOAD & NEWS SECTION */}
-      <section className="py-14 sm:py-20 bg-white">
-        <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
-          <div className="grid grid-cols-1 md:grid-cols-12 gap-8 items-stretch">
-            {/* Download Card */}
-            <div className="md:col-span-6 bg-gradient-to-br from-[#005c34] to-[#003b22] text-white p-8 rounded-2xl flex flex-col justify-between shadow-lg">
-              <div>
-                <FileSpreadsheet className="w-9 h-9 text-[#ffc400] mb-3 stroke-[1.8]" />
-                <h2
-                  className="text-2xl sm:text-3xl font-extrabold"
-                  style={{ fontFamily: "Georgia, serif" }}
-                >
-                  Download <br />
-                  Product Specifications
-                </h2>
-                <p className="text-xs sm:text-sm text-emerald-100 mt-2 max-w-md">
-                  Get complete analytical data sheets, grading criteria, moisture parameters, and packing configurations.
-                </p>
-              </div>
-
-              <div className="pt-6">
-                <Button
-                  variant="contained"
-                  onClick={handleDownloadSpecs}
-                  endIcon={<Download className="w-4 h-4 ml-1" />}
-                  sx={{
-                    bgcolor: "#ffc400",
-                    color: "#17351f",
-                    fontWeight: 900,
-                    fontSize: "0.75rem",
-                    px: 3.5,
-                    py: 1.2,
-                    borderRadius: "6px",
-                    textTransform: "uppercase",
-                    "&:hover": { bgcolor: "#e0ad00" },
-                  }}
-                >
-                  Download PDF Sheet
-                </Button>
-              </div>
-            </div>
-
-            {/* News Card */}
-            <div className="md:col-span-6 bg-[#fbfcfb] border border-[#dce6dd] rounded-2xl p-7 flex flex-col justify-between">
-              <div>
-                <div className="w-10 h-1 bg-[#ffc400] mb-2" />
-                <h2
-                  className="text-xl sm:text-2xl font-bold text-[#14261b] mb-4"
-                  style={{ fontFamily: "Georgia, serif" }}
-                >
-                  From Our Trade Blog
-                </h2>
-                <div className="flex flex-col sm:flex-row gap-5 items-center">
-                  <div className="relative w-full sm:w-44 h-32 shrink-0 rounded-xl overflow-hidden border border-[#dce6dd]">
-                    <Image
-                      src="https://images.unsplash.com/photo-1588252303782-cb80119abd6d?auto=format&fit=crop&w=500&q=85"
-                      alt="Red chilli news"
-                      fill
-                      sizes="(max-width: 640px) 100vw, 176px"
-                      className="object-cover"
-                    />
-                  </div>
-                  <div>
-                    <h3 className="text-sm sm:text-base font-bold text-[#14261b]">
-                      Global Demand for Indian Dried Red Chilli Continues to Rise
-                    </h3>
-                    <p className="text-xs text-[#536159] mt-1.5 leading-relaxed">
-                      How modern cold storage facilities and direct contract farming in Andhra Pradesh ensure round-the-year quality supply.
-                    </p>
-                  </div>
-                </div>
-              </div>
-
-              <div className="pt-4 border-t border-[#dce6dd] mt-4 flex items-center justify-between">
-                <span className="text-xs font-bold text-[#b71d16]">Market Insights · Export Trends</span>
-                <button
-                  type="button"
-                  onClick={() => {
-                    const el = document.getElementById("contact");
-                    if (el) el.scrollIntoView({ behavior: "smooth" });
-                  }}
-                  className="inline-flex items-center gap-1.5 text-xs font-bold text-[#00552e] hover:text-[#b71d16] transition-colors cursor-pointer group"
-                >
-                  <span>Contact Trade Desk</span>
-                  <ArrowRight className="w-3.5 h-3.5 group-hover:translate-x-1 transition-transform" />
-                </button>
-              </div>
-            </div>
-          </div>
-        </div>
-      </section>
+      {/* 7. INTERACTIVE PRODUCT DETAILS PDF / BROCHURE VIEWER */}
+      <ChilliBrochureViewer onDownloadPdf={handleDownloadSpecs} />
 
       {/* Specifications Dialog Modal */}
       <Dialog

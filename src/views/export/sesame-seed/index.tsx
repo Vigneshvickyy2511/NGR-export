@@ -31,7 +31,9 @@ import {
   Sun,
   Flame,
   CircleDot,
+  BookOpen,
 } from "lucide-react";
+import SesameBrochureViewer from "./SesameBrochureViewer";
 
 interface SesameVariety {
   name: string;
@@ -533,38 +535,11 @@ export default function SesameSeedView() {
               );
             })}
           </div>
-
-          {/* Download Product Brochure Bar */}
-          <div className="text-center pt-8 brochure">
-            <Button
-              variant="contained"
-              className="btn-shine"
-              onClick={handleDownloadSpecs}
-              startIcon={<Download className="w-4 h-4" />}
-              sx={{
-                bgcolor: "#075b31",
-                color: "#ffffff",
-                fontWeight: 900,
-                fontSize: "0.78rem",
-                px: 4,
-                py: 1.4,
-                borderRadius: "999px",
-                textTransform: "uppercase",
-                letterSpacing: "0.05em",
-                boxShadow: "0 8px 24px rgba(7, 91, 49, 0.3)",
-                "&:hover": {
-                  bgcolor: "#003b23",
-                  transform: "translateY(-3px)",
-                  boxShadow: "0 14px 30px rgba(7, 91, 49, 0.45)",
-                },
-                transition: "all 0.35s ease",
-              }}
-            >
-              Download Product Brochure
-            </Button>
-          </div>
         </div>
       </section>
+
+      {/* 7. INTERACTIVE PRODUCT DETAILS PDF / BROCHURE VIEWER */}
+      <SesameBrochureViewer onDownloadPdf={handleDownloadSpecs} />
 
       {/* 7. FROM OUR BLOG SECTION */}
       <section className="py-14 bg-[#fbf8ef] border-t border-[#dddcd3]" id="blog">

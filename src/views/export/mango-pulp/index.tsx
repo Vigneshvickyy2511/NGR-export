@@ -32,6 +32,7 @@ import {
   Sun,
   Droplets,
 } from "lucide-react";
+import MangoBrochureViewer from "./MangoBrochureViewer";
 
 interface MangoVariety {
   name: string;
@@ -643,63 +644,8 @@ export default function MangoPulpView() {
         </div>
       </section>
 
-      {/* 8. RESOURCES SECTION */}
-      <section className="py-14 sm:py-20 bg-white border-b border-[#e7ddc9]">
-        <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
-          <div className="grid grid-cols-1 md:grid-cols-12 gap-8 items-stretch">
-            {/* Download Resource (reveal left) */}
-            <article className="md:col-span-12 lg:col-span-8 lg:col-start-3 bg-[#fffaf0] p-7 sm:p-8 rounded-2xl border border-[#e7ddc9] flex flex-col sm:flex-row items-center gap-6 shadow-sm reveal left">
-              <div className="relative w-full sm:w-40 h-32 shrink-0 rounded-xl overflow-hidden border border-[#e7ddc9]">
-                <Image
-                  src="https://images.unsplash.com/photo-1553279768-865429fa0078?auto=format&fit=crop&w=500&q=85"
-                  alt="Product details sheet"
-                  fill
-                  sizes="(max-width: 640px) 100vw, 160px"
-                  className="object-cover"
-                />
-              </div>
-              <div className="flex-1 text-center sm:text-left">
-                <h3
-                  className="text-xl font-bold text-[#102d20] mb-2"
-                  style={{ fontFamily: "Georgia, serif" }}
-                >
-                  Download <br />
-                  Product Details
-                </h3>
-                <p className="text-xs text-[#526059] font-sans mb-4">
-                  Get detailed information about varieties, specifications and packaging options.
-                </p>
-                <Button
-                  variant="contained"
-                  className="btn-shine"
-                  onClick={handleDownloadSpecs}
-                  startIcon={<Download className="w-4 h-4" />}
-                  sx={{
-                    bgcolor: "#ffbd09",
-                    color: "#142e20",
-                    fontWeight: 900,
-                    fontSize: "0.72rem",
-                    px: 3.5,
-                    py: 1.1,
-                    borderRadius: "999px",
-                    textTransform: "uppercase",
-                    boxShadow: "0 8px 24px rgba(201, 146, 0, 0.3)",
-                    "&:hover": {
-                      bgcolor: "#e5a700",
-                      transform: "translateY(-3px)",
-                      boxShadow: "0 14px 30px rgba(201, 146, 0, 0.46)",
-                    },
-                    transition: "all 0.35s ease",
-                    fontFamily: "Inter, Arial, sans-serif",
-                  }}
-                >
-                  Download Product Details
-                </Button>
-              </div>
-            </article>
-          </div>
-        </div>
-      </section>
+      {/* 8. INTERACTIVE PRODUCT DETAILS PDF / BROCHURE VIEWER */}
+      <MangoBrochureViewer onDownloadPdf={handleDownloadSpecs} />
 
       {/* Specifications Dialog Modal */}
       <Dialog
